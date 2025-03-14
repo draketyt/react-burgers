@@ -19,6 +19,13 @@ export const AppMain=  () =>{
 					Начинки
 				</Tab>
 			</div>
+				<div>
+					<ul>
+						<li>
+						</li>
+					</ul>
+
+				</div>
 		</main>
 
 		</>

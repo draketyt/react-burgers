@@ -15,7 +15,7 @@ export const AppHeader = () => {
 					background: '#1C1C21',
 				}}
 				className='p-5'>
-				<nav style={{}} className='pt-4 pb-4'>
+				<nav style={{}} className='pl-25 pt-4 pb-4 pr-25' >
 					<ul
 						style={{
 							listStyle: 'none',
@@ -36,9 +36,7 @@ export const AppHeader = () => {
 							<ListIcon type='secondary' className='icon' />
 							<span><h1>Лента заказов</h1></span>
 						</li>
-						<li>
-						<Logo className='logo mr-25' style={{width:'161616px', height:'50px'}}/>
-							</li>
+						<Logo className='logo mr-25' style={{flexGrow:'1'}}/>
 
 
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5 mr-20'>
