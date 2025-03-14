@@ -18,7 +18,6 @@ export const AppHeader = () => {
 				<nav style={{}} className='pt-4 pb-4'>
 					<ul
 						style={{
-							textAlign:'center',
 							listStyle: 'none',
 							display: 'flex',
 							justifyContent: 'space-between',
@@ -30,21 +29,21 @@ export const AppHeader = () => {
 						}}>
 						<li className='nav__list-item primary pb-4 pt-4 pr-2 pl-5 '>
 							<BurgerIcon type='primary' className='icon' />
-							<span className='icon-li1'>Конструктор</span>
+							<span className='icon-li1'><h1>Конструктор</h1></span>
 						</li>
 
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5  '>
 							<ListIcon type='secondary' className='icon' />
-							<span>Лента заказов</span>
+							<span><h1>Лента заказов</h1></span>
 						</li>
 						<li>
-						<Logo className='logo mr-25'/>
+						<Logo className='logo mr-25' style={{width:'161616px', height:'50px'}}/>
 							</li>
 
 
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5 mr-20'>
 							<ProfileIcon type='secondary' className='icon' />
-							<span>Личный кабинет</span>
+							<span><h1>Личный кабинет</h1></span>
 						</li>
 					</ul>
 				</nav>
