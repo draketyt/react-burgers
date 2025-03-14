@@ -1,0 +1,48 @@
+.nav__list-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width:50px;
+	color: #8585ad;
+	font-weight: 600;
+	font-size: 16px;
+	font-family: "JetBrains Mono", sans-serif;
+	line-height: 1.5;
+	background: transparent;
+	border-radius: 50px;
+	cursor: pointer;
+	user-select: none;
+}
+.logo{
+	flex-grow: 3;
+	position: relative;
+}
+.icon{
+	min-width: 20px;
+	min-height:20px ;
+}
+
+.secondary{
+	color:var(--text-inactive-color);
+}
+
+.secondary:hover{
+	color:darkgray;
+
+}
+
+.secondary:active{
+	color:var(--text-primary-color);
+}
+
+.primary{
+	color:var(--text-primary-color);
+	cursor:default;
+}
+
+.primary:hover{
+	color:darkgray;
+
+}
+
+
