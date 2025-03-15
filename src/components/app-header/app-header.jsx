@@ -3,7 +3,7 @@ import {
 	ListIcon,
 	Logo,
 	ProfileIcon,
-	Tab,
+
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 export const AppHeader = () => {
@@ -25,7 +25,6 @@ export const AppHeader = () => {
 							gap:'8px',
 							alignItems: 'center',
 							textWrap: 'nowrap',
-							fontWeight: '700',
 						}}>
 						<li className='nav__list-item primary pb-4 pt-4 pr-2 pl-5 '>
 							<BurgerIcon type='primary' className='icon' />

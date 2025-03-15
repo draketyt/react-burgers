@@ -13,6 +13,7 @@
 	cursor: pointer;
 	user-select: none;
 }
+
 .logo{
 	flex-grow: 3;
 	position: relative;
