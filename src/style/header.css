@@ -13,7 +13,13 @@
 	cursor: pointer;
 	user-select: none;
 }
+.header {
+	background-color:  #1C1C21;
+}
+nav{
+	max-width: 1920px;
 
+}
 .logo{
 	flex-grow: 3;
 	position: relative;

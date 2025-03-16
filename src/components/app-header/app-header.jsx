@@ -12,9 +12,8 @@ export const AppHeader = () => {
 		<>
 			<header
 				style={{
-					background: '#1C1C21',
 				}}
-				className='p-5'>
+				className='header p-5'>
 				<nav style={{}} className='pl-25 pt-4 pb-4 pr-25' >
 					<ul
 						style={{
