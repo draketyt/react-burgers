@@ -1,43 +1,34 @@
+@import "../app-main/burger-ingredients/Ingredients-group/Ingridients-group.css";
 .main {
 	padding: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	gap: 40px;
 	height: 100vh;
 	overflow: hidden;
 }
 
-.left__panel {
-	display: flex;
-	flex-direction: column;
-	width: 800px;
-	align-items: flex-start;
-	overflow-y: auto;
 
-}
 
 .title {
 	text-align: left;
 }
 
-.tabs {
-	width: 100%;
-	display: flex;
-	align-items: flex-start ;
-}
+
+
 
 .ingredients{
 	display: grid;
-	gap: 16px;
+
 	width: 100%;
 }
 
 
 .grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 16px;
+	width: 300px;
+	display: flex;
+	gap:5px;
+	flex-direction: row;
 }
 
 .right__panel {
@@ -54,8 +45,7 @@
 
 
 
-.order__summary {
-
+.order__summary{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -66,7 +56,7 @@
 	display: flex;
 	align-items: center;
 }
-.bottom__sticky-container {
+.bottomBun-container {
 	position: sticky;
 	bottom: 0;
 	z-index: 10;
@@ -98,7 +88,7 @@
 	align-items: center;
 }
 
-.sticky__container{
+.bunSticky-сontainer{
 	position: sticky;
 	top: 0;
 	z-index: 10;
