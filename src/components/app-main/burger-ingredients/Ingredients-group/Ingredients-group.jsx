@@ -1,9 +1,10 @@
 import {ConstructorElement, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useState} from "react";
-const [current, setCurrent] = useState("one");
 
-export const IngredientsGroup= () =>{
-	return(<section className="left__panel">
+ export const IngredientsGroup= () =>{
+	 const [current, setCurrent] = useState("one");
+	 return(
+		 <section className="left__panel">
 		<p className="text text_type_main-large mb-5 mt-10 title">Соберите бургер</p>
 		<tabs className={`tabs mb-4`} >
 			<Tab value="one" active={current === "one"} onClick={setCurrent}>
@@ -29,7 +30,12 @@ export const IngredientsGroup= () =>{
 			<div className="grid pt-6">
 				<ConstructorElement text="Соус Spicy-X" price={30} />
 			</div>
+			<p className="text_type_main-large title pt-10">Начинки</p>
+			<div className="grid pt-6">
+				<ConstructorElement text="Соус Spicy-X" price={30} />
+			</div>
 		</div>
 	</section>)
 }
-export default IngridientsGroup;
+
+export default {IngredientsGroup};

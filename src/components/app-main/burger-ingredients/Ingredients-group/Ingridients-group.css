@@ -4,6 +4,8 @@
 	width: 600px;
 	align-items: flex-start;
 	overflow-y: auto;
+	height: 800px;
+	overflow-x: hidden;
 
 }
 .tabs {

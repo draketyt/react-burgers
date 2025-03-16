@@ -80,6 +80,7 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.5.1",
 		"@ya.praktikum/react-developer-burger-ui-components": "^1.14.2",
+		"axios": "^1.8.3",
 		"clsx": "^2.1.0",
 		"core-js": "^3.38.1",
 		"prop-types": "^15.8.1",
