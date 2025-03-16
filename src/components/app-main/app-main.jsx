@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { ConstructorElement,Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+// @ts-ignore
+import {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 export const AppMain = () => {
@@ -30,6 +32,7 @@ export const AppMain = () => {
 	return (
 		<main className="main">
 			{/*Ingridients*/}
+			<IngredientsGroup></IngredientsGroup>
 			{/*burger composition*/}
 
 			<section className="right__panel mt-15">
