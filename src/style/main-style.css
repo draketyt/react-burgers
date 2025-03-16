@@ -50,11 +50,9 @@
 }
 
 .order__List {
-	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	width: 100%;
 }
 
 .order__Summary {
