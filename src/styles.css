@@ -1,2 +1,5 @@
 @import "../src/components/app-header/header.css";
 @import "../src/components/app-main/main-style.css";
+body{
+	overflow-y: clip;
+}

@@ -3,9 +3,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	height: 100vh;
-	gap:15px;
-	overflow: hidden;
+	height: 83vh;
+	gap:40px;
+	overflow-y: hidden;
 	position: relative;;
 }
 
@@ -15,22 +15,6 @@
 	text-align: left;
 }
 
-
-
-
-.ingredients{
-	display: grid;
-
-	width: 100%;
-}
-
-
-.grid {
-	width: 300px;
-	display: flex;
-	gap:5px;
-	flex-direction: row;
-}
 
 .right__panel {
 	position: relative;

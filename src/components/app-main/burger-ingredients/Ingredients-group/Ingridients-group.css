@@ -1,18 +1,48 @@
 .left__panel {
 	display: flex;
 	flex-direction: column;
-	width: 600px;
+	width: 750px;
 	align-items: flex-start;
 	overflow-y: auto;
-	height: 800px;
-	overflow-x: hidden;
+	height: 912px;
 	position: relative;
-
+	overflow-x: clip;
 }
 .tabs {
-	top: 0;
-	z-index: 10;
-	position: sticky;
 	 display: flex;
 
  }
+
+.ingredient-items{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	row-gap: 5px;
+	text-align: center;
+}
+.ingredient-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 5px;
+	text-align: center;
+}
+.ingredients{
+	overflow-y: unset;
+}
+
+.ingredient-image {
+	width: 350px;
+	height: 200px;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.ingredient-price {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 15px;
+}
+
+
