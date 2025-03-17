@@ -3,7 +3,6 @@ import {
 	ListIcon,
 	Logo,
 	ProfileIcon,
-
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 export const AppHeader = () => {
@@ -14,7 +13,7 @@ export const AppHeader = () => {
 				style={{
 				}}
 				className='header p-5'>
-				<nav style={{}} className='pl-25 pt-4 pb-4 pr-25' >
+				<nav  className='pl-25 pt-4 pb-4 pr-25' >
 					<ul
 						style={{
 							listStyle: 'none',
