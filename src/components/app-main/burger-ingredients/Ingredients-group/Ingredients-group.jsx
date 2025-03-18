@@ -1,7 +1,7 @@
 import { CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useState} from "react";
 
-function IngredientItemBun({ image }) {
+function IngredientItemBun({ image, price, name }) {
 	const ingredients = {
 		success: true,
 		data: [
@@ -70,8 +70,6 @@ function IngredientItemBun({ image }) {
 			},
 		],
 	};
-	const type = {type:'bun'};
-
 	return (
 
 		<div className="ingredient-item">
@@ -79,11 +77,11 @@ function IngredientItemBun({ image }) {
 					<div className="ingredient-image" style={{ backgroundImage: `url(${image})` }} />
 				</div>
 					<div className="ingredient-price">
-						<span className="text text_type_digits-medium  pt-4">1321</span>
+						<span className="text text_type_digits-medium  pt-4">{price}</span>
 						<CurrencyIcon type="primary" />
 					</div>
 				</>
-			<p className="text_type_main-medium title" style={{}}> Краторная булка N-200i</p>
+			<p className="text_type_main-medium title">{name}</p>
 		</div>
 
 	);
@@ -92,86 +90,120 @@ function IngredientItemBun({ image }) {
 }
 
 
-export const IngredientsGroup= () =>{
-	const ingredients = {
-		success: true,
-		data: [
-			{
-				_id: "643d69a5c3f7b9001cfa093c",
-				name: "Краторная булка N-200i",
-				type: "bun",
-				price: 988,
-				image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
-			},
-			{
-				_id: "643d69a5c3f7b9001cfa093d",
-				name: "Флюоресцентная булка R2-D3",
-				type: "bun",
-				proteins: 44,
-				fat: 26,
-				carbohydrates: 85,
-				calories: 643,
-				price: 988,
-				image: "https://code.s3.yandex.net/react/code/bun-01.png",
-				image_mobile: "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
-				image_large: "https://code.s3.yandex.net/react/code/bun-01-large.png",
-				__v: 0
-			}
-		],
-	};
-
+export const IngredientsGroup = () => {
 	const [current, setCurrent] = useState("one");
 
-	 return(
-		 <section className="left__panel ">
-		<p className="text text_type_main-large mb-5 mt-10 title">Соберите бургер</p>
-		<tabs className={`tabs mb-4`} >
-			<Tab value="one" active={current === "one"} onClick={setCurrent}>
-				Булки
-			</Tab>
-			<Tab value="two" active={current === "two"} onClick={setCurrent}>
-				Соусы
-			</Tab>
-			<Tab value="three" active={current === "three"} onClick={setCurrent}>
-				Начинки
-			</Tab>
-		</tabs>
+	const ingredients = [
+		{
+			_id: "643d69a5c3f7b9001cfa093c",
+			name: "Краторная булка N-200i",
+			type: "bun",
+			price: 988,
+			image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
+		},
+		{
+			_id: "643d69a5c3f7b9001cfa093d",
+			name: "Флюоресцентная булка R2-D3",
+			type: "bun",
+			price: 988,
+			image_large: "https://code.s3.yandex.net/react/code/bun-01-large.png",
+		},
+		{
+			_id: "643d69a5c3f7b9001cfa0942",
+			name: "Соус Spicy-X",
+			type: "sauce",
+			price: 90,
+			image_large: "https://code.s3.yandex.net/react/code/sauce-02-large.png",
+		},
+		{
+			_id: "643d69a5c3f7b9001cfa0941",
+			name: "Биокотлета из марсианской Магнолии",
+			type: "main",
+			price: 424,
+			image_large: "https://code.s3.yandex.net/react/code/meat-01-large.png",
+		},{
+			"_id": "643d69a5c3f7b9001cfa0947",
+			"name": "Плоды Фалленианского дерева",
+			"type": "main",
+			"proteins": 20,
+			"fat": 5,
+			"carbohydrates": 55,
+			"calories": 77,
+			"price": 874,
+			"image": "https://code.s3.yandex.net/react/code/sp_1.png",
+			"image_mobile": "https://code.s3.yandex.net/react/code/sp_1-mobile.png",
+			"image_large": "https://code.s3.yandex.net/react/code/sp_1-large.png",
+			"__v": 0
+		},  {
+			"_id": "643d69a5c3f7b9001cfa0945",
+			"name": "Соус с шипами Антарианского плоскоходца",
+			"type": "sauce",
+			"proteins": 101,
+			"fat": 99,
+			"carbohydrates": 100,
+			"calories": 100,
+			"price": 88,
+			"image": "https://code.s3.yandex.net/react/code/sauce-01.png",
+			"image_mobile": "https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
+			"image_large": "https://code.s3.yandex.net/react/code/sauce-01-large.png",
+			"__v": 0
+		},
+	];
 
-		<div className="ingredients pt-10 custom-scroll" >
+	const buns = ingredients.filter((item) => item.type === "bun");
+	const sauces = ingredients.filter((item) => item.type === "sauce");
+	const mains = ingredients.filter((item) => item.type === "main");
+
+	return (
+		<section className="left__panel">
+			<p className="text text_type_main-large mb-5 mt-10 title">Соберите бургер</p>
+
+			<div className={`tabs mb-4`}>
+				<Tab value="one" active={current === "one"} onClick={() => setCurrent("one")}>
+					Булки
+				</Tab>
+				<Tab value="two" active={current === "two"} onClick={() => setCurrent("two")}>
+					Соусы
+				</Tab>
+				<Tab value="three" active={current === "three"} onClick={() => setCurrent("three")}>
+					Начинки
+				</Tab>
+			</div>
+
 			<div className="ingredients pt-10 custom-scroll">
 				<p className="text_type_main-large title">Булки</p>
 				<div className="grid pt-6">
 					<ul className="ingredient-items">
-						{ingredients.data.map((item) => (
-							<IngredientItemBun key={item._id} type={item.type} image={item.image_large} price={item.price} name={item.name} />
+						{buns.map((item) => (
+							<IngredientItemBun key={item._id} type="bun" image={item.image_large} price={item.price} name={item.name} />
 						))}
 					</ul>
 				</div>
 			</div>
-			{/* создать компонент IngredientItemSauce*/}
+
 			<div className="ingredients pt-10 custom-scroll">
-				<p className="text_type_main-large title">Cоусы</p>
+				<p className="text_type_main-large title">Соусы</p>
 				<div className="grid pt-6">
 					<ul className="ingredient-items">
-						{ingredients.data.map((item) => (
-							<IngredientItemBun key={item._id} type={item.type} image={item.image_large} price={item.price} name={item.name} />
+						{sauces.map((item) => (
+							<IngredientItemBun key={item._id} type="sauce" image={item.image_large} price={item.price} name={item.name} />
 						))}
 					</ul>
 				</div>
 			</div>
+
 			<div className="ingredients pt-10 custom-scroll">
 				<p className="text_type_main-large title">Начинки</p>
 				<div className="grid pt-6">
 					<ul className="ingredient-items">
-						{ingredients.data.map((item) => (
-							<IngredientItemBun key={item._id} type={item.type} image={item.image_large} price={item.price} name={item.name} />
+						{mains.map((item) => (
+							<IngredientItemBun key={item._id} type="main" image={item.image_large} price={item.price} name={item.name} />
 						))}
-
 					</ul>
 				</div>
 			</div>
-		</div>
-	</section>)
-}
+		</section>
+	);
+};
 
 export default {IngredientsGroup};

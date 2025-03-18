@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	height: 83vh;
+	height: 100vh;
 	gap:40px;
 	overflow-y: hidden;
 	position: relative;;
@@ -11,9 +11,7 @@
 
 
 
-.title {
-	text-align: left;
-}
+
 
 
 .right__panel {
