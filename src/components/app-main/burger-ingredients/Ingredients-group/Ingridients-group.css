@@ -1,23 +1,20 @@
 .left__panel {
 	display: flex;
 	flex-direction: column;
-	width: 750px;
+	width: 620px;
 	align-items: flex-start;
 	overflow-y: auto;
 	height: 912px;
 	position: relative;
-	overflow-x: clip;
 }
 .tabs {
 	 display: flex;
-
  }
 
 .ingredient-items{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	row-gap: 5px;
 	text-align: center;
 	margin: 0;
 	padding: 0;
@@ -26,7 +23,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	row-gap: 5px;
 	text-align: center;
 }
 .ingredients{
@@ -34,13 +30,14 @@
 }
 
 .ingredient-image {
-	width: 350px;
+	width: 300px;
 	height: 200px;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
 
 .ingredient-price {
+
 	display: flex;
 	flex-direction: row;
 	align-items: center;
