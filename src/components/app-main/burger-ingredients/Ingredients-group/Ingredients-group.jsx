@@ -6,7 +6,7 @@ function IngredientItem({ image, price, name }) {
 
 		<div className="ingredient-item">
 				<><div>
-					<div className="ingredient-image" style={{ backgroundImage: `url(${image})` }} />
+					<img className="ingredient-image" src={image}  alt={'image'}/>
 				</div>
 					<div className="ingredient-price">
 						<span className="text text_type_digits-medium  pt-4">{price}</span>
@@ -18,14 +18,10 @@ function IngredientItem({ image, price, name }) {
 
 	);
 
-
 }
 export const IngredientsGroup = () => {
 	const [current, setCurrent] = useState("one");
-
-
-
-	const buns = ingredients.filter((item) => item.type === "bun");
+ 	const buns = ingredients.filter((item) => item.type === "bun");
 	const sauces = ingredients.filter((item) => item.type === "sauce");
 	const mains = ingredients.filter((item) => item.type === "main");
 
