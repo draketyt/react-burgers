@@ -27,7 +27,7 @@ export const IngredientsGroup = () => {
 
 	return (
 		<section className="left__panel">
-			<p className="text text_type_main-large mb-5 mt-10 title">Соберите бургер</p>
+			<p className="text text_type_main-large mb-5 mt-10 left-panel-title">Соберите бургер</p>
 
 			<div className={`tabs mb-4`}>
 				<Tab value="one" active={current === "one"} onClick={() => setCurrent("one")}>

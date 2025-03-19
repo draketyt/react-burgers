@@ -3,12 +3,15 @@
 	flex-direction: column;
 	width: 620px;
 	align-items: flex-start;
-	overflow-y: auto;
+	overflow-y: scroll ;
 	height: 912px;
 	position: relative;
+
 }
 .tabs {
 	 display: flex;
+	position: sticky;
+	top:0;
  }
 
 .ingredient-items{
