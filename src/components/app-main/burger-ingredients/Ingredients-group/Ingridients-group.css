@@ -10,6 +10,7 @@
 
 }
 .tabs {
+	z-index:10;
 	 display: flex;
 	position: sticky;
 	top:0;
