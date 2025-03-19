@@ -1,19 +1,21 @@
-import { CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import React, {useState} from "react";
-import {ingredients} from '/src/utils/ingredients'
+import {Counter, CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import React, {useEffect, useState} from "react";
+	const API_URL = 'https://norma.nomoreparties.space/api/ingredients'
 function IngredientItem({ image, price, name }) {
 	return (
 
-		<div className="ingredient-item">
+		<div className="ingredient-item ml-5 p-4">
 				<><div>
+					<Counter count={1} size="default" extraClass="m-1 counter" />
 					<img className="ingredient-image" src={image}  alt={'image'}/>
 				</div>
 					<div className="ingredient-price">
+
 						<span className="text text_type_digits-medium  pt-4">{price}</span>
 						<CurrencyIcon type="primary" />
 					</div>
 				</>
-			<p className="text_type_main-medium title">{name}</p>
+			<p className="text_type_main-medium title-name">{name}</p>
 		</div>
 
 	);
@@ -21,10 +23,18 @@ function IngredientItem({ image, price, name }) {
 }
 export const IngredientsGroup = () => {
 	const [current, setCurrent] = useState("one");
+	const [ingredients, setIngredients]= useState([])
  	const buns = ingredients.filter((item) => item.type === "bun");
 	const sauces = ingredients.filter((item) => item.type === "sauce");
 	const mains = ingredients.filter((item) => item.type === "main");
-
+	useEffect(() => {
+		fetch(API_URL)
+			.then((res) => res.json())
+			.then((data) => {
+				setIngredients(data.data);
+			})
+			.catch((err) => console.error("Ошибка загрузки:", err));
+	}, []);
 	return (
 		<section className="left__panel">
 			<p className="text text_type_main-large mb-5 mt-10 left-panel-title">Соберите бургер</p>
