@@ -11,7 +11,12 @@ export const BurgerComposition=()=>{
 			.then((data) => {
 				setIngredients(data.data);
 			})
-			.catch((err) => console.error("Ошибка загрузки:", err));
+			.then(res => {
+				if (res.ok) {
+					return res.json();
+				}
+				return Promise.reject(`Ошибка ${res.status}`);
+			})
 	}, []);
 	return(
 
