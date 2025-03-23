@@ -80,7 +80,3 @@
 	z-index: 10;
 	background:transparent;
 }
-.ingredient-item {
-	display: flex;
-	align-items: center;
-gap: 10px;}
