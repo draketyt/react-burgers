@@ -1,4 +1,4 @@
-import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useEffect, useState} from "react";
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
@@ -22,25 +22,27 @@ export const BurgerComposition=()=>{
 					type="top"
 					key={ingredient.id}
 					isLocked={true}
-					text={ingredient.name}
+					text='Краторная булка N-200i(верх)'
 					price={ingredient.price}
 					thumbnail={ingredient.image}
 				/>
 			))}
 		</div>
 
-		<div className="ingredient-container">
-			<ul className="order__list">
-				{ingredients.slice(1).map((ingredient) => (
-					<ConstructorElement
-						key={ingredient._id}
-						text={ingredient.name}
-						price={ingredient.price}
-						thumbnail={ingredient.image}
-					/>
-				))}
-			</ul>
-		</div>
+			<div className="ingredient-container">
+				<ul className="order__list">
+					{ingredients.filter((ingredients)=> ingredients.type!=='bun').map((ingredient) => (
+						<li key={ingredient._id} className="order__item">
+							<DragIcon type="primary" />
+							<ConstructorElement
+								text={ingredient.name}
+								price={ingredient.price}
+								thumbnail={ingredient.image}
+							/>
+						</li>
+					))}
+				</ul>
+			</div>
 
 		<div className="bottomBun-container">
 			{ingredients.slice(0,1).map((ingredient) => (
@@ -48,13 +50,12 @@ export const BurgerComposition=()=>{
 					type="bottom"
 					key={ingredient.id}
 					isLocked={true}
-					text={ingredient.name}
+					text='Краторная булка N-200i(низ)'
 					price={ingredient.price}
 					thumbnail={ingredient.image}
 				/>
 			))}
 			{/*order summary*/}
-
 			<div className="order__summary pt-4">
 				<div className="price__container mr-10">
 					<span className="text text_type_digits-medium pr-2">610</span>

@@ -21,8 +21,7 @@ nav{
 	max-width: 1920px;
 }
 .logo{
-	flex-grow: 3;
-	position: relative;
+	flex-grow: 1;
 }
 .icon{
 	min-width: 20px;
@@ -51,5 +50,13 @@ nav{
 	color:darkgray;
 
 }
-
+.nav__list{
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	gap:8px;
+	align-items: center;
+	text-wrap: nowrap;
+}
 
