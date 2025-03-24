@@ -1,0 +1,79 @@
+.main {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100vh;
+	gap:40px;
+	overflow-y: hidden;
+	position: relative;;
+}
+
+
+.right__panel {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 35%;
+	height: 76vh;
+	overflow-y: hidden;
+	background-color: #131316;
+	text-align:center;
+}
+
+.order__summary{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 15px;
+}
+
+.price__container {
+	display: flex;
+	align-items: center;
+}
+.bottomBun-container {
+	position: sticky;
+	bottom: 0;
+	z-index: 10;
+	background: #131316;
+	padding-bottom: 10px;
+
+
+}
+
+.order__list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+	list-style: none;
+}
+.ingredient-container{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	overflow-y: scroll;
+	flex: 1;
+	position: relative;
+}
+.order__summary {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 15px;
+	justify-content: center;
+}
+
+.price__container {
+	display: flex;
+	align-items: center;
+}
+
+.bunSticky-сontainer{
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background:transparent;
+}
