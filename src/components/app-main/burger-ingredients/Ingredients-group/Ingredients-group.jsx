@@ -1,5 +1,6 @@
 import {Counter, CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useEffect, useState} from "react";
+import axios from "axios";
 	const API_URL = 'https://norma.nomoreparties.space/api/ingredients'
 function IngredientItem({ image, price, name }) {
 	return (
@@ -28,18 +29,15 @@ export const IngredientsGroup = () => {
 	const sauces = ingredients.filter((item) => item.type === "sauce");
 	const mains = ingredients.filter((item) => item.type === "main");
 	useEffect(() => {
-		fetch(API_URL)
-			.then((res) => res.json())
-			.then((data) => {
-				setIngredients(data.data);
+		axios.get(API_URL)
+			.then((response) => {
+				setIngredients(response.data.data);
 			})
-			.then(res => {
-				if (res.ok) {
-					return res.json();
-				}
-				return Promise.reject(`Ошибка ${res.status}`);
-			})
+			.catch((error) => {
+				console.error(`Ошибка: ${error.response ? error.response.status : error.message}`);
+			});
 	}, []);
+
 	return (
 		<section className="left__panel">
 			<p className="text text_type_main-large mb-5 mt-10 left-panel-title">Соберите бургер</p>
