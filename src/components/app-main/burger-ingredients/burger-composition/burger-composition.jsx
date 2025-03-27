@@ -17,6 +17,7 @@ export const BurgerComposition=()=>{
 	}, []);
 
 	return(
+		<>
 
 		<section className="right__panel mt-15">
 		<div className="bunSticky-сontainer custom-scroll">
@@ -69,5 +70,6 @@ export const BurgerComposition=()=>{
 				</Button>
 			</div>
 		</div>
-	</section>)
+	</section>
+		</>)
 }
