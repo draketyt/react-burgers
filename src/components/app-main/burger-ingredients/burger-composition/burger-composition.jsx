@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 // @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item'
 import { useDispatch, useSelector } from "react-redux";
-import { SET_BUN,ADD_INGREDIENT} from '../../../../redux/actions/ingredientActions'
+import {SET_BUN, ADD_INGREDIENT, } from '../../../../redux/actions/ingredientActions'
 import axios from "axios";
+import {useDrop } from "react-dnd";
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 export const BurgerComposition = () => {
@@ -45,97 +47,113 @@ export const BurgerComposition = () => {
 			console.log(ingredient)
 			dispatch(SET_BUN(ingredient));
 		}
-		else if(ingredient.type==="main"||"sauces"){
+		else if(ingredient.type==="main"||ingredient.type==="sauce"){
 			console.log(ingredient)
 			dispatch(ADD_INGREDIENT(ingredient));
 		}
 	};
-	const moveIngredient = (fromIndex, toIndex) => {
-		dispatch({ type: "MOVE_INGREDIENT",  payload: {fromIndex, toIndex} });
+	const moveIngredient =  (fromIndex, toIndex) => {
+		setTimeout(() => {
+			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
+		}, 21);
 	};
+	const [{ isOverStub }, stubDropRef] = useDrop({
+		accept: "ingredient",
+		hover: () => {
+		},
+		collect: (monitor) => ({
+			isOverStub: monitor.isOver(),
+		}),
+	});
 
 
 
 	return (
+
 		<section className="right__panel mt-15 pt-15">
+
 			<div
-				className="bunSticky-сontainer custom-scroll"
-				onDragOver={handleDragOver}
-				onDrop={handleDrop}
-			>
-				{selectedBun ? (
-					<ConstructorElement
-						type="top"
-						isLocked={true}
-						text={`${selectedBun.name} (Верх)`}
-						price={selectedBun.price}
-						thumbnail={selectedBun.image}
-					/>
-				) : (
-					<div className="bunStub top">
+					className="bunSticky-сontainer custom-scroll"
+					onDragOver={handleDragOver}
+					onDrop={handleDrop}
+				>
+					{selectedBun ? (
+						<ConstructorElement
+							type="top"
+							isLocked={true}
+							text={`${selectedBun.name} (Верх)`}
+							price={selectedBun.price}
+							thumbnail={selectedBun.image}
+						/>
+					) : (
+						<div className="bunStub top">
             <span className="text_type_main-small">
               <p>Выберите булку</p>
             </span>
-					</div>
-				)}
-			</div>
-
-			<div className="ingredient-container" onDragOver={handleDragOver}
-				 onDrop={handleDrop}
-			>
-				{selectedIngredients.length > 0 ? (
-					<ul className="order__list">
-						{selectedIngredients.map((ingredient, index) => (
-							<DraggableIngredientItem
-								key={ingredient._id + index}
-								ingredient={ingredient}
-								index={index}
-								moveIngredient={moveIngredient}
-							/>
-						))}
-					</ul>
-				) : (
-					<div className="ingredientsStub">
-            <span className="text_type_main-small">
-              <p>Выберите ингредиенты</p>
-            </span>
-					</div>
-				)}
-			</div>
-
-			<div className="bottomBun-container" onDragOver={handleDragOver}
-				 onDrop={handleDrop}>
-				{selectedBun ? (
-					<ConstructorElement
-						type="bottom"
-						isLocked={true}
-						text={`${selectedBun.name} (Низ)`}
-						price={selectedBun.price}
-						thumbnail={selectedBun.image}
-					/>
-				) : (
-					<div className="bunStub bottom">
-            <span className="text_type_main-small">
-              <p>Выберите булку</p>
-            </span>
-					</div>
-				)}
-			</div>
-
-			<div className="order__summary pt-4">
-				<div className="price__container mr-10">
-					<span className="text text_type_digits-medium pr-2">{totalPrice}</span>
-					<CurrencyIcon type="primary" />
+						</div>
+					)}
 				</div>
-				<Button type="primary" size="medium" disabled={totalPrice === 0 ||
-					selectedBun=== null || undefined || ''
-				}>
-					Оформить заказ
-				</Button>
-			</div>
 
+				<div  onDragOver={handleDragOver}
+					 onDrop={handleDrop}
+					  className={'ingredient-container '}
+				>
+					{selectedIngredients.length > 0 ? (
+						<ul  className={'order__list'}>
+							{selectedIngredients.map((ingredient, index) => (
+								<DraggableIngredientItem
+									key={ingredient._id + index}
+									ingredient={ingredient}
+									index={index}
+									moveIngredient={moveIngredient}
+								/>
+							))}
+						</ul>
+					) : (
+						<div
+							ref={stubDropRef}
+							className={`ingredientsStub ${isOverStub ? "hovered" : ""}`}
+						>
+    <span className="text_type_main-small">
+      <p>Выберите ингредиенты</p>
+    </span>
+						</div>
+					)}
+				</div>
 
-		</section>
+				<div className="bottomBun-container" onDragOver={handleDragOver}
+					 onDrop={handleDrop}>
+					{selectedBun ? (
+						<ConstructorElement
+							type="bottom"
+							isLocked={true}
+							text={`${selectedBun.name} (Низ)`}
+							price={selectedBun.price}
+							thumbnail={selectedBun.image}
+						/>
+					) : (
+						<div className="bunStub bottom">
+            <span className="text_type_main-small">
+              <p>Выберите булку</p>
+            </span>
+						</div>
+					)}
+				</div>
+
+				<div className="order__summary pt-4">
+					<div className="price__container mr-10">
+						<span className="text text_type_digits-medium pr-2">{totalPrice}</span>
+						<CurrencyIcon type="primary" />
+					</div>
+					<Button type="primary" size="medium" disabled={totalPrice === 0 ||
+						!selectedBun
+					}>
+						Оформить заказ
+					</Button>
+				</div>
+
+			</section>
+
 	);
 };
 

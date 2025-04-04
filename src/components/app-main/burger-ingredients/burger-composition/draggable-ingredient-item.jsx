@@ -1,24 +1,18 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 	const ref = useRef(null);
-
-	const [{ isOver }, drop] = useDrop({
+	const [{ isOver }, drop] =  useDrop({
 		accept: 'ingredient',
 		collect: (monitor) => ({
 			isOver: monitor.isOver(),
 		}),
 		hover: (draggedItem) => {
-
-			if (!draggedItem || typeof draggedItem.index !== 'number') return;
-
-
 			if (draggedItem.index !== index) {
-
 				moveIngredient(draggedItem.index, index);
-				draggedItem.index = index;
+				draggedItem.index=index
 			}
 		},
 	});
@@ -40,9 +34,10 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 			className="order__item"
 			style={{
 				opacity: isDragging ? 0.5 : 1,
-				border: isOver ? '2px solid #4C4CFF' : 'none',
-				borderRadius: '8px',
+				border: isOver ? '5px dashed #4C4CFF' : 'none',
+				borderRadius: '14px',
 				transition: 'border 0.1s ease',
+				cursor:'grab',
 			}}
 		>
 			<DragIcon type="primary" />

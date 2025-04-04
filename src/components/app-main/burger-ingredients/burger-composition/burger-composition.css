@@ -62,6 +62,11 @@
 	padding-top: 15px;
 
 }
+.ingredientsStub.hovered {
+	border: 5px dashed #1e90ff;
+	border-radius: 15px;
+	transition: border 0.2s ease;
+}
 .order__summary {
 	display: flex;
 	flex-direction: row;
