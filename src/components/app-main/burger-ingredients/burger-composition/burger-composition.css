@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	height: 100vh;
+	height: auto;
 	gap:40px;
 	overflow-y: hidden;
 	position: relative;;
@@ -49,14 +49,18 @@
 	gap: 10px;
 	height: 100%;
 	list-style: none;
+	width: 100%;
 }
 .ingredient-container{
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	overflow-y: scroll;
-	flex: 1;
+	overflow-y: auto;
 	position: relative;
+	height: auto;
+	padding-bottom: 15px;
+	padding-top: 15px;
+
 }
 .order__summary {
 	display: flex;
@@ -65,7 +69,14 @@
 	gap: 15px;
 	justify-content: center;
 }
+.order__item{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 
+	justify-content: center;
+
+}
 .price__container {
 	display: flex;
 	align-items: center;
@@ -76,4 +87,25 @@
 	top: 0;
 	z-index: 10;
 	background:transparent;
+}
+.bunStub, .ingredientsStub {
+	user-select: none;
+	height: 75px;
+	width: 500px;
+	background-color: var(--background-element);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bunStub.top {
+	border-radius: 60px 60px 25px 25px;
+}
+
+.bunStub.bottom {
+	border-radius: 25px 25px 60px 60px ;
+}
+
+.ingredientsStub {
+	border-radius: 60px;
 }

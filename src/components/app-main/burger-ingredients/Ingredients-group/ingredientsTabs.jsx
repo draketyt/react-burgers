@@ -1,19 +1,17 @@
-import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import React, {useRef, useState} from "react";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const IngredientsTabs = ()=>{
-	const [current, setCurrent] = useState("one")
-	const tabsRef = useRef(null)
-	return(
-	<div className={`tabs mb-4`} ref={tabsRef}>
-		<Tab value="one" active={current === "one"} onClick={() => setCurrent("one")}>
-			Булки
-		</Tab>
-		<Tab value="two" active={current === "two"} onClick={() => setCurrent("two")}>
-			Соусы
-		</Tab>
-		<Tab value="three" active={current === "three"} onClick={() => setCurrent("three")}>
-			Начинки
-		</Tab>
-	</div>);
+export const  IngredientsTabs = ({ activeTab, setActiveTab }) => {
+	return (
+		<div className="tabs mb-4">
+			<Tab value="one" active={activeTab === "one"} onClick={() => setActiveTab("one")}>
+				Булки
+			</Tab>
+			<Tab value="two" active={activeTab === "two"} onClick={() => setActiveTab("two")}>
+				Соусы
+			</Tab>
+			<Tab value="three" active={activeTab === "three"} onClick={() => setActiveTab("three")}>
+				Начинки
+			</Tab>
+		</div>
+	);
 };
