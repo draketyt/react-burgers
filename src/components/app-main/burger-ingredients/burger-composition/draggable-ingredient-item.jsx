@@ -25,20 +25,22 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 			isDragging: monitor.isDragging(),
 		}),
 	});
-
+	const style = {
+		opacity: isDragging ? 0.5 : 1,
+		border: isOver ? '5px dashed #4C4CFF' : 'none',
+		borderRadius: '14px',
+		transition: 'border 0.1s ease',
+		cursor: 'grab',
+		padding:'4px',
+		textAlign: 'center',
+	};
 	drag(drop(ref));
 
 	return (
 		<li
 			ref={ref}
 			className="order__item"
-			style={{
-				opacity: isDragging ? 0.5 : 1,
-				border: isOver ? '5px dashed #4C4CFF' : 'none',
-				borderRadius: '14px',
-				transition: 'border 0.1s ease',
-				cursor:'grab',
-			}}
+			style={style}
 		>
 			<DragIcon type="primary" />
 			<ConstructorElement
