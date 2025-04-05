@@ -97,7 +97,7 @@ export const BurgerComposition = () => {
 
 			<div
 				ref={middleDropRef}
-				className={`ingredient-container ${isOverMiddle ? "hovered" : ""}`}
+				className={`ingredient-container  ${isOverMiddle ? "hovered" : ""}`}
 			>
 				{selectedIngredients.length > 0 ? (
 					<ul className="order__list">

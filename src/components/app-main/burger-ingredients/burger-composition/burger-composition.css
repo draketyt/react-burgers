@@ -50,6 +50,7 @@
 	height: 100%;
 	list-style: none;
 	width: 100%;
+	margin: 0;
 }
 .ingredient-container{
 	display: flex;

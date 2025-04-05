@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +108,7 @@
       <workItem from="1743766847084" duration="10076000" />
       <workItem from="1743778907316" duration="3531000" />
       <workItem from="1743842261100" duration="3607000" />
-      <workItem from="1743861260689" duration="625000" />
+      <workItem from="1743861260689" duration="1479000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -214,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743844655338</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743862111756</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1743862111756</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
