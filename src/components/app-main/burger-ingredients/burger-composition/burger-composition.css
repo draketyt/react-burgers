@@ -63,9 +63,10 @@
 
 }
 .ingredientsStub.hovered {
-	border: 5px dashed #1e90ff;
-	border-radius: 15px;
-	transition: border 0.2s ease;
+	border-color: #4C4CFF;
+}
+.bunStub.hovered {
+	border-color: #4C4CFF;
 }
 .order__summary {
 	display: flex;
@@ -80,19 +81,6 @@
 	align-items: center;
 	justify-content: center;
 
-}
-.item {
-	border-radius: 14px;
-	transition: border 0.1s ease;
-	cursor: grab;
-}
-
-.dragging {
-	opacity: 0.5;
-}
-
-.over {
-	border: 5px dashed #4C4CFF;
 }
 
 .price__container {
@@ -114,6 +102,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 5px dashed transparent;
+	border-radius: 10px;
+	transition: border 0.2s ease;
 
 }
 

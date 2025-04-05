@@ -20,7 +20,11 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 
 	const [{ isDragging }, drag] = useDrag({
 		type: 'ingredient',
-		item: () => ({ id: ingredient._id, index}),
+		item: {
+			id: ingredient._id,
+			fromConstructor: true,
+			index,
+		},
 		collect: (monitor) => ({
 			isDragging: monitor.isDragging(),
 		}),

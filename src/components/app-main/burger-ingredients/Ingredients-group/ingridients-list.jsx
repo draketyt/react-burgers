@@ -4,16 +4,10 @@ import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-c
 // @ts-ignore
 import { IngredientsTabs } from "./IngredientsTabs";
 import {useSelector} from "react-redux";
+import {useDrag} from "react-dnd";
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
-const handleDragStart = (e, ingredient) => {
-	if (!ingredient || !ingredient._id) {
-		console.error("Ошибка: ingredient не определен", ingredient);
-		return;
-	}
-	e.dataTransfer.setData("ingredientId", ingredient._id);
-	e.dataTransfer.effectAllowed = "move";
-};
+
 
 export const IngredientItem = ({ image, price, name, ingredient }) => {
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
@@ -22,17 +16,24 @@ export const IngredientItem = ({ image, price, name, ingredient }) => {
 	const isBunSelected = selectedBun && selectedBun._id === ingredient._id;
 	const bunCount = isBunSelected ? 2 : 0;
 
-
+	const [{ isDragging }, drag] = useDrag({
+		type: "ingredient",
+		item: { id: ingredient._id ,type: ingredient.type},
+		collect: (monitor) => ({
+			isDragging: monitor.isDragging(),
+		}),
+	});
 	return (
 		<>
 		<div
-			className="ingredient-item ml-5 p-4"
+			ref={drag}
+			className={`ingredient-item ml-5 p-4 ${isDragging ? "dragging" : ""}`}
 			draggable
-			onDragStart={(e) => handleDragStart(e, ingredient)}
+
 		>
 			<div>
 				{(count > 0 || bunCount > 0) && (
-					<Counter count={count + bunCount} size="default" extraClass="m-1 counter" />
+					<Counter count={count + bunCount} size={count<10?"default":'small'} extraClass="m-1 counter" />
 				)}
 				<img className="ingredient-image" src={image} alt={name} />
 			</div>

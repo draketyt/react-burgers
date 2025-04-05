@@ -43,6 +43,9 @@
 	max-width: 230px;
 
 }
+.ingredient-item.dragging {
+	opacity: 0.5;
+}
 .ingredients{
 	max-width: 620px;
 	overflow-x: hidden;
