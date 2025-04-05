@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 // @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item';
@@ -21,18 +21,24 @@ export const BurgerComposition = () => {
 			.catch((error) => console.error(`Ошибка: ${error.response?.status || error.message}`));
 	}, []);
 
-	const totalPrice =
-		(selectedBun ? selectedBun.price * 2 : 0) +
-		selectedIngredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
+	const totalPrice = useMemo(() => {
+		return (
+			(selectedBun ? selectedBun.price * 2 : 0) +
+			selectedIngredients.reduce((sum, ingredient) => sum + ingredient.price, 0)
+		);
+	}, [selectedBun, selectedIngredients]);
 
-	const [, topBunDropRef] = useDrop({
+	const [{ isOver: isOverTop }, topBunDropRef] = useDrop({
 		accept: "ingredient",
 		drop: (item) => {
 			const ingredient = ingredients.find(i => i._id === item.id);
 			if (ingredient && ingredient.type === "bun") {
 				dispatch(SET_BUN(ingredient));
 			}
-		}
+		},
+		collect: monitor => ({
+			isOver: monitor.isOver() && monitor.getItem()?.type !== "main",
+		}),
 	});
 	const [{ isOverMiddle }, middleDropRef] = useDrop({
 		accept: "ingredient",
@@ -50,16 +56,18 @@ export const BurgerComposition = () => {
 	});
 
 
-	const [, bottomBunDropRef] = useDrop({
+	const [{ isOver: isOverBottom }, bottomBunDropRef] = useDrop({
 		accept: "ingredient",
 		drop: (item) => {
 			const ingredient = ingredients.find(i => i._id === item.id);
 			if (ingredient && ingredient.type === "bun") {
 				dispatch(SET_BUN(ingredient));
 			}
-		}
+		},
+		collect: (monitor) => ({
+			isOver: monitor.isOver() && monitor.getItem()?.type !== "main",
+		}),
 	});
-
 	const moveIngredient = (fromIndex, toIndex) => {
 		setTimeout(() => {
 			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
@@ -70,7 +78,7 @@ export const BurgerComposition = () => {
 		<section className="right__panel mt-15 pt-15">
 
 
-			<div ref={topBunDropRef} className="bunSticky-сontainer custom-scroll">
+			<div ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
 						type="top"
@@ -80,7 +88,7 @@ export const BurgerComposition = () => {
 						thumbnail={selectedBun.image}
 					/>
 				) : (
-					<div className="bunStub top">
+					<div className={`bunStub top ${isOverTop ? 'hovered' : ''}`}>
 						<p className="text_type_main-small">Выберите булку</p>
 					</div>
 				)}
@@ -110,7 +118,7 @@ export const BurgerComposition = () => {
 			</div>
 
 
-			<div ref={bottomBunDropRef} className="bottomBun-container">
+			<div ref={bottomBunDropRef} className={`bottomBun-container ${isOverBottom ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
 						type="bottom"
@@ -120,7 +128,7 @@ export const BurgerComposition = () => {
 						thumbnail={selectedBun.image}
 					/>
 				) : (
-					<div className="bunStub bottom">
+					<div className={`bunStub bottom ${isOverBottom ? 'hovered' : ''}`}>
 						<p className="text_type_main-small">Выберите булку</p>
 					</div>
 				)}
