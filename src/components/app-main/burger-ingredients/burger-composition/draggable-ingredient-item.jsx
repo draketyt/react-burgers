@@ -9,7 +9,7 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 		collect: (monitor) => ({
 			isOver: monitor.isOver(),
 		}),
-		hover: (draggedItem) => {
+		drop: (draggedItem) => {
 			if (draggedItem.index !== index) {
 				moveIngredient(draggedItem.index, index);
 				draggedItem.index=index
