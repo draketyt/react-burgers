@@ -1,31 +1,32 @@
 // @ts-ignore
-import {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
+import  {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
 // @ts-ignore
 import {BurgerComposition} from "./burger-ingredients/burger-composition/burger-composition";
-import PropTypes from "prop-types";
 import OrderModal from "../modal/OrderModal";
 import {useState} from "react";
+import IngredientModal from "../modal/ingredient-modal";
 export const AppMain = () => {
-	AppMain.propTypes = {
-		ingredients: PropTypes.arrayOf(
-			PropTypes.shape({
-				id: PropTypes.string.isRequired,
-				text: PropTypes.string.isRequired,
-				price: PropTypes.number.isRequired,
-				thumbnail: PropTypes.string.isRequired,
-			})
-		),
-	};	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+	const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
+	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
+
+	const onIngredientClick = (id) => {
+		setSelectedIngredientId(id);
+		setIsIngredientModalOpen(true);
+	};
 
 	return (
-
 		<main className="main">
-			{/*Ingridients*/}
-			<OrderModal orderId={51531} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-			<IngredientsGroup></IngredientsGroup>
-			{/*burger composition*/}
-			<BurgerComposition setIsModalOpen={setIsModalOpen}></BurgerComposition>
+			<OrderModal orderId={51531} isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
+			{selectedIngredientId && (
+				<IngredientModal
+					ingredientId={selectedIngredientId}
+					isOpen={isIngredientModalOpen}
+					onClose={() => setIsIngredientModalOpen(false)}
+				/>
+			)}
+			<IngredientsGroup onIngredientClick={onIngredientClick} />
+			<BurgerComposition setIsModalOpen={setIsOrderModalOpen} />
 		</main>
 	);
 };
-

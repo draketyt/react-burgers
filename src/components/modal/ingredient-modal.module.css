@@ -1,0 +1,72 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.overlay.open {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.modal {
+	background: #1C1C21;
+	border-radius: 20px;
+	padding: 40px;
+	position: relative;
+	width: 640px;
+	text-align: center;
+	color: white;
+
+	opacity: 0;
+	transform: translateY(-30px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.open {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.modal.closed {
+	opacity: 0;
+	transform: translateY(-30px);
+}
+
+.overlay.closed {
+	opacity: 0;
+	pointer-events: none;
+}
+.modal__close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.image {
+	width: 100%;
+	max-width: 480px;
+	border-radius: 12px;
+	margin-bottom: 20px;
+}
+
+.nutrients {
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+}
+

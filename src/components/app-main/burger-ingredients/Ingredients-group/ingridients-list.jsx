@@ -5,11 +5,12 @@ import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-c
 import { IngredientsTabs } from "./IngredientsTabs";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
+import PropTypes from "prop-types";
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 
 
-export const IngredientItem = ({ image, price, name, ingredient }) => {
+export const IngredientItem = ({ image, price, name, ingredient,onIngredientClick }) => {
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
 	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
 	const count = selectedIngredients.filter((item) => item._id === ingredient._id).length;
@@ -29,6 +30,7 @@ export const IngredientItem = ({ image, price, name, ingredient }) => {
 			ref={drag}
 			className={`ingredient-item ml-5 p-4 ${isDragging ? "dragging" : ""}`}
 			draggable
+			onClick={() => onIngredientClick(ingredient._id)}
 
 		>
 			<div>
@@ -47,7 +49,7 @@ export const IngredientItem = ({ image, price, name, ingredient }) => {
 	);
 
 };
-export const IngredientsList = () => {
+export const IngredientsList = ({onIngredientClick }) => {
 	const [ingredients, setIngredients] = useState([]);
 	const [activeTab, setActiveTab] = useState("one");
 
@@ -103,7 +105,8 @@ export const IngredientsList = () => {
 						<ul className="ingredient-items custom-scroll">
 							{buns.map((item) => (
 								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name}
-												ingredient={item}
+												ingredient={item} 		onIngredientClick={onIngredientClick}
+
 								/>
 							))}
 						</ul>
@@ -116,6 +119,7 @@ export const IngredientsList = () => {
 						<ul className="ingredient-items custom-scroll">
 							{sauces.map((item) => (
 								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name} ingredient={item}
+												onIngredientClick={onIngredientClick}
 								/>
 							))}
 						</ul>
@@ -128,6 +132,7 @@ export const IngredientsList = () => {
 						<ul className="ingredient-items custom-scroll">
 							{mains.map((item) => (
 								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name}      ingredient={item}
+												onIngredientClick={onIngredientClick}
 								/>
 							))}
 						</ul>
@@ -137,4 +142,10 @@ export const IngredientsList = () => {
 		</>
 	);
 };
-
+IngredientItem.propTypes = {
+	image: PropTypes.string.isRequired,
+	price: PropTypes.number.isRequired,
+	name: PropTypes.string.isRequired,
+	ingredient: PropTypes.object.isRequired,
+	onIngredientClick: PropTypes.func.isRequired,
+};
