@@ -38,24 +38,26 @@ const IngredientModal = ({ ingredientId, isOpen, onClose }) => {
 				</button>
 				{ingredient && (
 					<>
-						<h2 className="text text_type_main-large mb-4">{ingredient.name}</h2>
+						<h1 className={'text_type_main-large'}> Детали ингредиента </h1>
 						<img className={styles.image} src={ingredient.image_large} alt={ingredient.name} />
+						<h2 className="text text_type_main-medium mb-4">{ingredient.name}</h2>
+
 						<div className={styles.nutrients}>
 							<div>
 								<p className="text text_type_main-default text_color_inactive">Калории, ккал</p>
-								<p className="text text_type_digits-default">{ingredient.calories}</p>
+								<p className="text text_type_digits-default text_color_inactive">{ingredient.calories}</p>
 							</div>
 							<div>
 								<p className="text text_type_main-default text_color_inactive">Белки, г</p>
-								<p className="text text_type_digits-default">{ingredient.proteins}</p>
+								<p className="text text_type_digits-default text_color_inactive">{ingredient.proteins}</p>
 							</div>
 							<div>
 								<p className="text text_type_main-default text_color_inactive">Жиры, г</p>
-								<p className="text text_type_digits-default">{ingredient.fat}</p>
+								<p className="text text_type_digits-default text_color_inactive" >{ingredient.fat}</p>
 							</div>
 							<div>
 								<p className="text text_type_main-default text_color_inactive">Углеводы, г</p>
-								<p className="text text_type_digits-default">{ingredient.carbohydrates}</p>
+								<p className="text text_type_digits-default text_color_inactive">{ingredient.carbohydrates}</p>
 							</div>
 						</div>
 					</>
