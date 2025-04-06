@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SET_BUN, ADD_INGREDIENT } from '../../../../redux/actions/ingredientActions';
 import axios from "axios";
 import { useDrop } from "react-dnd";
+import PropTypes from "prop-types";
 
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
@@ -138,6 +139,7 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 					<CurrencyIcon type="primary" />
 				</div>
 				<Button
+					htmlType="button"
 					onClick={() => setIsModalOpen(true)}
 					type="primary"
 					size="medium"
@@ -152,5 +154,7 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 		</section>
 	);
 };
-
+BurgerComposition.propTypes = {
+	setIsModalOpen: PropTypes.func.isRequired
+};
 export default BurgerComposition;

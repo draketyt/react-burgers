@@ -11,10 +11,7 @@ const Modal = ({ title, children, onClose }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
-
 		const timer = setTimeout(() => setIsVisible(true), 10);
-
-
 		const handleEsc = (e) => {
 			if (e.key === "Escape") {
 				handleClose();

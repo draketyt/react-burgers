@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from "prop-types";
 
 const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 	const ref = useRef(null);
@@ -55,5 +56,14 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 		</li>
 	);
 };
-
+IngredientItem.propTypes = {
+	ingredient: PropTypes.shape({
+		_id: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		price: PropTypes.number.isRequired,
+		image: PropTypes.string.isRequired,
+	}).isRequired,
+	index: PropTypes.number.isRequired,
+	moveIngredient: PropTypes.func.isRequired,
+};
 export default IngredientItem;
