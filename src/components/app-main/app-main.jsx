@@ -3,7 +3,7 @@ import  {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredie
 // @ts-ignore
 import {BurgerComposition} from "./burger-ingredients/burger-composition/burger-composition";
 import OrderModal from "../modal/OrderModal";
-import {useState} from "react";
+import {useState,useMemo} from "react";
 import IngredientModal from "../modal/ingredient-modal";
 export const AppMain = () => {
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -15,9 +15,13 @@ export const AppMain = () => {
 		setIsIngredientModalOpen(true);
 	};
 
-	return (
+		return (
 		<main className="main">
-			<OrderModal orderId={51531} isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
+			<OrderModal
+				orderId={ useMemo(() => {
+				return Math.floor(Math.random() * 99999 + 1431);}, [])}
+						isOpen={isOrderModalOpen}
+						onClose={() => setIsOrderModalOpen(false)} />
 			{selectedIngredientId && (
 				<IngredientModal
 					ingredientId={selectedIngredientId}

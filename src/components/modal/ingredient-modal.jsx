@@ -38,7 +38,7 @@ const IngredientModal = ({ ingredientId, isOpen, onClose }) => {
 				</button>
 				{ingredient && (
 					<>
-						<h1 className={'text_type_main-large'}> Детали ингредиента </h1>
+						<h1 className={'text_type_main-large'}> Детали ингредиента: </h1>
 						<img className={styles.image} src={ingredient.image_large} alt={ingredient.name} />
 						<h2 className="text text_type_main-medium mb-4">{ingredient.name}</h2>
 
