@@ -7,8 +7,9 @@ import {useState,useMemo} from "react";
 import IngredientModal from "../modal/ingredient-modal";
 export const AppMain = () => {
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-	const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
+	const [ setIsIngredientModalOpen] = useState(false);
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
+	const orderId = useMemo(() => Math.floor(Math.random() * 99999 + 1431), []);
 
 	const onIngredientClick = (id) => {
 		setSelectedIngredientId(id);
@@ -16,21 +17,23 @@ export const AppMain = () => {
 	};
 
 		return (
-		<main className="main">
-			<OrderModal
-				orderId={ useMemo(() => {
-				return Math.floor(Math.random() * 99999 + 1431);}, [])}
-						isOpen={isOrderModalOpen}
-						onClose={() => setIsOrderModalOpen(false)} />
-			{selectedIngredientId && (
-				<IngredientModal
-					ingredientId={selectedIngredientId}
-					isOpen={isIngredientModalOpen}
-					onClose={() => setIsIngredientModalOpen(false)}
-				/>
-			)}
-			<IngredientsGroup onIngredientClick={onIngredientClick} />
-			<BurgerComposition setIsModalOpen={setIsOrderModalOpen} />
-		</main>
+			<main className="main">
+				{isOrderModalOpen && (
+					<OrderModal
+						orderId={orderId}
+						onClose={() => setIsOrderModalOpen(false)}
+					/>
+				)}
+
+				{selectedIngredientId && (
+					<IngredientModal
+						ingredientId={selectedIngredientId}
+						onClose={() => setSelectedIngredientId(null)}
+					/>
+				)}
+
+				<IngredientsGroup onIngredientClick={onIngredientClick} />
+				<BurgerComposition setIsModalOpen={setIsOrderModalOpen} />
+			</main>
 	);
 };

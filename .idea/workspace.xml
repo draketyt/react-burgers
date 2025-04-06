@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
+      <change afterPath="$PROJECT_DIR$/src/components/modal/modal-overlay.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modal/modal.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/OrderModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/OrderModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/ingredient-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/ingredient-modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/ingredient-modal.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/order-modal.module.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,28 +67,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.OrderModal.jsx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#3 on sprint-2/step-1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "D:\\react-burgers\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.OrderModal.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#3 on sprint-2/step-1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\react-burgers\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\react-burgers\src\components\modal" />
       <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\burger-composition" />
       <recent name="D:\react-burgers\src\redux" />
       <recent name="D:\react-burgers\src\redux\actions" />
       <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\Ingredients-group" />
-      <recent name="D:\react-burgers\src\utils" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -120,7 +127,8 @@
       <workItem from="1743861260689" duration="1730000" />
       <workItem from="1743869108921" duration="1632000" />
       <workItem from="1743883038869" duration="177000" />
-      <workItem from="1743925302771" duration="8920000" />
+      <workItem from="1743925302771" duration="9781000" />
+      <workItem from="1743941107724" duration="4566000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -274,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743931992607</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743939830292</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743939830292</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
