@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 // @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item';
@@ -9,7 +9,7 @@ import { useDrop } from "react-dnd";
 
 const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
-export const BurgerComposition = () => {
+export const BurgerComposition = ({setIsModalOpen }) => {
 	const dispatch = useDispatch();
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
 	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
@@ -40,6 +40,7 @@ export const BurgerComposition = () => {
 			isOver: monitor.isOver() && monitor.getItem()?.type !== "main",
 		}),
 	});
+
 	const [{ isOverMiddle }, middleDropRef] = useDrop({
 		accept: "ingredient",
 		drop: (item) => {
@@ -55,7 +56,6 @@ export const BurgerComposition = () => {
 		})
 	});
 
-
 	const [{ isOver: isOverBottom }, bottomBunDropRef] = useDrop({
 		accept: "ingredient",
 		drop: (item) => {
@@ -68,6 +68,7 @@ export const BurgerComposition = () => {
 			isOver: monitor.isOver() && monitor.getItem()?.type !== "main",
 		}),
 	});
+
 	const moveIngredient = (fromIndex, toIndex) => {
 		setTimeout(() => {
 			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
@@ -76,7 +77,6 @@ export const BurgerComposition = () => {
 
 	return (
 		<section className="right__panel mt-15 pt-15">
-
 
 			<div ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
 				{selectedBun ? (
@@ -94,10 +94,9 @@ export const BurgerComposition = () => {
 				)}
 			</div>
 
-
 			<div
 				ref={middleDropRef}
-				className={`ingredient-container  ${isOverMiddle ? "hovered" : ""}`}
+				className={`ingredient-container ${isOverMiddle ? "hovered" : ""}`}
 			>
 				{selectedIngredients.length > 0 ? (
 					<ul className="order__list">
@@ -117,7 +116,6 @@ export const BurgerComposition = () => {
 				)}
 			</div>
 
-
 			<div ref={bottomBunDropRef} className={`bottomBun-container ${isOverBottom ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
@@ -134,13 +132,13 @@ export const BurgerComposition = () => {
 				)}
 			</div>
 
-
 			<div className="order__summary pt-4">
 				<div className="price__container mr-10">
 					<span className="text text_type_digits-medium pr-2">{totalPrice}</span>
 					<CurrencyIcon type="primary" />
 				</div>
 				<Button
+					onClick={() => setIsModalOpen(true)}
 					type="primary"
 					size="medium"
 					disabled={totalPrice === 0 || !selectedBun}
@@ -148,6 +146,9 @@ export const BurgerComposition = () => {
 					Оформить заказ
 				</Button>
 			</div>
+
+
+
 		</section>
 	);
 };
