@@ -20,7 +20,7 @@ const OrderModal = ({ orderId, onClose }) => {
 				</div>
 			</div>
 			<p className="text_type_main-medium mt-15">Ваш заказ начали готовить</p>
-			<p className="text_color_inactive mb-30">
+			<p className="text_type_main-small text_color_inactive mb-30">
 				Дождитесь готовности на орбитальной станции
 			</p>
 		</Modal>

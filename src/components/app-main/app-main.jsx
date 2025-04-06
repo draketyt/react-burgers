@@ -7,13 +7,11 @@ import {useState,useMemo} from "react";
 import IngredientModal from "../modal/ingredient-modal";
 export const AppMain = () => {
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-	const [ setIsIngredientModalOpen] = useState(false);
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
 	const orderId = useMemo(() => Math.floor(Math.random() * 99999 + 1431), []);
 
 	const onIngredientClick = (id) => {
 		setSelectedIngredientId(id);
-		setIsIngredientModalOpen(true);
 	};
 
 		return (
