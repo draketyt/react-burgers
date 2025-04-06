@@ -35,7 +35,7 @@ const Modal = ({ title, children, onClose }) => {
 
 	return ReactDOM.createPortal(
 		<div className={`${styles.overlay} ${isVisible ? styles.open : styles.hidden}`} onClick={closeModal}>
-			<ModalOverlay onClick={handleClose} />
+			<ModalOverlay onClose={onClose} onClick={handleClose} />
 			<div className={`${styles.modal} ${isVisible ? styles.open : styles.hidden}`} onClick={(e) => e.stopPropagation()}>
 				<button className={styles.modal__close} onClick={handleClose}>
 					<CloseIcon type="primary" />
