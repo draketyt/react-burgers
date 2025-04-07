@@ -27,10 +27,12 @@ const Modal = ({ title, children, onClose }) => {
 
 	const handleClose = () => {
 		setIsVisible(false);
-		setTimeout(onClose(),300);
-	};	const closeModal = () => {
+		setTimeout(() => onClose(), 300);
+	};
+
+	const closeModal = () => {
 		setIsVisible(false);
-		setTimeout(onClose(),300);
+		setTimeout(() => onClose(), 300);
 	};
 
 	return ReactDOM.createPortal(

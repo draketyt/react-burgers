@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
+      <change afterPath="$PROJECT_DIR$/src/components/modal/ingredient-details.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modal/order-details.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/OrderModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/OrderModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/ingredient-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/ingredient-modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +125,9 @@
       <workItem from="1743869108921" duration="1632000" />
       <workItem from="1743883038869" duration="177000" />
       <workItem from="1743925302771" duration="9781000" />
-      <workItem from="1743941107724" duration="7582000" />
+      <workItem from="1743941107724" duration="9204000" />
+      <workItem from="1743962051228" duration="25000" />
+      <workItem from="1744037690461" duration="2935000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -305,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743947629648</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743948979512</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743948979512</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

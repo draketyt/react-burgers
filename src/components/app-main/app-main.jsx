@@ -13,7 +13,6 @@ export const AppMain = () => {
 	const onIngredientClick = (id) => {
 		setSelectedIngredientId(id);
 	};
-
 		return (
 			<main className="main">
 				{isOrderModalOpen && (
@@ -25,6 +24,7 @@ export const AppMain = () => {
 
 				{selectedIngredientId && (
 					<IngredientModal
+						key={selectedIngredientId}
 						ingredientId={selectedIngredientId}
 						onClose={() => setSelectedIngredientId(null)}
 					/>
