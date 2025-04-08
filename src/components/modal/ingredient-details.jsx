@@ -1,22 +1,10 @@
 import styles from "./modal.module.css";
-import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import {useSelector} from "react-redux";
 
 export const IngredientDetails = ({ ingredientId }) => {
-	const [ingredient, setIngredient] = useState(null);
-
-	useEffect(() => {
-		if (ingredientId) {
-			axios
-				.get(`https://norma.nomoreparties.space/api/ingredients`)
-				.then((res) => {
-					const found = res.data.data.find((item) => item._id === ingredientId);
-					setIngredient(found);
-				})
-				.catch((err) => console.error("Ошибка при загрузке ингредиента:", err));
-		}
-	}, [ingredientId]);
+	const ingredients = useSelector((state) => state.ingredients.items);
+	const ingredient = ingredients.find((item) => item._id === ingredientId);
 
 	if (!ingredient) {
 		return <p className="text text_type_main-default">Загрузка...</p>;

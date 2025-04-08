@@ -1,27 +1,29 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 // @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item';
 import { useDispatch, useSelector } from "react-redux";
 import { SET_BUN, ADD_INGREDIENT } from '../../../../redux/actions/ingredientActions';
-import axios from "axios";
 import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
+import { createOrder } from "../../../../redux/orderSlice";
 
-const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 export const BurgerComposition = ({setIsModalOpen }) => {
 	const dispatch = useDispatch();
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
 	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
-	const [ingredients, setIngredients] = useState([]);
+	const ingredients = useSelector((state) => state.ingredients.items);
 
-	useEffect(() => {
-		axios.get(API_URL)
-			.then((response) => setIngredients(response.data.data))
-			.catch((error) => console.error(`Ошибка: ${error.response?.status || error.message}`));
-	}, []);
-
+	const handleOrderClick = () => {
+		const ingredientIds = [
+			selectedBun._id,
+			...selectedIngredients.map((item) => item._id),
+			selectedBun._id,
+		];
+		dispatch(createOrder(ingredientIds));
+		setIsModalOpen(true);
+	};
 	const totalPrice = useMemo(() => {
 		return (
 			(selectedBun ? selectedBun.price * 2 : 0) +
@@ -71,9 +73,8 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 	});
 
 	const moveIngredient = (fromIndex, toIndex) => {
-		setTimeout(() => {
 			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
-		}, 21);
+			//убран timeout тестировал.
 	};
 
 	return (
@@ -140,7 +141,7 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 				</div>
 				<Button
 					htmlType="button"
-					onClick={() => setIsModalOpen(true)}
+					onClick={handleOrderClick}
 					type="primary"
 					size="medium"
 					disabled={totalPrice === 0 || !selectedBun}

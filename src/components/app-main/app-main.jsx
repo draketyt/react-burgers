@@ -3,12 +3,19 @@ import  {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredie
 // @ts-ignore
 import {BurgerComposition} from "./burger-ingredients/burger-composition/burger-composition";
 import OrderModal from "../modal/OrderModal";
-import {useState,useMemo} from "react";
+import {useEffect, useState} from "react";
 import IngredientModal from "../modal/ingredient-modal";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchIngredients} from "../../redux/ingredientsSlice";
 export const AppMain = () => {
+	const dispatch = useDispatch();
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
-	const orderId = useMemo(() => Math.floor(Math.random() * 99999 + 1431), []);
+	const orderId = useSelector((state) => state.order.orderId);
+
+	useEffect(() => {
+		dispatch(fetchIngredients());
+	}, [dispatch]);
 
 	const onIngredientClick = (id) => {
 		setSelectedIngredientId(id);
@@ -31,7 +38,8 @@ export const AppMain = () => {
 				)}
 
 				<IngredientsGroup onIngredientClick={onIngredientClick} />
-				<BurgerComposition setIsModalOpen={setIsOrderModalOpen} />
+				<BurgerComposition setIsModalOpen={setIsOrderModalOpen}
+				/>
 			</main>
 	);
 };

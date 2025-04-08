@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { useMemo, useRef, useState} from "react";
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 // @ts-ignore
 import { IngredientsTabs } from "./IngredientsTabs";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import PropTypes from "prop-types";
-const API_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 
 
@@ -50,8 +48,9 @@ export const IngredientItem = ({ image, price, name, ingredient,onIngredientClic
 
 };
 export const IngredientsList = ({onIngredientClick }) => {
-	const [ingredients, setIngredients] = useState([]);
+	const { items: ingredients, isLoading, hasError } = useSelector((state) => state.ingredients);
 	const [activeTab, setActiveTab] = useState("one");
+
 
 	const containerRef = useRef(null);
 	const sectionRefs = {
@@ -79,61 +78,66 @@ export const IngredientsList = ({onIngredientClick }) => {
 
 		setActiveTab(closestTab);
 	};
-	useEffect(() => {
-		axios
-			.get(API_URL)
-			.then((response) => {
-				setIngredients(response.data.data);
-			})
-			.catch((error) => {
-				console.error(`Ошибка: ${error.response ? error.response.status : error.message}`);
-			});
-	}, []);
 
 
-	const buns = ingredients.filter((item) => item.type === "bun");
-	const sauces = ingredients.filter((item) => item.type === "sauce");
-	const mains = ingredients.filter((item) => item.type === "main");
+	const buns =  useMemo(()=>ingredients.filter((item) => item.type === "bun"),[ingredients]);
+	const sauces = useMemo(()=>ingredients.filter((item) => item.type === "sauce"),[ingredients]);
+	const mains = useMemo(()=>ingredients.filter((item) => item.type === "main"),[ingredients])
+	if (isLoading) {
+		return <div className="loader" />;
+	}
 
+	if (hasError) {
+		return <p className="text text_type_main-medium mt-10">Ошибка загрузки. Попробуйте позже.</p>;
+	}
 	return (
+
 		<>
 			<IngredientsTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 			<div className="ingredients custom-scroll" ref={containerRef} onScroll={onScroll}>
 				<div id="buns" ref={sectionRefs.one} className="ingredients pt-10">
-					<h1 className="text_type_main-large title">Булки</h1>
+					<p className="text_type_main-large title">Булки</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
 							{buns.map((item) => (
-								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name}
+								<li key={item._id}>
+								<IngredientItem image={item.image_large} price={item.price} name={item.name}
 												ingredient={item} 		onIngredientClick={onIngredientClick}
 
 								/>
+								</li>
 							))}
 						</ul>
 					</div>
 				</div>
 
 				<div id="sauces" ref={sectionRefs.two} className="ingredients pt-10">
-					<h1 className="text_type_main-large title">Соусы</h1>
+					<p className="text_type_main-large title">Соусы</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
 							{sauces.map((item) => (
-								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name} ingredient={item}
-												onIngredientClick={onIngredientClick}
-								/>
+								<li key={item._id}>
+									<IngredientItem image={item.image_large} price={item.price} name={item.name}
+													ingredient={item} 		onIngredientClick={onIngredientClick}
+
+									/>
+								</li>
 							))}
 						</ul>
 					</div>
 				</div>
 
 				<div id="mains" ref={sectionRefs.three} className="ingredients pt-10">
-					<h1 className="text_type_main-large title">Начинки</h1>
+					<p className="text_type_main-large title">Начинки</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
 							{mains.map((item) => (
-								<IngredientItem key={item._id} image={item.image_large} price={item.price} name={item.name}      ingredient={item}
-												onIngredientClick={onIngredientClick}
-								/>
+								<li key={item._id}>
+									<IngredientItem image={item.image_large} price={item.price} name={item.name}
+													ingredient={item} 		onIngredientClick={onIngredientClick}
+
+									/>
+								</li>
 							))}
 						</ul>
 					</div>
@@ -142,10 +146,23 @@ export const IngredientsList = ({onIngredientClick }) => {
 		</>
 	);
 };
+
 IngredientItem.propTypes = {
 	image: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
-	ingredient: PropTypes.object.isRequired,
+	ingredient: PropTypes.shape({
+		_id: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		type: PropTypes.string.isRequired,
+		proteins: PropTypes.number.isRequired,
+		fat: PropTypes.number.isRequired,
+		carbohydrates: PropTypes.number.isRequired,
+		calories: PropTypes.number.isRequired,
+		price: PropTypes.number.isRequired,
+		image: PropTypes.string.isRequired,
+		image_large: PropTypes.string.isRequired,
+		image_mobile: PropTypes.string.isRequired,
+	}).isRequired,
 	onIngredientClick: PropTypes.func.isRequired,
 };

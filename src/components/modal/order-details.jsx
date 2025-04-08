@@ -1,10 +1,22 @@
 import styles from "./modal.module.css";
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
+import {useSelector} from "react-redux";
 
-export const OrderDetails= ({orderId})=>{
+export const OrderDetails= ()=>{
+	const orderId = useSelector((state) => state.order.orderId);
+	const isLoading = useSelector((state) => state.order.loading);
 	return(
-<>
+
+	<div>
+
+{isLoading ? (
+		<p className="text text_type_main-medium " >
+			Оформляем заказ...
+			<div className={'loader'} ></div>
+		</p>
+
+	):(<>
 	<h1 className={`${styles.orderId} text_type_digits-large mt-20`}>{orderId}</h1>
 	<p className="text_type_main-large">идентификатор заказа</p>
 	<div className={styles['done-icon-wrapper']}>
@@ -20,5 +32,8 @@ export const OrderDetails= ({orderId})=>{
 	<p className="text_type_main-small text_color_inactive mb-30">
 		Дождитесь готовности на орбитальной станции
 	</p>
-</>)
+	</>
+)}
+</div>
+	)
 }
