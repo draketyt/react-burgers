@@ -1,29 +1,45 @@
-import PropTypes from "prop-types";
 // @ts-ignore
-import {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
+import  {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
 // @ts-ignore
 import {BurgerComposition} from "./burger-ingredients/burger-composition/burger-composition";
+import OrderModal from "../modal/OrderModal";
+import {useEffect, useState} from "react";
+import IngredientModal from "../modal/ingredient-modal";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchIngredients} from "../../redux/ingredientsSlice";
 export const AppMain = () => {
+	const dispatch = useDispatch();
+	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
+	const orderId = useSelector((state) => state.order.orderId);
 
-	AppMain.propTypes = {
-		ingredients: PropTypes.arrayOf(
-			PropTypes.shape({
-				id: PropTypes.number.isRequired,
-				text: PropTypes.string.isRequired,
-				price: PropTypes.number.isRequired,
-				thumbnail: PropTypes.string.isRequired,
-			})
-		),
+	useEffect(() => {
+		dispatch(fetchIngredients());
+	}, [dispatch]);
+
+	const onIngredientClick = (id) => {
+		setSelectedIngredientId(id);
 	};
+		return (
+			<main className="main">
+				{isOrderModalOpen && (
+					<OrderModal
+						orderId={orderId}
+						onClose={() => setIsOrderModalOpen(false)}
+					/>
+				)}
 
+				{selectedIngredientId && (
+					<IngredientModal
+						key={selectedIngredientId}
+						ingredientId={selectedIngredientId}
+						onClose={() => setSelectedIngredientId(null)}
+					/>
+				)}
 
-	return (
-		<main className="main">
-			{/*Ingridients*/}
-			<IngredientsGroup></IngredientsGroup>
-			{/*burger composition*/}
-			<BurgerComposition></BurgerComposition>
-		</main>
+				<IngredientsGroup onIngredientClick={onIngredientClick} />
+				<BurgerComposition setIsModalOpen={setIsOrderModalOpen}
+				/>
+			</main>
 	);
 };
-

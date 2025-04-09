@@ -4,13 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored" />
+    <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
+      <change afterPath="$PROJECT_DIR$/src/redux/ingredientsSlice.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/orderSlice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/app-main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/Ingridients-group.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/Ingridients-group.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/ingredient-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/ingredient-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/order-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/order-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sprint-1/step-1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -26,6 +49,13 @@
   },
   &quot;reviewCommentPreferred&quot;: false
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/currency-icon.d.ts" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -39,21 +69,26 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Node.js.OrderModal.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#2 on sprint-1/step-1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#3 on sprint-2/step-1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\react-burgers\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\react-burgers\src\components\modal" />
       <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\burger-composition" />
-      <recent name="D:\react-burgers\src\utils" />
+      <recent name="D:\react-burgers\src\redux" />
+      <recent name="D:\react-burgers\src\redux\actions" />
+      <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\Ingredients-group" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -76,6 +111,27 @@
       <workItem from="1742523350526" duration="172000" />
       <workItem from="1742711644412" duration="3809000" />
       <workItem from="1742717411128" duration="3443000" />
+      <workItem from="1742838620980" duration="55000" />
+      <workItem from="1742896595587" duration="4000" />
+      <workItem from="1743095433543" duration="9988000" />
+      <workItem from="1743327653913" duration="1204000" />
+      <workItem from="1743354781103" duration="600000" />
+      <workItem from="1743412716279" duration="573000" />
+      <workItem from="1743432573842" duration="6939000" />
+      <workItem from="1743592113618" duration="8248000" />
+      <workItem from="1743623197522" duration="4000" />
+      <workItem from="1743623275717" duration="13000" />
+      <workItem from="1743766847084" duration="10076000" />
+      <workItem from="1743778907316" duration="3531000" />
+      <workItem from="1743842261100" duration="3607000" />
+      <workItem from="1743861260689" duration="1730000" />
+      <workItem from="1743869108921" duration="1632000" />
+      <workItem from="1743883038869" duration="177000" />
+      <workItem from="1743925302771" duration="9781000" />
+      <workItem from="1743941107724" duration="9204000" />
+      <workItem from="1743962051228" duration="25000" />
+      <workItem from="1744037690461" duration="4496000" />
+      <workItem from="1744129083235" duration="4296000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -117,11 +173,182 @@
       <option name="project" value="LOCAL" />
       <updated>1742740503187</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1742838404654</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742838404654</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743097531017</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743097531017</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743097540607</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743097540607</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743097551991</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743097551991</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743770956738</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743770956738</updated>
+    </task>
+    <task id="LOCAL-00011" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743781467464</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743781467464</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743782479206</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743782479206</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743844655338</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1743844655338</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743862111756</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1743862111756</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743863021860</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1743863021860</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743883207499</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1743883207499</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743929469777</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743929469777</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743931574647</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743931574647</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743931992607</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743931992607</updated>
+    </task>
+    <task id="LOCAL-00020" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743939830292</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743939830292</updated>
+    </task>
+    <task id="LOCAL-00021" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743945936857</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743945936857</updated>
+    </task>
+    <task id="LOCAL-00022" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743946539003</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743946539003</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743947629648</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743947629648</updated>
+    </task>
+    <task id="LOCAL-00024" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1743948979512</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743948979512</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1744040823328</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1744040823328</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactored" />
