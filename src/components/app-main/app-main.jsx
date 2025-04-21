@@ -21,6 +21,7 @@ export const AppMain = () => {
 		setSelectedIngredientId(id);
 	};
 		return (
+
 			<main className="main">
 				{isOrderModalOpen && (
 					<OrderModal
@@ -40,6 +41,8 @@ export const AppMain = () => {
 				<IngredientsGroup onIngredientClick={onIngredientClick} />
 				<BurgerComposition setIsModalOpen={setIsOrderModalOpen}
 				/>
+
 			</main>
+
 	);
 };

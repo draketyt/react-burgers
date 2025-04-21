@@ -74,7 +74,6 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 
 	const moveIngredient = (fromIndex, toIndex) => {
 			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
-			//убран timeout тестировал.
 	};
 
 	return (
@@ -144,7 +143,7 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 					onClick={handleOrderClick}
 					type="primary"
 					size="medium"
-					disabled={totalPrice === 0 || !selectedBun}
+					disabled={totalPrice === 0 || !selectedBun|| selectedIngredients.length < 0}
 				>
 					Оформить заказ
 				</Button>
