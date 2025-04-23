@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../Auth.module.css";
-import {resetPassword} from "../redux/auth-slice";
+import {forgotPassword} from "../redux/auth-slice";
 
 export const ForgotPage = () => {
 	const dispatch = useDispatch();
@@ -17,9 +17,8 @@ export const ForgotPage = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		const resultAction = await dispatch(resetPassword(form.email));
-		if (resetPassword.fulfilled.match(resultAction)) {
+		const resultAction = await dispatch(forgotPassword(form.email));
+		if (forgotPassword.fulfilled.match(resultAction)) {
 			navigate("/reset-password");
 		} else {
 			alert(resultAction.payload || "Что-то пошло не так ");

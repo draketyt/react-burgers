@@ -6,10 +6,12 @@ import {
 	PasswordInput,
 	Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import {useDispatch} from "react-redux";
+import {verifyUser} from "../redux/auth-slice";
 
 export const LoginPage = () => {
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
 	const [form, setForm] = React.useState({
 		email: '',
 		password: ''
@@ -22,15 +24,19 @@ export const LoginPage = () => {
 		});
 	};
 
-	const handleSubmit = (e) => {
+
+	const handleLogin = (e) => {
 		e.preventDefault();
-		navigate('/');
+		dispatch(verifyUser({ email: form.email, password: form.password }))
+			.unwrap()
+			.then(() => navigate('/'))
+			.catch(err => console.log('Ошибка авторизации:', err));
 	};
 
 	return (
 		<div className={`${styles.wrapper} mt-15`}>
 			<h2 className="text text_type_main-large mb-6">Вход</h2>
-			<form onSubmit={handleSubmit} className={`${styles.form} mt-6`}>
+			<form onSubmit={handleLogin} className={`${styles.form} mt-6`}>
 				<EmailInput
 					onChange={handleChange}
 					value={form.email}

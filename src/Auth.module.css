@@ -9,6 +9,8 @@
 .link{
 	color:var(--colors-interface-accent);
 	text-decoration: none;
+	cursor: pointer;
+
 }
 .form{
 	display: flex;

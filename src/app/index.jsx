@@ -1,8 +1,7 @@
 import {AppHeader} from '../components/app-header/app-header';
 // @ts-ignore
 import {BrowserRouter,Route,Routes} from "react-router-dom";
-import {store}  from '../redux/store'
-import {Provider} from "react-redux";
+import { useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {ProtectedRoute} from "@pages/protected-route";
@@ -12,29 +11,40 @@ import {RegisterPage} from "@pages/register-page";
 import {ForgotPage} from "@pages/forgot-page";
 import {ResetPage} from "@pages/reset-page";
 import {NotFoundPage} from "@pages/not-found-page";
+import {useEffect} from "react";
+import {checkAuth} from "../redux/auth-slice";
 
 
 export const App = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(checkAuth());
+	}, [dispatch]);
+
 	return (
 
 		<BrowserRouter>
 			<DndProvider backend={HTML5Backend}>
-				<Provider store={store}>
 			<AppHeader></AppHeader>
-
 				<Routes>
-					<Route path='/' element={<ProtectedRoute element={<HomePage/>}/>}/>
+					<Route path='/' element={
+						<ProtectedRoute>
+							<HomePage />
+						</ProtectedRoute>
+					} />
 					<Route path='/login'  element={<LoginPage/>}/>
 					<Route path='/register' element={<RegisterPage/>}/>
 					<Route path='/forgot-password'  element={<ForgotPage/>}/>
 					<Route path='/reset-password'  element={<ResetPage/>}/>
 					{/*<Route path='/ingredients/:id' element={<ProtectedRoute element={<IngredientPage/>}/>}/>*/}
-					<Route path='*' element={<ProtectedRoute element={<NotFoundPage/>}/>}/>
+					<Route path='*' element={
+						<ProtectedRoute>
+							<NotFoundPage />
+						</ProtectedRoute>
+					} />
 
 				</Routes>
-
-
-					</Provider>
 		</DndProvider>
 		</BrowserRouter>
 	);

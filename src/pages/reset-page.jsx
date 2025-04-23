@@ -6,13 +6,15 @@ import {
 	PasswordInput,
 	Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import {useDispatch} from "react-redux";
+import {resetPassword} from "../redux/auth-slice";
 
 export const ResetPage = () => {
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
 	const [form, setForm] = React.useState({
-		email: '',
-		password: ''
+		password: '',
+		token: ''
 	});
 
 	const handleChange = (e) => {
@@ -22,11 +24,15 @@ export const ResetPage = () => {
 		});
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		navigate('/')
+		const result = await dispatch(resetPassword(form));
+		if (resetPassword.fulfilled.match(result)) {
+			navigate('/login');
+		} else {
+			alert(result.payload || "Ошибка при сбросе пароля");
+		}
 	};
-
 	return (
 		<div className={`${styles.wrapper} mt-25`}>
 			<h2 className="text text_type_main-medium mb-6">Восстановление пароля</h2>

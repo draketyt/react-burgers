@@ -1,19 +1,32 @@
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import styles from '../Auth.module.css';
 import {
 	EmailInput,
 	PasswordInput,
-	Button
+	Button, Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
+import {useDispatch} from "react-redux";
+import {registerUser} from "../redux/auth-slice";
 
-export const RegisterPage = ({handleSubmit}) => {
+export const RegisterPage = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [form, setForm] = React.useState({
 		email: '',
 		password: '',
-		login:'',
+		name:'',
 	});
+	const handleSend = (e)=>{
+		e.preventDefault();
+		dispatch(registerUser([form.email,form.password,form.name]))
+			.unwrap()
+
+			.then(() => navigate('/'))
+			.catch((err) => console.log("Ошибка регистрации:", err));
+
+	}
 
 	const handleChange = (e) => {
 		setForm({
@@ -22,16 +35,17 @@ export const RegisterPage = ({handleSubmit}) => {
 		});
 	};
 
+
+
 	return (
 		<div className={`${styles.wrapper} mt-15`}>
 			<h2 className="text text_type_main-large mb-6">Регистрация</h2>
-			<form onSubmit={handleSubmit} className={`${styles.form} mt-6`}>
-				<EmailInput
+			<form onSubmit={handleSend} className={`${styles.form} mt-6`}>
+				<Input
 					onChange={handleChange}
-					value={form.login}
-					name="login"
+					value={form.name}
+					name="name"
 					placeholder="Логин"
-					isIcon={false}
 					extraClass="mb-6"
 				/>
 				<EmailInput
@@ -56,7 +70,7 @@ export const RegisterPage = ({handleSubmit}) => {
 			<div className={`${styles.links} mt-20`}>
 				<p className="text text_type_main-default text_color_inactive mt-4">
 					Уже зарегистрированы?{" "}
-					<Link to="/login" className={styles.link}>Войти</Link>
+					<Link className={styles.link} to='/login'>Войти</Link>
 				</p>
 			</div>
 		</div>
