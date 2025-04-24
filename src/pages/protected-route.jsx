@@ -1,15 +1,20 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export const ProtectedRoute = ({ children }) => {
-	const { isAuthenticated, isAuthLoading } = useSelector(state => state.auth);
+export const ProtectedRoute = ({ children, onlyUnauth = false, fromForgot = false }) => {
+	const { isAuthenticated } = useSelector(state => state.auth);
+	const location = useLocation();
 
-	if (isAuthLoading) {
-		return <div className="loading">Загрузка...</div>;
+	if (!fromForgot && location.state?.from === 'forgot-password') {
+		return <Navigate to="/reset-password" replace={true} />;
 	}
 
-	if (!isAuthenticated) {
+	if (onlyUnauth && isAuthenticated) {
+		return <Navigate to="/" replace />;
+	}
+
+	if (!onlyUnauth && !isAuthenticated) {
 		return <Navigate to="/login" replace />;
 	}
 

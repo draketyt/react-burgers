@@ -9,7 +9,7 @@ export const ForgotPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [form, setForm] = React.useState({ email: "" });
-	const isLoading = useSelector(state => state.auth.isResetLoading);
+	const isLoading = useSelector(state => state.auth.isAuthLoading);
 
 	const handleChange = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });

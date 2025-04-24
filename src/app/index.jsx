@@ -29,14 +29,26 @@ export const App = () => {
 			<AppHeader></AppHeader>
 				<Routes>
 					<Route path='/' element={
-						<ProtectedRoute>
+
 							<HomePage />
+
+					} />
+					<Route path='/login' element={
+						<ProtectedRoute onlyUnauth>
+							<LoginPage />
 						</ProtectedRoute>
 					} />
-					<Route path='/login'  element={<LoginPage/>}/>
-					<Route path='/register' element={<RegisterPage/>}/>
+					<Route path='/register' element={
+						<ProtectedRoute onlyUnauth>
+						<RegisterPage />
+					</ProtectedRoute>}/>
 					<Route path='/forgot-password'  element={<ForgotPage/>}/>
-					<Route path='/reset-password'  element={<ResetPage/>}/>
+					<Route path='/reset-password'  element={
+						<ProtectedRoute fromForgot>
+							<ResetPage />
+						</ProtectedRoute>
+
+						}/>
 					{/*<Route path='/ingredients/:id' element={<ProtectedRoute element={<IngredientPage/>}/>}/>*/}
 					<Route path='*' element={
 						<ProtectedRoute>

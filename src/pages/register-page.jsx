@@ -6,18 +6,20 @@ import {
 	Button, Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerUser} from "../redux/auth-slice";
 
 export const RegisterPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
+	const isLoading = useSelector(state => state.auth.isAuthLoading);
 	const [form, setForm] = React.useState({
 		email: '',
 		password: '',
 		name:'',
 	});
+
+
 	const handleSend = (e)=>{
 		e.preventDefault();
 		dispatch(registerUser([form.email,form.password,form.name]))
@@ -63,7 +65,9 @@ export const RegisterPage = () => {
 					extraClass="mb-6 "
 				/>
 				<Button htmlType="submit" type="primary" size="large" >
-					Зарегистрироваться
+					{isLoading?'Регистрируем...':'Зарегистрироваться'}
+
+
 				</Button>
 			</form>
 

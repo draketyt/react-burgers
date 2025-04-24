@@ -6,10 +6,11 @@ import {
 	PasswordInput,
 	Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {verifyUser} from "../redux/auth-slice";
 
 export const LoginPage = () => {
+	const isLoading = useSelector(state => state.auth.isAuthLoading);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [form, setForm] = React.useState({
@@ -51,7 +52,7 @@ export const LoginPage = () => {
 					extraClass="mb-6 "
 				/>
 				<Button htmlType="submit" type="primary" size="large" extraClass={'mt-6'}>
-					Войти
+					{isLoading?'Вход...':'Войти'}
 				</Button>
 			</form>
 

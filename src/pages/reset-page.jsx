@@ -4,12 +4,14 @@ import styles from '../Auth.module.css';
 import {
 	EmailInput,
 	PasswordInput,
-	Button
+	Button, Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../redux/auth-slice";
 
 export const ResetPage = () => {
+	const isLoading = useSelector(state => state.auth.isAuthLoading);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [form, setForm] = React.useState({
@@ -44,17 +46,17 @@ export const ResetPage = () => {
 					placeholder={'Введите новый пароль'}
 					extraClass="mb-6 "
 				/>
-				<EmailInput
+				<Input
 					onChange={handleChange}
-					value={form.email}
-					name="email"
+					value={form.token}
+					name="token"
 					placeholder={'Введите код из письма'}
 					isIcon={false}
 					extraClass="mb-6"
 				/>
 
 				<Button htmlType="submit" type="primary" size="large" extraClass={'mt-6'}>
-					Сохранить
+					{isLoading? 'Сравниваем код...':'Сохранить'}
 				</Button>
 			</form>
 			<div className={`${styles.links} mt-20`}>
