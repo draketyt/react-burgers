@@ -12,14 +12,15 @@ import {ForgotPage} from "@pages/forgot-page";
 import {ResetPage} from "@pages/reset-page";
 import {NotFoundPage} from "@pages/not-found-page";
 import {useEffect} from "react";
-import {checkAuth} from "../redux/auth-slice";
+import {fetchUserData } from "../redux/auth-slice";
+import {ProfilePage} from "@pages/profile-page";
 
 
 export const App = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(checkAuth());
+		dispatch(fetchUserData ());
 	}, [dispatch]);
 
 	return (
@@ -28,10 +29,16 @@ export const App = () => {
 			<DndProvider backend={HTML5Backend}>
 			<AppHeader></AppHeader>
 				<Routes>
+					<Route path='/profile' element={
+
+						<ProfilePage/>
+
+					}/>
 					<Route path='/' element={
+						<ProtectedRoute>
 
 							<HomePage />
-
+						</ProtectedRoute>
 					} />
 					<Route path='/login' element={
 						<ProtectedRoute onlyUnauth>
@@ -42,7 +49,7 @@ export const App = () => {
 						<ProtectedRoute onlyUnauth>
 						<RegisterPage />
 					</ProtectedRoute>}/>
-					<Route path='/forgot-password'  element={<ForgotPage/>}/>
+					<Route path='/forgot-password'  element={<ProtectedRoute onlyUnauth><ForgotPage/> </ProtectedRoute>}/>
 					<Route path='/reset-password'  element={
 						<ProtectedRoute fromForgot>
 							<ResetPage />

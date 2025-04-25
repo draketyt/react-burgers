@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change afterPath="$PROJECT_DIR$/src/pages/profile-page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/authFetch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/profile-style.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/forgot-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgot-page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login-page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/protected-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/protected-route.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register-page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/reset-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/reset-page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-header/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/not-found-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/not-found-page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +146,8 @@
       <workItem from="1745411765903" duration="11639000" />
       <workItem from="1745501949614" duration="4872000" />
       <workItem from="1745510555918" duration="2197000" />
+      <workItem from="1745514033717" duration="614000" />
+      <workItem from="1745584838941" duration="10742000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -371,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745419245105</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1745514046062</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1745514046062</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -59,4 +59,6 @@ nav{
 	align-items: center;
 	text-wrap: nowrap;
 }
-
+.link{
+	text-decoration: none;
+}
