@@ -4,6 +4,7 @@ import {Link, NavLink, useNavigate} from "react-router-dom";
 import styles from '@utils/profile-style.module.css'
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useEffect, useState} from "react";
+import PropTypes from "prop-types";
 
 export const ProfilePage=()=>{
 	const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export const ProfilePage=()=>{
 			<aside className={`${styles.sidebar} mr-15`}>
 				<nav className={styles.nav}>
 					<NavLink
-						to="/profile-page"
+						to="/profile"
 						className={` ${styles.link} ${styles.active} text_type_main-large  `}
 					>
 						Профиль
@@ -79,7 +80,6 @@ export const ProfilePage=()=>{
 					icon="EditIcon"
 					placeholder="Имя"
 					onChange={handleChange}
-					isIcon={true}
 					extraClass="mb-6"
 				/>
 				<EmailInput
@@ -100,12 +100,13 @@ export const ProfilePage=()=>{
 				/>
 				{	isFormChanged && (
 					<div className={styles.buttonBlock}>
-						<Button htmlType="submit" type="primary" size="medium">Сохранить</Button>
-						<Button type="secondary" size="medium" onClick={handleCancel}>Отмена</Button>
+						<Button htmlType="button" type="primary" size="medium">Сохранить</Button>
+						<Button htmlType="button" type="secondary" size="medium" onClick={handleCancel}>Отмена</Button>
 					</div>
 				)}
 			</form>
 		</section>
 
 	)
+
 }

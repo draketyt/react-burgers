@@ -2,10 +2,11 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {clear} from "core-js/internals/task";
 import {authFetch} from "@utils/authFetch";
 const BASE_URL = 'https://norma.nomoreparties.space'
+const userFromStorage = JSON.parse(localStorage.getItem('user'));
 const initialState = {
 	isAuthenticated: false,
 	isAuthLoading:false,
-	user: null,
+	user:userFromStorage || null,
 	isResetLoading: false,
 
 };
@@ -71,13 +72,8 @@ export const getUser = createAsyncThunk(
 	'auth/getUser',
 	async (_, thunkAPI) => {
 		try {
-			const accessToken = localStorage.getItem('accessToken');
-			const response = await fetch(`${BASE_URL}/api/auth/user`, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${accessToken}`
-				}
+			const response = await authFetch(`${BASE_URL}/api/auth/user`, {
+				method: 'GET'
 			});
 			const data = await response.json();
 			if (!response.ok) throw new Error(data.message);
@@ -133,30 +129,28 @@ export const fetchUserData = createAsyncThunk(
 	'auth/fetchUserData',
 	async (_, thunkAPI) => {
 		let accessToken = localStorage.getItem('accessToken');
+		const refreshTokenFromStorage = localStorage.getItem('refreshToken');
+
+		if (!accessToken && !refreshTokenFromStorage) {
+			return thunkAPI.rejectWithValue('No tokens');
+		}
+
 		try {
 			let response = await fetch(`${BASE_URL}/api/auth/user`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${accessToken}`
-				}
+					Authorization: `${accessToken}`,
+				},
 			});
 
-			if (!response.ok && (response.status === 401 || response.status === 403)) {
-				const refresh = await thunkAPI.dispatch(refreshToken()).unwrap();
-				accessToken = refresh.accessToken;
 
-				response = await fetch(`${BASE_URL}/api/auth/user`, {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${accessToken}`
-					}
-				});
-			}
 
 			const data = await response.json();
-			if (!response.ok) return thunkAPI.rejectWithValue(data.message || 'Ошибка получения данных пользователя');
+
+			if (!response.ok) {
+				return thunkAPI.rejectWithValue(data.message || 'Ошибка получения данных пользователя');
+			}
 
 			localStorage.setItem('user', JSON.stringify(data.user));
 			return { user: data.user };
@@ -247,8 +241,9 @@ const authSlice = createSlice({
 			state.isAuthenticated = false;
 			state.user = null;
 			state.error = null;
-			localStorage.clear();
-		}
+			localStorage.removeItem('user');
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -291,17 +286,23 @@ const authSlice = createSlice({
 			})
 			.addCase(fetchUserData.rejected, (state, action) => {
 				state.isAuthLoading = false;
-				state.isAuthenticated = false;
-				state.user = null;
-				state.error = action.payload;
+				if (action.payload !== 'No tokens') {
+					state.isAuthenticated = false;
+					state.user = null;
+					state.error = action.payload;
+					localStorage.removeItem('user');
+					localStorage.removeItem('accessToken');
+					localStorage.removeItem('refreshToken');
+				}
 			})
 
 			.addCase(refreshToken.rejected, (state) => {
 				state.isAuthenticated = false;
 				state.user = null;
 				state.error = 'Сессия истекла';
-				localStorage.clear();
-			})
+				localStorage.removeItem('user');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');			})
 
 			.addCase(forgotPassword.pending, (state) => { state.isAuthLoading = true; })
 			.addCase(forgotPassword.fulfilled, (state) => { state.isAuthLoading = false; })
@@ -319,13 +320,15 @@ const authSlice = createSlice({
 			.addCase(logoutUser.fulfilled, (state) => {
 				state.isAuthenticated = false;
 				state.user = null;
-				localStorage.clear();
-			})
+				localStorage.removeItem('user');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');			})
 			.addCase(logoutUser.rejected, (state) => {
 				state.isAuthenticated = false;
 				state.user = null;
-				localStorage.clear();
-			});
+				localStorage.removeItem('user');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');			});
 	}
 });
 

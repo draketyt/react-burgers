@@ -6,16 +6,14 @@ export const ProtectedRoute = ({ children, onlyUnauth = false, fromForgot = fals
 	const { isAuthenticated } = useSelector(state => state.auth);
 	const location = useLocation();
 
-	if (!fromForgot && location.state?.from === 'forgot-password') {
-		return <Navigate to="/reset-password" replace={true} />;
-	}
-
+	if (fromForgot && (location.state?.from !== 'forgot-password')) {
+		return <Navigate to='/forgot-password' replace  />;}
 	if (onlyUnauth && isAuthenticated) {
 		return <Navigate to="/" replace />;
 	}
 
 	if (!onlyUnauth && !isAuthenticated) {
-		return <Navigate to="/login" replace />;
+		return <Navigate to="/login" replace state={{ from: location }}  />;
 	}
 
 	return children;

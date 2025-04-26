@@ -1,6 +1,6 @@
 import {AppHeader} from '../components/app-header/app-header';
 // @ts-ignore
-import {BrowserRouter,Route,Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import { useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
@@ -14,14 +14,15 @@ import {NotFoundPage} from "@pages/not-found-page";
 import {useEffect} from "react";
 import {fetchUserData } from "../redux/auth-slice";
 import {ProfilePage} from "@pages/profile-page";
-
+import {IngredientPage} from "@pages/ingredient-page";
 
 export const App = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchUserData ());
-	}, [dispatch]);
+
+			dispatch(fetchUserData());
+	}, []);
 
 	return (
 
@@ -30,9 +31,9 @@ export const App = () => {
 			<AppHeader></AppHeader>
 				<Routes>
 					<Route path='/profile' element={
-
-						<ProfilePage/>
-
+						<ProtectedRoute>
+							<ProfilePage />
+						</ProtectedRoute>
 					}/>
 					<Route path='/' element={
 						<ProtectedRoute>
@@ -51,17 +52,18 @@ export const App = () => {
 					</ProtectedRoute>}/>
 					<Route path='/forgot-password'  element={<ProtectedRoute onlyUnauth><ForgotPage/> </ProtectedRoute>}/>
 					<Route path='/reset-password'  element={
-						<ProtectedRoute fromForgot>
-							<ResetPage />
+						<ProtectedRoute fromForgot onlyUnauth>
+							<ResetPage/>
 						</ProtectedRoute>
 
 						}/>
-					{/*<Route path='/ingredients/:id' element={<ProtectedRoute element={<IngredientPage/>}/>}/>*/}
+					<Route path="/ingredients/:id" element={<IngredientPage />} />
 					<Route path='*' element={
 						<ProtectedRoute>
 							<NotFoundPage />
 						</ProtectedRoute>
 					} />
+
 
 				</Routes>
 		</DndProvider>

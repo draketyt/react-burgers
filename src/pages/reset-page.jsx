@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from '../Auth.module.css';
 import {
-	EmailInput,
 	PasswordInput,
 	Button, Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -30,7 +29,7 @@ export const ResetPage = () => {
 		e.preventDefault();
 		const result = await dispatch(resetPassword(form));
 		if (resetPassword.fulfilled.match(result)) {
-			navigate('/login');
+			navigate('/login', { replace: true });
 		} else {
 			alert(result.payload || "Ошибка при сбросе пароля");
 		}

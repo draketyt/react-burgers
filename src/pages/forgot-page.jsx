@@ -19,7 +19,7 @@ export const ForgotPage = () => {
 		e.preventDefault();
 		const resultAction = await dispatch(forgotPassword(form.email));
 		if (forgotPassword.fulfilled.match(resultAction)) {
-			navigate("/reset-password");
+			navigate('/reset-password', { state: { from: 'forgot-password' } });
 		} else {
 			alert(resultAction.payload || "Что-то пошло не так ");
 		}
