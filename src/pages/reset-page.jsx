@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import styles from '../Auth.module.css';
 import {
 	PasswordInput,
@@ -17,7 +17,12 @@ export const ResetPage = () => {
 		password: '',
 		token: ''
 	});
-
+	const location = useLocation();
+	useEffect(() => {
+		if (location.state?.from !== 'forgot-password') {
+			navigate('/forgot-password');
+		}
+	}, [location, navigate]);
 	const handleChange = (e) => {
 		setForm({
 			...form,

@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {clear} from "core-js/internals/task";
 import {authFetch} from "@utils/authFetch";
 const BASE_URL = 'https://norma.nomoreparties.space'
 const userFromStorage = JSON.parse(localStorage.getItem('user'));
@@ -76,7 +75,7 @@ export const getUser = createAsyncThunk(
 				method: 'GET'
 			});
 			const data = await response.json();
-			if (!response.ok) throw new Error(data.message);
+			if (!response.ok)  new Error(data.message);
 			return data.user;
 		} catch (err) {
 			return thunkAPI.rejectWithValue(err.message);
@@ -95,7 +94,7 @@ export const updateUser = createAsyncThunk(
 			});
 
 			const data = await response.json();
-			if (!response.ok) throw new Error(data.message);
+			if (!response.ok)  new Error(data.message);
 			return data.user;
 		} catch (err) {
 			return thunkAPI.rejectWithValue(err.message);
@@ -136,14 +135,7 @@ export const fetchUserData = createAsyncThunk(
 		}
 
 		try {
-			let response = await fetch(`${BASE_URL}/api/auth/user`, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `${accessToken}`,
-				},
-			});
-
+			let response = await authFetch(`${BASE_URL}/api/auth/user`);
 
 
 			const data = await response.json();
