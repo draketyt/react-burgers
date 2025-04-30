@@ -3,7 +3,7 @@ import {authFetch} from "@utils/authFetch";
 const BASE_URL = 'https://norma.nomoreparties.space'
 const userFromStorage = JSON.parse(localStorage.getItem('user'));
 const initialState = {
-	isAuthenticated: false,
+	isAuthenticated: null,
 	isAuthLoading:false,
 	user:userFromStorage || null,
 	isResetLoading: false,
@@ -88,7 +88,7 @@ export const updateUser = createAsyncThunk(
 	'auth/updateUser',
 	async ({ name, email, password }, thunkAPI) => {
 		try {
-			const response = await authFetch("https://norma.nomoreparties.space/api/auth/user", {
+			const response = await authFetch(`${BASE_URL}/api/auth/user`, {
 				method: 'PATCH',
 				body: JSON.stringify({ name, email, password })
 			});

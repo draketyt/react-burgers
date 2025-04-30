@@ -1,31 +1,32 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIngredients } from "../redux/ingredientsSlice";
+import { IngredientDetails } from "../components/modal/ingredient-details";
 
-import React from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import { useSelector } from "react-redux";
-import {IngredientDetails} from "../components/modal/ingredient-details";
-import  styles from '../utils/ingregients-page.module.css'
-import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
-export const IngredientPage = () => {
-	const navigate = useNavigate();
-	const handleCancel= e=>{
-		e.preventDefault();
-		navigate(-1);
-	}
+export const IngredientDetailsPage = () => {
 	const { id } = useParams();
-	const ingredients = useSelector((state) => state.ingredients.items);
+	const dispatch = useDispatch();
 
-	const ingredient = ingredients.find((item) => item._id === id);
+	const items = useSelector(state => state.ingredients.items);
+	const loading = useSelector(state => state.ingredients.isLoading);
+	const error = useSelector(state => state.ingredients.hasError);
 
-	if (!ingredient) {
-		return <p className="text text_type_main-large mt-10">Ингредиент не найден...</p>;
-	}
+	useEffect(() => {
+		if (items.length === 0) {
+			dispatch(fetchIngredients());
+		}
+	}, [dispatch, items.length]);
+
+	const ingredient = items.find(item => item._id === id);
+
+	if (loading) return <p className="text_type_main-large">Загрузка...</p>;
+	if (error) return <p className="text_type_main-large">Ошибка загрузки ингредиентов</p>;
+	if (!ingredient) return <p className="text_type_main-large">Ингредиент не найден</p>;
 
 	return (
-		<div className={styles.main}>
-			<h1 className="text text_type_main-large">Детали ингредиента</h1>
-			<IngredientDetails ingredientId={id} />
-			<Button htmlType={"button"} type="secondary" size="large" onClick={handleCancel}>← Назад</Button>
-
+		<div className="p-5">
+			<IngredientDetails ingredient={ingredient} />
 		</div>
 	);
 };

@@ -1,10 +1,9 @@
 import {AppHeader} from '../components/app-header/app-header';
 // @ts-ignore
-import {BrowserRouter, Route, Routes,} from "react-router-dom";
+import { Route,  Routes, useLocation, useNavigate,} from "react-router-dom";
 import { useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import {ProtectedRoute} from "@pages/protected-route";
 import {LoginPage} from "@pages/login-page";
 import {HomePage} from "@pages/home-page";
 import {RegisterPage} from "@pages/register-page";
@@ -14,59 +13,81 @@ import {NotFoundPage} from "@pages/not-found-page";
 import {useEffect} from "react";
 import {fetchUserData } from "../redux/auth-slice";
 import {ProfilePage} from "@pages/profile-page";
-import {IngredientPage} from "@pages/ingredient-page";
+import {ProtectedRoute} from "../components/protected-route";
+import Modal from "../components/modal/modal";
+import {IngredientDetails} from "../components/modal/ingredient-details";
+import {IngredientDetailsPage} from "@pages/ingredient-page";
 
 export const App = () => {
 	const dispatch = useDispatch();
+	const location = useLocation();
+	const navigate = useNavigate();
+	const background = location.state?.background;
 
 	useEffect(() => {
-
-			dispatch(fetchUserData());
+		dispatch(fetchUserData());
 	}, []);
 
 	return (
+		<DndProvider backend={HTML5Backend}>
+			<AppHeader />
 
-		<BrowserRouter>
-			<DndProvider backend={HTML5Backend}>
-			<AppHeader></AppHeader>
-				<Routes>
-					<Route path='/profile' element={
+			<Routes location={background || location}>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/ingredients/:id" element={<IngredientDetailsPage />} />
+				<Route
+					path="/profile"
+					element={
 						<ProtectedRoute>
 							<ProfilePage />
 						</ProtectedRoute>
-					}/>
-					<Route path='/' element={
-						<ProtectedRoute>
-
-							<HomePage />
-						</ProtectedRoute>
-					} />
-					<Route path='/login' element={
-						<ProtectedRoute onlyUnauth>
+					}
+				/>
+				<Route
+					path="/login"
+					element={
 							<LoginPage />
+					}
+				/>
+				<Route
+					path="/register"
+					element={
+						<ProtectedRoute anonymous>
+							<RegisterPage />
 						</ProtectedRoute>
-					} />
-					<Route path='/register' element={
-						<ProtectedRoute onlyUnauth>
-						<RegisterPage />
-					</ProtectedRoute>}/>
-					<Route path='/forgot-password'  element={<ProtectedRoute onlyUnauth><ForgotPage/> </ProtectedRoute>}/>
-					<Route path='/reset-password'  element={
-						<ProtectedRoute fromForgot onlyUnauth>
-							<ResetPage/>
+					}
+				/>
+				<Route
+					path="/forgot-password"
+					element={
+						<ProtectedRoute anonymous>
+							<ForgotPage />
 						</ProtectedRoute>
-
-						}/>
-					<Route path="/ingredients/:id" element={<IngredientPage />} />
-					<Route path='*' element={
-						<ProtectedRoute>
-							<NotFoundPage />
+					}
+				/>
+				<Route
+					path="/reset-password"
+					element={
+						<ProtectedRoute anonymous fromForgot>
+							<ResetPage />
 						</ProtectedRoute>
-					} />
+					}
+				/>
+				<Route path="*" element={<NotFoundPage />} />
+			</Routes>
 
-
+			{background && (
+				<Routes>
+					<Route
+						path="/ingredients/:id"
+						element={
+							<Modal onClose={() => navigate(-1)}>
+								<IngredientDetails />
+							</Modal>
+						}
+					/>
 				</Routes>
+			)}
 		</DndProvider>
-		</BrowserRouter>
 	);
 };

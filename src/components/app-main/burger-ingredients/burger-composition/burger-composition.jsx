@@ -3,26 +3,38 @@ import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-de
 // @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item';
 import { useDispatch, useSelector } from "react-redux";
-import { SET_BUN, ADD_INGREDIENT } from '../../../../redux/actions/ingredientActions';
+import {SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT} from '../../../../redux/actions/ingredientActions';
 import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
 import { createOrder } from "../../../../redux/orderSlice";
+import {useNavigate} from "react-router-dom";
 
 
-export const BurgerComposition = ({setIsModalOpen }) => {
+export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 	const dispatch = useDispatch();
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
 	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
 	const ingredients = useSelector((state) => state.ingredients.items);
+	const navigate = useNavigate();
+
+	const handleDeleteIng = (index) => {
+		dispatch(REMOVE_INGREDIENT(index));
+	};
 
 	const handleOrderClick = () => {
-		const ingredientIds = [
-			selectedBun._id,
-			...selectedIngredients.map((item) => item._id),
-			selectedBun._id,
-		];
-		dispatch(createOrder(ingredientIds));
-		setIsModalOpen(true);
+		if (isAuthenticated) {
+			setIsModalOpen(true);
+
+			const ingredientIds = [
+				selectedBun._id,
+				...selectedIngredients.map((item) => item._id),
+				selectedBun._id,
+			];
+
+			dispatch(createOrder(ingredientIds));
+		} else {
+			navigate("/login");
+		}
 	};
 	const totalPrice = useMemo(() => {
 		return (
@@ -87,6 +99,7 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 						text={`${selectedBun.name} (Верх)`}
 						price={selectedBun.price}
 						thumbnail={selectedBun.image}
+
 					/>
 				) : (
 					<div className={`bunStub top ${isOverTop ? 'hovered' : ''}`}>
@@ -107,6 +120,8 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 								ingredient={ingredient}
 								index={index}
 								moveIngredient={moveIngredient}
+								deleteIng={handleDeleteIng}
+
 							/>
 						))}
 					</ul>
@@ -143,9 +158,9 @@ export const BurgerComposition = ({setIsModalOpen }) => {
 					onClick={handleOrderClick}
 					type="primary"
 					size="medium"
-					disabled={totalPrice === 0 || !selectedBun|| selectedIngredients.length < 0}
-				>
-					Оформить заказ
+					disabled={ totalPrice=== 0 || !selectedBun||ingredients.length === 0 }
+				>{isAuthenticated ? 'Оформить заказ': 'Авторизуйтесь для оформления заказа'}
+
 				</Button>
 			</div>
 
