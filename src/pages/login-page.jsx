@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import styles from '../Auth.module.css';
 import {
 	EmailInput,
@@ -11,13 +11,20 @@ import {verifyUser} from "../redux/auth-slice";
 
 export const LoginPage = () => {
 	const isLoading = useSelector(state => state.auth.isAuthLoading);
+	const { isAuthenticated } = useSelector(state => state.auth);
+	const location = useLocation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [form, setForm] = React.useState({
 		email: '',
 		password: ''
 	});
-
+	useEffect(() => {
+		if (isAuthenticated) {
+			const from = location.state?.from?.pathname || '/';
+			navigate(from, { replace: true });
+		}
+	}, [isAuthenticated]);
 	const handleChange = (e) => {
 		setForm({
 			...form,

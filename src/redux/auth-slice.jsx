@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authFetch} from "@utils/authFetch";
-const BASE_URL = 'https://norma.nomoreparties.space'
+export const BASE_URL = 'https://norma.nomoreparties.space'
 const userFromStorage = JSON.parse(localStorage.getItem('user'));
 const initialState = {
 	isAuthenticated: null,
-	isAuthLoading:false,
+	isAuthLoading:true,
 	user:userFromStorage || null,
 	isResetLoading: false,
 
