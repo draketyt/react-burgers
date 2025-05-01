@@ -4,7 +4,7 @@ export const BASE_URL = 'https://norma.nomoreparties.space'
 const userFromStorage = JSON.parse(localStorage.getItem('user'));
 const initialState = {
 	isAuthenticated: null,
-	isAuthLoading:true,
+	isAuthLoading:false,
 	user:userFromStorage || null,
 	isResetLoading: false,
 
