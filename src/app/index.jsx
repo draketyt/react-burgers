@@ -1,7 +1,7 @@
 import {AppHeader} from '../components/app-header/app-header';
 // @ts-ignore
 import { Route,  Routes, useLocation, useNavigate,} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {LoginPage} from "@pages/login-page";
@@ -23,11 +23,9 @@ export const App = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const background = location.state?.background;
-	const isAuthLoading = useSelector(state => state.auth.isLoading);
 	useEffect(() => {
 		dispatch(fetchUserData());
 	}, []);
-	if (isAuthLoading) return;
 	return (
 		<DndProvider backend={HTML5Backend}>
 			<AppHeader />
