@@ -5,35 +5,46 @@ import { IngredientsTabs } from "./IngredientsTabs";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import PropTypes from "prop-types";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 
-export const IngredientItem = ({ image, price, name, ingredient,onIngredientClick }) => {
+export const IngredientItem = ({ image, price, name, ingredient }) => {
 	const selectedBun = useSelector((state) => state.cart.selectedBun);
 	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
+	const navigate = useNavigate();
+	const location = useLocation();
+
 	const count = selectedIngredients.filter((item) => item._id === ingredient._id).length;
 	const isBunSelected = selectedBun && selectedBun._id === ingredient._id;
 	const bunCount = isBunSelected ? 2 : 0;
 
+	const handleClick = () => {
+		navigate(`/ingredients/${ingredient._id}`, { state: { background: location } });
+	};
+
 	const [{ isDragging }, drag] = useDrag({
 		type: "ingredient",
-		item: { id: ingredient._id ,type: ingredient.type},
+		item: { id: ingredient._id, type: ingredient.type },
 		collect: (monitor) => ({
 			isDragging: monitor.isDragging(),
 		}),
 	});
+
 	return (
-		<>
 		<div
 			ref={drag}
 			className={`ingredient-item ml-5 p-4 ${isDragging ? "dragging" : ""}`}
 			draggable
-			onClick={() => onIngredientClick(ingredient._id)}
-
+			onClick={handleClick}
 		>
 			<div>
 				{(count > 0 || bunCount > 0) && (
-					<Counter count={count + bunCount} size={count<10?"default":'small'} extraClass="m-1 counter" />
+					<Counter
+						count={count + bunCount}
+						size={count < 10 ? "default" : "small"}
+						extraClass="m-1 counter"
+					/>
 				)}
 				<img className="ingredient-image" src={image} alt={name} />
 			</div>
@@ -43,9 +54,7 @@ export const IngredientItem = ({ image, price, name, ingredient,onIngredientClic
 			</div>
 			<p className="text_type_main-medium title-name">{name}</p>
 		</div>
-		</>
 	);
-
 };
 export const IngredientsList = ({onIngredientClick }) => {
 	const { items: ingredients, isLoading, hasError } = useSelector((state) => state.ingredients);

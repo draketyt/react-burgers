@@ -5,6 +5,7 @@ import {
 	ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import {Link} from "react-router-dom";
 export const AppHeader = () => {
 	return (
 		<>
@@ -14,17 +15,16 @@ export const AppHeader = () => {
 				<nav  className='pl-25 pt-4 pb-4 pr-25' >
 					<ul className={'nav__list'}>
 						<li className='nav__list-item primary pb-4 pt-4 pr-2 pl-5 '>
-							<BurgerIcon type='primary' className='icon' />
+							<BurgerIcon type='secondary' className='icon' />
 							<span className='icon-li1'>
-								<p className="text text_type_main-medium">Конструктор</p>
+								<Link to={'/'} className=" link text text_type_main-medium text_color_inactive">Конструктор</Link>
 							</span>
 						</li>
 
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5  '>
 							<ListIcon type='secondary' className='icon' />
 							<span>
-								<p className="text text_type_main-medium">Лента заказов</p>
-							</span>
+								<Link to={'profile/orders'} className={`link text text_type_main-medium text_color_inactive`} >История Заказов</Link></span>
 						</li>
 						<Logo className='logo mr-25'/>
 
@@ -32,7 +32,7 @@ export const AppHeader = () => {
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5 '>
 							<ProfileIcon type='secondary' className='icon' />
 							<span>
-								<p className="text text_type_main-medium">Личный кабинет</p>
+								<Link to={'profile'} className={`link text text_type_main-medium text_color_inactive`}>Личный кабинет</Link>
 							</span>
 						</li>
 					</ul>

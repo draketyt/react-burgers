@@ -12,13 +12,14 @@ const cartReducer = (state = initialState, action) => {
 		case "ADD_INGREDIENT":
 			return { ...state, selectedIngredients: [...state.selectedIngredients, action.payload] };
 
-		case "REMOVE_INGREDIENT":
+		case "REMOVE_INGREDIENT": {
+			const newIngredients = [...state.selectedIngredients];
+			newIngredients.splice(action.payload, 1);
 			return {
 				...state,
-				selectedIngredients: state.selectedIngredients.filter(
-					(ingredient) => ingredient._id !== action.payload
-				),
+				selectedIngredients: newIngredients
 			};
+		}
 
 		case "CLEAR_CART":
 			return { selectedBun: null, selectedIngredients: [] };

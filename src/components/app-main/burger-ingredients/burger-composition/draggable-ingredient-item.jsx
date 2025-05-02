@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from "prop-types";
 
-const IngredientItem = ({ ingredient, index, moveIngredient }) => {
+const DraggableIngredientItem  = ({ ingredient, index, moveIngredient,deleteIng }) => {
 	const ref = useRef(null);
 	const [{ isOver }, drop] =  useDrop({
 		accept: 'ingredient',
@@ -52,11 +52,12 @@ const IngredientItem = ({ ingredient, index, moveIngredient }) => {
 				text={ingredient.name}
 				price={ingredient.price}
 				thumbnail={ingredient.image}
+				handleClose={() => deleteIng(index)}
 			/>
 		</li>
 	);
 };
-IngredientItem.propTypes = {
+DraggableIngredientItem.propTypes = {
 	ingredient: PropTypes.shape({
 		_id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
@@ -65,5 +66,6 @@ IngredientItem.propTypes = {
 	}).isRequired,
 	index: PropTypes.number.isRequired,
 	moveIngredient: PropTypes.func.isRequired,
+	handleDeleteIng: PropTypes.func.isRequired,
 };
-export default IngredientItem;
+export default DraggableIngredientItem ;

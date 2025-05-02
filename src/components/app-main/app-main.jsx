@@ -12,7 +12,7 @@ export const AppMain = () => {
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
 	const orderId = useSelector((state) => state.order.orderId);
-
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	useEffect(() => {
 		dispatch(fetchIngredients());
 	}, [dispatch]);
@@ -21,6 +21,7 @@ export const AppMain = () => {
 		setSelectedIngredientId(id);
 	};
 		return (
+
 			<main className="main">
 				{isOrderModalOpen && (
 					<OrderModal
@@ -38,8 +39,10 @@ export const AppMain = () => {
 				)}
 
 				<IngredientsGroup onIngredientClick={onIngredientClick} />
-				<BurgerComposition setIsModalOpen={setIsOrderModalOpen}
+				<BurgerComposition setIsModalOpen={setIsOrderModalOpen} isAuthenticated={isAuthenticated}
 				/>
+
 			</main>
+
 	);
 };

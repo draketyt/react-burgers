@@ -1,10 +1,13 @@
 import styles from "./modal.module.css";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import {useSelector} from "react-redux";
 
-export const IngredientDetails = ({ ingredientId }) => {
+export const IngredientDetails = ({ ingredient: propIngredient }) => {
+	const { id } = useParams();
 	const ingredients = useSelector((state) => state.ingredients.items);
-	const ingredient = ingredients.find((item) => item._id === ingredientId);
+
+	const ingredient = propIngredient || ingredients.find(item => item._id === id);
 
 	if (!ingredient) {
 		return <p className="text text_type_main-default">Загрузка...</p>;
@@ -37,5 +40,5 @@ export const IngredientDetails = ({ ingredientId }) => {
 };
 
 IngredientDetails.propTypes = {
-	ingredientId: PropTypes.string.isRequired,
+	ingredient: PropTypes.object,
 };

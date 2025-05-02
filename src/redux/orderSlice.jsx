@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import {BASE_URL} from './auth-slice'
 export const createOrder = createAsyncThunk(
 	'order/createOrder',
 	async (ingredientIds, thunkAPI) => {
 		try {
 			const response = await axios.post(
-				'https://norma.nomoreparties.space/api/orders',
+				`${BASE_URL}/api/orders`,
 				{ ingredients: ingredientIds },
 			);
 			return response.data.order.number;

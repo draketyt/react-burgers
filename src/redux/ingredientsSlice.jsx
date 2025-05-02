@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import {BASE_URL} from './auth-slice'
 
 const initialState = {
 	items: [],
@@ -35,7 +36,7 @@ export const {
 export const fetchIngredients = () => (dispatch) => {
 	dispatch(fetchIngredientsRequest());
 	axios
-		.get("https://norma.nomoreparties.space/api/ingredients")
+		.get(`${BASE_URL}/api/ingredients`)
 		.then((res) => {
 			dispatch(fetchIngredientsSuccess(res.data.data));
 		})
