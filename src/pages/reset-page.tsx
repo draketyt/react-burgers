@@ -7,12 +7,13 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../redux/auth-slice";
+import {RootState,AppDispatch} from "../redux/store";
 
 export const ResetPage = () => {
-	const isLoading = useSelector(state => state.auth.isAuthLoading);
+	const isLoading = useSelector((state:RootState) => state.auth.isAuthLoading);
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const [form, setForm] = React.useState({
 		password: '',
 		token: ''
@@ -23,14 +24,14 @@ export const ResetPage = () => {
 			navigate('/forgot-password');
 		}
 	}, [location, navigate]);
-	const handleChange = (e) => {
+	const handleChange = (e:any) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
 		});
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e:any) => {
 		e.preventDefault();
 		const result = await dispatch(resetPassword(form));
 		if (resetPassword.fulfilled.match(result)) {
@@ -55,7 +56,6 @@ export const ResetPage = () => {
 					value={form.token}
 					name="token"
 					placeholder={'Введите код из письма'}
-					isIcon={false}
 					extraClass="mb-6"
 				/>
 

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {BASE_URL} from './auth-slice'
+import {Dispatch} from "react";
 
 const initialState = {
 	items: [],
@@ -33,7 +34,7 @@ export const {
 	fetchIngredientsFailed,
 } = ingredientsSlice.actions;
 
-export const fetchIngredients = () => (dispatch) => {
+export const fetchIngredients = () => (dispatch:Dispatch<any>) => {
 	dispatch(fetchIngredientsRequest());
 	axios
 		.get(`${BASE_URL}/api/ingredients`)

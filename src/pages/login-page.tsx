@@ -8,14 +8,15 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {verifyUser} from "../redux/auth-slice";
+import {RootState,AppDispatch} from "../redux/store";
 
 export const LoginPage = () => {
-	const isLoading = useSelector(state => state.auth.isAuthLoading);
-	const { isAuthenticated } = useSelector(state => state.auth);
+	const isLoading = useSelector((state:RootState) => state.auth.isAuthLoading);
+	const { isAuthenticated } = useSelector((state:RootState) => state.auth);
 	const location = useLocation();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const [form, setForm] = React.useState({
+	const dispatch = useDispatch<AppDispatch>();
+	const [form, setForm]:any = React.useState({
 		email: '',
 		password: ''
 	});
@@ -25,7 +26,7 @@ export const LoginPage = () => {
 			navigate(from, { replace: true });
 		}
 	}, [isAuthenticated]);
-	const handleChange = (e) => {
+	const handleChange = (e:any):void => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
@@ -33,7 +34,7 @@ export const LoginPage = () => {
 	};
 
 
-	const handleLogin = (e) => {
+	const handleLogin = (e:any):void => {
 		e.preventDefault();
 		dispatch(verifyUser({ email: form.email, password: form.password }))
 			.unwrap()

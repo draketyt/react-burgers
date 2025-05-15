@@ -1,52 +1,50 @@
-import React, { useMemo } from "react";
+import React, {Dispatch, FC, useMemo} from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-// @ts-ignore
 import DraggableIngredientItem from './draggable-ingredient-item';
 import { useDispatch, useSelector } from "react-redux";
 import {SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT} from '../../../../redux/actions/ingredientActions';
 import { useDrop } from "react-dnd";
-import PropTypes from "prop-types";
-import { createOrder } from "../../../../redux/orderSlice";
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
+import {UnknownAction} from "redux";
 
 
-export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
-	const dispatch = useDispatch();
-	const selectedBun = useSelector((state) => state.cart.selectedBun);
-	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
-	const ingredients = useSelector((state) => state.ingredients.items);
-	const navigate = useNavigate();
+export const BurgerComposition:FC<BurgerCompProps> = ({setIsModalOpen ,isAuthenticated,createOrder}) => {
+	const dispatch:Dispatch<UnknownAction> = useDispatch();
+	const selectedBun:any = useSelector((state:any):any => state.cart.selectedBun);
+	const selectedIngredients:any = useSelector((state:any):any => state.cart.selectedIngredients);
+	const ingredients:any = useSelector((state:any):any => state.ingredients.items);
+	const navigate:NavigateFunction = useNavigate();
 
-	const handleDeleteIng = (index) => {
+	const deleteIng:any = (index:any):void => {
 		dispatch(REMOVE_INGREDIENT(index));
 	};
 
-	const handleOrderClick = () => {
+	const handleOrderClick:any = ():void => {
 		if (isAuthenticated) {
 			setIsModalOpen(true);
 
-			const ingredientIds = [
+			const ingredientIds:any = [
 				selectedBun._id,
-				...selectedIngredients.map((item) => item._id),
+				...selectedIngredients.map((item:any) => item._id),
 				selectedBun._id,
 			];
 
-			dispatch(createOrder(ingredientIds));
+			 createOrder(ingredientIds);
 		} else {
 			navigate("/login");
 		}
 	};
-	const totalPrice = useMemo(() => {
+	const totalPrice:number = useMemo(():any => {
 		return (
 			(selectedBun ? selectedBun.price * 2 : 0) +
-			selectedIngredients.reduce((sum, ingredient) => sum + ingredient.price, 0)
+			selectedIngredients.reduce((sum:number, ingredient:any):any => sum + ingredient.price, 0)
 		);
 	}, [selectedBun, selectedIngredients]);
 
 	const [{ isOver: isOverTop }, topBunDropRef] = useDrop({
 		accept: "ingredient",
-		drop: (item) => {
-			const ingredient = ingredients.find(i => i._id === item.id);
+		drop: (item:any):void => {
+			const ingredient:any = ingredients.find((i: { _id: any; }):boolean => i._id === item.id);
 			if (ingredient && ingredient.type === "bun") {
 				dispatch(SET_BUN(ingredient));
 			}
@@ -58,10 +56,10 @@ export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 
 	const [{ isOverMiddle }, middleDropRef] = useDrop({
 		accept: "ingredient",
-		drop: (item) => {
+		drop: (item:any):void => {
 			if (item.fromConstructor) return;
 
-			const ingredient = ingredients.find(i => i._id === item.id);
+			const ingredient:any = ingredients.find((i:{_id:any}) => i._id === item.id);
 			if (ingredient && (ingredient.type === "main" || ingredient.type === "sauce")) {
 				dispatch(ADD_INGREDIENT(ingredient));
 			}
@@ -73,8 +71,8 @@ export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 
 	const [{ isOver: isOverBottom }, bottomBunDropRef] = useDrop({
 		accept: "ingredient",
-		drop: (item) => {
-			const ingredient = ingredients.find(i => i._id === item.id);
+		drop: (item:any) => {
+			const ingredient = ingredients.find((i:{_id:any}) => i._id === item.id);
 			if (ingredient && ingredient.type === "bun") {
 				dispatch(SET_BUN(ingredient));
 			}
@@ -84,7 +82,7 @@ export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 		}),
 	});
 
-	const moveIngredient = (fromIndex, toIndex) => {
+	const moveIngredient:any = (fromIndex:any, toIndex:any):void=> {
 			dispatch({ type: "MOVE_INGREDIENT", payload: { fromIndex, toIndex } });
 	};
 
@@ -114,13 +112,13 @@ export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 			>
 				{selectedIngredients.length > 0 ? (
 					<ul className="order__list">
-						{selectedIngredients.map((ingredient, index) => (
+						{selectedIngredients.map((ingredient:any, index:any) => (
 							<DraggableIngredientItem
 								key={ingredient._id + index}
 								ingredient={ingredient}
 								index={index}
 								moveIngredient={moveIngredient}
-								deleteIng={handleDeleteIng}
+								deleteIng={deleteIng}
 
 							/>
 						))}
@@ -169,7 +167,5 @@ export const BurgerComposition = ({setIsModalOpen ,isAuthenticated }) => {
 		</section>
 	);
 };
-BurgerComposition.propTypes = {
-	setIsModalOpen: PropTypes.func.isRequired
-};
+
 export default BurgerComposition;

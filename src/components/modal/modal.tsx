@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import styles from "./modal.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "./modal-overlay";
-import PropTypes from "prop-types";
+interface ModalProps{
+	title?: string;
+	children: React.ReactNode;
+	onClose: () => void;
+	onClick?: () => void;
+}
+const modalRoot:any = document.getElementById("modals");
 
-const modalRoot = document.getElementById("modals");
-
-const Modal = ({ title, children, onClose }) => {
+const Modal:FC<ModalProps> = ({ title, children, onClose }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
-	useEffect(() => {
-		const timer = setTimeout(() => setIsVisible(true), 10);
-		const handleEsc = (e) => {
+	useEffect(():any => {
+		const timer = setTimeout(():void => setIsVisible(true), 10);
+		const handleEsc = (e:KeyboardEvent):void => {
 			if (e.key === "Escape") {
 				handleClose();
 			}
 		};
 		document.addEventListener("keydown", handleEsc);
 
-		return () => {
+		return ()=> {
 			clearTimeout(timer);
 			document.removeEventListener("keydown", handleEsc);
 		};
 	}, []);
 
-	const handleClose = () => {
+	const handleClose = ():void => {
 		setIsVisible(false);
-		setTimeout(() => onClose(), 300);
+		setTimeout(():any => onClose(), 300);
 	};
 
-	const closeModal = () => {
-		setIsVisible(false);
-		setTimeout(() => onClose(), 300);
-	};
+
 
 	return ReactDOM.createPortal(
-		<div className={`${styles.overlay} ${isVisible ? styles.open : styles.hidden}`} onClick={closeModal}>
+		<div className={`${styles.overlay} ${isVisible ? styles.open : styles.hidden}`} onClick={handleClose}>
 			<ModalOverlay onClose={onClose} onClick={handleClose} />
-			<div className={`${styles.modal} ${isVisible ? styles.open : styles.hidden}`} onClick={(e) => e.stopPropagation()}>
+			<div className={`${styles.modal} ${isVisible ? styles.open : styles.hidden}`} onClick={(e:any):void => e.stopPropagation()}>
 				<button className={styles.modal__close} onClick={handleClose}>
 					<CloseIcon type="primary" />
 				</button>
@@ -50,10 +51,6 @@ const Modal = ({ title, children, onClose }) => {
 	);
 };
 
-Modal.propTypes = {
-	title: PropTypes.string,
-	children: PropTypes.node.isRequired,
-	onClose: PropTypes.func.isRequired,
-};
+
 
 export default Modal;

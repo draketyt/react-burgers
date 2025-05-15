@@ -1,13 +1,12 @@
 import styles from "./modal.module.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import PropTypes from "prop-types";
-
-export const IngredientDetails = ({ ingredient: propIngredient }) => {
+import {FC} from "react";
+export const IngredientDetails:FC<IngredientDetails>= ({ ingredient: propIngredient }:IngredientDetails) => {
 	const { id } = useParams();
-	const ingredients = useSelector((state) => state.ingredients.items);
+	const ingredients: IngredientDetailsTypes["ingredients"] = useSelector((state:IngredientDetailsTypes['state']):any => state.ingredients.items);
 
-	const ingredient = propIngredient || ingredients.find(item => item._id === id);
+	const ingredient:IngredientDetailsTypes['ingredient'] = propIngredient || ingredients.find((item:IngredientDetailsTypes['item']):boolean => item._id === id);
 
 	if (!ingredient) {
 		return <p className="text text_type_main-default">Загрузка...</p>;
@@ -39,6 +38,3 @@ export const IngredientDetails = ({ ingredient: propIngredient }) => {
 	);
 };
 
-IngredientDetails.propTypes = {
-	ingredient: PropTypes.object,
-};

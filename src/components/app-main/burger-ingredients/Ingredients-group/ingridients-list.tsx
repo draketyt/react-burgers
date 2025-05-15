@@ -1,25 +1,23 @@
-import React, { useMemo, useRef, useState} from "react";
+import React, {FC,  useMemo, useRef, useState} from "react";
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-// @ts-ignore
-import { IngredientsTabs } from "./IngredientsTabs";
+import { IngredientsTabs } from "./ingredientsTabs";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
-import PropTypes from "prop-types";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Location, NavigateFunction, useLocation, useNavigate} from "react-router-dom";
 
 
 
-export const IngredientItem = ({ image, price, name, ingredient }) => {
-	const selectedBun = useSelector((state) => state.cart.selectedBun);
-	const selectedIngredients = useSelector((state) => state.cart.selectedIngredients);
-	const navigate = useNavigate();
-	const location = useLocation();
+export const IngredientItem:FC<IngredientItemProps> = ({ image, price, name, ingredient }) => {
+	const selectedBun:any = useSelector((state:any):any => state.cart.selectedBun);
+	const selectedIngredients:any = useSelector((state:any):any => state.cart.selectedIngredients);
+	const navigate:NavigateFunction = useNavigate();
+	const location:Location = useLocation();
 
-	const count = selectedIngredients.filter((item) => item._id === ingredient._id).length;
-	const isBunSelected = selectedBun && selectedBun._id === ingredient._id;
-	const bunCount = isBunSelected ? 2 : 0;
+	const count:number = selectedIngredients.filter((item:any):boolean => item._id === ingredient._id).length;
+	const isBunSelected:boolean = selectedBun && selectedBun._id === ingredient._id;
+	const bunCount:boolean|number = isBunSelected ? 2 : 0;
 
-	const handleClick = () => {
+	const handleClick:any= ():any => {
 		navigate(`/ingredients/${ingredient._id}`, { state: { background: location } });
 	};
 
@@ -56,29 +54,29 @@ export const IngredientItem = ({ image, price, name, ingredient }) => {
 		</div>
 	);
 };
-export const IngredientsList = ({onIngredientClick }) => {
-	const { items: ingredients, isLoading, hasError } = useSelector((state) => state.ingredients);
+export const IngredientsList:FC<IngredientsListProps> = ({onIngredientClick }:IngredientsListProps) => {
+	const { items: ingredients, isLoading, hasError } = useSelector((state:any):any => state.ingredients);
 	const [activeTab, setActiveTab] = useState("one");
 
 
-	const containerRef = useRef(null);
-	const sectionRefs = {
+	const containerRef:any = useRef(null);
+	const sectionRefs:any = {
 		one: useRef(null),
 		two: useRef(null),
 		three: useRef(null),
 	};
-	const onScroll = () => {
+	const onScroll:any = ():void => {
 		if (!containerRef.current) return;
 
-		const containerTop = containerRef.current.getBoundingClientRect().top + 100;
+		const containerTop:any = containerRef.current.getBoundingClientRect().top + 100;
 
-		let closestTab = "one";
-		let minDistance = Infinity;
+		let closestTab:string = "one";
+		let minDistance:number = Infinity;
 		for (const tab in sectionRefs) {
-			const ref = sectionRefs[tab];
+			const ref:any = sectionRefs[tab];
 			if (!ref.current) continue;
 
-			const distance = Math.abs(ref.current.getBoundingClientRect().top - containerTop);
+			const distance:number = Math.abs(ref.current.getBoundingClientRect().top - containerTop);
 			if (distance < minDistance) {
 				minDistance= distance
 				closestTab = tab
@@ -89,9 +87,9 @@ export const IngredientsList = ({onIngredientClick }) => {
 	};
 
 
-	const buns =  useMemo(()=>ingredients.filter((item) => item.type === "bun"),[ingredients]);
-	const sauces = useMemo(()=>ingredients.filter((item) => item.type === "sauce"),[ingredients]);
-	const mains = useMemo(()=>ingredients.filter((item) => item.type === "main"),[ingredients])
+	const buns:any=  useMemo(():any=>ingredients.filter((item:any):boolean => item.type === "bun"),[ingredients]);
+	const sauces:any = useMemo(():any=>ingredients.filter((item:any):boolean => item.type === "sauce"),[ingredients]);
+	const mains:any = useMemo(():any=>ingredients.filter((item:any):boolean => item.type === "main"),[ingredients])
 	if (isLoading) {
 		return <div className="loader" />;
 	}
@@ -102,13 +100,13 @@ export const IngredientsList = ({onIngredientClick }) => {
 	return (
 
 		<>
-			<IngredientsTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+			<IngredientsTabs activeTab={activeTab} setActiveTab={setActiveTab} onIngredientClick={undefined} />
 			<div className="ingredients custom-scroll" ref={containerRef} onScroll={onScroll}>
 				<div id="buns" ref={sectionRefs.one} className="ingredients pt-10">
 					<p className="text_type_main-large title">Булки</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
-							{buns.map((item) => (
+							{buns.map((item:any):any => (
 								<li key={item._id}>
 								<IngredientItem image={item.image_large} price={item.price} name={item.name}
 												ingredient={item} 		onIngredientClick={onIngredientClick}
@@ -124,7 +122,7 @@ export const IngredientsList = ({onIngredientClick }) => {
 					<p className="text_type_main-large title">Соусы</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
-							{sauces.map((item) => (
+							{sauces.map((item:any):any => (
 								<li key={item._id}>
 									<IngredientItem image={item.image_large} price={item.price} name={item.name}
 													ingredient={item} 		onIngredientClick={onIngredientClick}
@@ -140,7 +138,7 @@ export const IngredientsList = ({onIngredientClick }) => {
 					<p className="text_type_main-large title">Начинки</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
-							{mains.map((item) => (
+							{mains.map((item:any):any=> (
 								<li key={item._id}>
 									<IngredientItem image={item.image_large} price={item.price} name={item.name}
 													ingredient={item} 		onIngredientClick={onIngredientClick}
@@ -156,22 +154,3 @@ export const IngredientsList = ({onIngredientClick }) => {
 	);
 };
 
-IngredientItem.propTypes = {
-	image: PropTypes.string.isRequired,
-	price: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
-	ingredient: PropTypes.shape({
-		_id: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-		type: PropTypes.string.isRequired,
-		proteins: PropTypes.number.isRequired,
-		fat: PropTypes.number.isRequired,
-		carbohydrates: PropTypes.number.isRequired,
-		calories: PropTypes.number.isRequired,
-		price: PropTypes.number.isRequired,
-		image: PropTypes.string.isRequired,
-		image_large: PropTypes.string.isRequired,
-		image_mobile: PropTypes.string.isRequired,
-	}).isRequired,
-	onIngredientClick: PropTypes.func.isRequired,
-};

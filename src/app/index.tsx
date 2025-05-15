@@ -1,5 +1,4 @@
 import {AppHeader} from '../components/app-header/app-header';
-// @ts-ignore
 import { Route,  Routes, useLocation, useNavigate,} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
@@ -17,12 +16,13 @@ import {ProtectedRoute} from "../components/protected-route";
 import Modal from "../components/modal/modal";
 import {IngredientDetails} from "../components/modal/ingredient-details";
 import {IngredientDetailsPage} from "@pages/ingredient-page";
+import {AppDispatch} from "../redux/store";
 
 export const App = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const background = location.state?.background;
+	const background:any = location.state?.background;
 	useEffect(() => {
 		dispatch(fetchUserData());
 	}, []);

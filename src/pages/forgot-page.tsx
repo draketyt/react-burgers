@@ -1,27 +1,30 @@
-import React from "react";
+import React, { FC, ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../Auth.module.css";
-import {forgotPassword} from "../redux/auth-slice";
+import { forgotPassword } from "../redux/auth-slice";
+import type { RootState, AppDispatch } from "../redux/store";
 
-export const ForgotPage = () => {
-	const dispatch = useDispatch();
+export const ForgotPage: FC = () => {
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
-	const [form, setForm] = React.useState({ email: "" });
-	const isLoading = useSelector(state => state.auth.isAuthLoading);
 
-	const handleChange = (e) => {
+	const [form, setForm] = useState<{ email: string }>({ email: "" });
+
+	const isLoading = useSelector((state: RootState) => state.auth.isAuthLoading);
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		const resultAction = await dispatch(forgotPassword(form.email));
 		if (forgotPassword.fulfilled.match(resultAction)) {
-			navigate('/reset-password', { state: { from: 'forgot-password' } });
+			navigate("/reset-password", { state: { from: "forgot-password" } });
 		} else {
-			alert(resultAction.payload || "Что-то пошло не так ");
+			alert((resultAction as any).payload || "Что-то пошло не так");
 		}
 	};
 
@@ -39,7 +42,6 @@ export const ForgotPage = () => {
 				/>
 				<Button htmlType="submit" type="primary" size="large" extraClass="mt-6">
 					{isLoading ? "Загрузка..." : "Восстановить"}
-
 				</Button>
 			</form>
 			<div className={`${styles.links} mt-20`}>
