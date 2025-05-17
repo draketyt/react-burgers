@@ -1,17 +1,17 @@
 import  {IngredientsGroup} from "./burger-ingredients/Ingredients-group/Ingredients-group";
 import {BurgerComposition} from "./burger-ingredients/burger-composition/burger-composition";
 import OrderModal from "../modal/OrderModal";
-import {Dispatch, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import IngredientModal from "../modal/ingredient-modal";
-import {useDispatch, useSelector} from "react-redux";
 import {fetchIngredients} from "../../redux/ingredientsSlice";
 import {createOrder} from "../../redux/orderSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 export const AppMain:any = ():any => {
-	const dispatch:Dispatch<any> = useDispatch();
+	const dispatch = useAppDispatch();
 	const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
-	const orderId:any = useSelector((state:any):any => state.order.orderId);
-	const isAuthenticated:boolean = useSelector((state:any) :any=> state.auth.isAuthenticated);
+	const orderId:any = useAppSelector((state):any => state.order.orderId);
+	const isAuthenticated:boolean = useAppSelector((state) :any=> state.auth.isAuthenticated);
 	useEffect(():void => {
 		dispatch(fetchIngredients());
 	}, [dispatch]);

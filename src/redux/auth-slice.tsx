@@ -30,7 +30,7 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
 		if (!refreshToken) return thunkAPI.rejectWithValue("No refresh token");
 
 		try {
-			const response = await fetch(`${BASE_URL}/api/auth/logout`, {
+			const response:Response = await fetch(`${BASE_URL}/api/auth/logout`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ token: refreshToken }),
@@ -52,7 +52,7 @@ export const verifyUser = createAsyncThunk<
 	{ rejectValue: string }
 >('auth/verifyUser', async ({ email, password }, thunkAPI) => {
 	try {
-		const response = await fetch(`${BASE_URL}/api/auth/login`, {
+		const response:Response = await fetch(`${BASE_URL}/api/auth/login`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ email, password }),
@@ -73,7 +73,7 @@ export const getUser = createAsyncThunk<IUser, void, { rejectValue: string }>(
 	'auth/getUser',
 	async (_, thunkAPI) => {
 		try {
-			const response = await authFetch(`${BASE_URL}/api/auth/user`, { method: 'GET' });
+			const response:Response = await authFetch(`${BASE_URL}/api/auth/user`, { method: 'GET' });
 			const data = await response.json();
 			if (!response.ok) throw new Error(data.message);
 			return data.user;
@@ -87,7 +87,7 @@ export const updateUser = createAsyncThunk<IUser, { name: string; email: string;
 	'auth/updateUser',
 	async ({ name, email, password }, thunkAPI) => {
 		try {
-			const response = await authFetch(`${BASE_URL}/api/auth/user`, {
+			const response:Response = await authFetch(`${BASE_URL}/api/auth/user`, {
 				method: 'PATCH',
 				body: JSON.stringify({ name, email, password }),
 			});
@@ -110,7 +110,7 @@ export const refreshToken = createAsyncThunk<
 	async (_, thunkAPI) => {
 		const refreshToken = localStorage.getItem('refreshToken');
 		try {
-			const response = await fetch(`${BASE_URL}/api/auth/token`, {
+			const response:Response = await fetch(`${BASE_URL}/api/auth/token`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ token: refreshToken }),
@@ -144,7 +144,7 @@ export const fetchUserData = createAsyncThunk<
 		}
 
 		try {
-			const response = await authFetch(`${BASE_URL}/api/auth/user`);
+			const response:Response = await authFetch(`${BASE_URL}/api/auth/user`);
 			const data = await response.json();
 			if (!response.ok) return thunkAPI.rejectWithValue(data.message || 'Ошибка получения данных пользователя');
 
@@ -164,7 +164,7 @@ export const forgotPassword = createAsyncThunk<
 	'auth/forgotPassword',
 	async (email, thunkAPI) => {
 		try {
-			const response = await fetch(`${BASE_URL}/api/password-reset`, {
+			const response:Response = await fetch(`${BASE_URL}/api/password-reset`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email }),
@@ -190,7 +190,7 @@ export const resetPassword = createAsyncThunk<
 	'auth/resetPassword',
 	async ({ password, token }, thunkAPI) => {
 		try {
-			const response = await fetch(`${BASE_URL}/api/password-reset`, {
+			const response:Response = await fetch(`${BASE_URL}/api/password-reset`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ password, token }),
@@ -214,7 +214,7 @@ export const registerUser = createAsyncThunk<
 	'auth/register',
 	async ({ email, password, name }, thunkAPI) => {
 		try {
-			const response = await fetch(`${BASE_URL}/api/auth/register`, {
+			const response:Response= await fetch(`${BASE_URL}/api/auth/register`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, password, name }),

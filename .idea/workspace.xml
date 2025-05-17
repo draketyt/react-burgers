@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change afterPath="$PROJECT_DIR$/src/redux/hooks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/forgot-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgot-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ingredient-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ingredient-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/reset-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/reset-page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +177,8 @@
       <workItem from="1747137528243" duration="5798000" />
       <workItem from="1747226887125" duration="5546000" />
       <workItem from="1747320121822" duration="6858000" />
-      <workItem from="1747488094388" duration="1636000" />
+      <workItem from="1747488094388" duration="1977000" />
+      <workItem from="1747490482582" duration="335000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -483,7 +476,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747327155438</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1747490021983</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1747490021983</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
