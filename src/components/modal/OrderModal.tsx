@@ -7,7 +7,7 @@ import {useAppSelector} from "../../redux/hooks";
 const OrderModal: React.FC<OrderModalProps> = ({ orderId, onClose }) => {
 	if (!orderId) return null;
 
-	const order: Order = useAppSelector((state: any) => ({
+	const order: Order = useAppSelector((state) => ({
 		orderId: state.order.orderId,
 		loading: state.order.loading,
 	}));

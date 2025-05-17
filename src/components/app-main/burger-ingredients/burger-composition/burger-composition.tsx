@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, useMemo} from "react";
+import React, { FC, useMemo} from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import DraggableIngredientItem from './draggable-ingredient-item';
 import {SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT} from '../../../../redux/actions/ingredientActions';

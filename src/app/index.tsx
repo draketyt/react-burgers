@@ -1,6 +1,5 @@
 import {AppHeader} from '../components/app-header/app-header';
 import { Route,  Routes, useLocation, useNavigate,} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {LoginPage} from "@pages/login-page";
