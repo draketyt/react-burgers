@@ -1,5 +1,5 @@
 import React, { FC, FormEvent, ChangeEvent, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {
 	EmailInput,
 	PasswordInput,
@@ -7,19 +7,24 @@ import {
 	Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../Auth.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/auth-slice";
-import { RootState, AppDispatch } from "../redux/store";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
 
+interface RegisterFormState{
+	email:string ;
+	password:string ;
+	name:string ;
+
+}
 export const RegisterPage: FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const isLoading = useSelector(
-		(state: RootState) => state.auth.isAuthLoading
+	const isLoading = useAppSelector(
+		(state) => state.auth.isAuthLoading
 	);
 
-	const [form, setForm]:any = useState({
+	const [form, setForm] = useState<RegisterFormState>({
 		email: "",
 		password: "",
 		name: "",

@@ -1,17 +1,21 @@
 import {getUser, logoutUser, updateUser} from "../redux/auth-slice";
-import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate} from "react-router-dom";
 import styles from '@utils/profile-style.module.css'
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useEffect, useState} from "react";
-import {RootState,AppDispatch} from "../redux/store";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
+interface ProfileFormState{
+	email:string ;
+	password:string ;
+	name:string ;
 
+}
 export const ProfilePage=()=>{
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch =useAppDispatch();
 	const navigate = useNavigate();
-	const { user } = useSelector((state:RootState) => state.auth);
+	const { user } = useAppSelector((state) => state.auth);
 
-	const [form, setForm]:any = useState({
+	const [form, setForm] = useState<ProfileFormState>({
 		name: "",
 		email: "",
 		password: ""
@@ -26,14 +30,14 @@ export const ProfilePage=()=>{
 			setInitialForm({ name: user.name, email: user.email, password:  ""});
 		}
 	}, [user]);
-		const handleChange = (e:any):void => {
+		const handleChange = (e: ChangeEvent<HTMLInputElement>):void => {
 		setForm( (prev:any)=>({ ...prev, [e.target.name]: e.target.value }));
 	};
 	const handleCancel = ():void => {
 		setForm(initialForm);
 	};
 
-	const handleSubmit = (e:any):void => {
+	const handleSubmit = (e:FormEvent<HTMLFormElement>):void => {
 		e.preventDefault();
 		dispatch(updateUser(form));
 	};

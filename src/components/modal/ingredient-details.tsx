@@ -1,10 +1,10 @@
 import styles from "./modal.module.css";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {FC} from "react";
+import {useAppSelector} from "../../redux/hooks";
 export const IngredientDetails:FC<IngredientDetails>= ({ ingredient: propIngredient }:IngredientDetails) => {
 	const { id } = useParams();
-	const ingredients: IngredientDetailsTypes["ingredients"] = useSelector((state:IngredientDetailsTypes['state']):any => state.ingredients.items);
+	const ingredients: IngredientDetailsTypes["ingredients"] = useAppSelector((state) => state.ingredients.items);
 
 	const ingredient:IngredientDetailsTypes['ingredient'] = propIngredient || ingredients.find((item:IngredientDetailsTypes['item']):boolean => item._id === id);
 

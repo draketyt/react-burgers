@@ -1,20 +1,22 @@
-import React, {useEffect} from "react";
+import React, {ChangeEvent, FormEvent, useEffect} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import styles from '../Auth.module.css';
 import {
 	PasswordInput,
 	Button, Input
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../redux/auth-slice";
-import {RootState,AppDispatch} from "../redux/store";
-
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
+interface ResetFormState {
+	password: string;
+	token:string;
+}
 export const ResetPage = () => {
-	const isLoading = useSelector((state:RootState) => state.auth.isAuthLoading);
+	const isLoading = useAppSelector((state) => state.auth.isAuthLoading);
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch<AppDispatch>();
-	const [form, setForm] = React.useState({
+	const dispatch = useAppDispatch();
+	const [form, setForm] = React.useState<ResetFormState>({
 		password: '',
 		token: ''
 	});
@@ -24,14 +26,14 @@ export const ResetPage = () => {
 			navigate('/forgot-password');
 		}
 	}, [location, navigate]);
-	const handleChange = (e:any) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
 		});
 	};
 
-	const handleSubmit = async (e:any) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const result = await dispatch(resetPassword(form));
 		if (resetPassword.fulfilled.match(result)) {

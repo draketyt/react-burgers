@@ -1,15 +1,15 @@
 import React, {FC,  useMemo, useRef, useState} from "react";
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IngredientsTabs } from "./ingredientsTabs";
-import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Location, NavigateFunction, useLocation, useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../../../redux/hooks";
 
 
 
 export const IngredientItem:FC<IngredientItemProps> = ({ image, price, name, ingredient }) => {
-	const selectedBun:any = useSelector((state:any):any => state.cart.selectedBun);
-	const selectedIngredients:any = useSelector((state:any):any => state.cart.selectedIngredients);
+	const selectedBun:any = useAppSelector((state) => state.cart.selectedBun);
+	const selectedIngredients:any = useAppSelector((state) => state.cart.selectedIngredients);
 	const navigate:NavigateFunction = useNavigate();
 	const location:Location = useLocation();
 
@@ -55,7 +55,7 @@ export const IngredientItem:FC<IngredientItemProps> = ({ image, price, name, ing
 	);
 };
 export const IngredientsList:FC<IngredientsListProps> = ({onIngredientClick }:IngredientsListProps) => {
-	const { items: ingredients, isLoading, hasError } = useSelector((state:any):any => state.ingredients);
+	const { items: ingredients, isLoading, hasError } = useAppSelector((state) => state.ingredients);
 	const [activeTab, setActiveTab] = useState("one");
 
 

@@ -1,17 +1,16 @@
 import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchIngredients } from "../redux/ingredientsSlice";
 import { IngredientDetails } from "../components/modal/ingredient-details";
-import { AppDispatch, RootState } from "../redux/store";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
 
 export const IngredientDetailsPage: FC = () => {
 	const { id } = useParams<{ id: string }>();
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
-	const items:any[] = useSelector((state: RootState) => state.ingredients.items);
-	const loading:boolean = useSelector((state: RootState) => state.ingredients.isLoading);
-	const error :boolean= useSelector((state: RootState) => state.ingredients.hasError);
+	const items:any[] = useAppSelector((state) => state.ingredients.items);
+	const loading:boolean = useAppSelector((state) => state.ingredients.isLoading);
+	const error :boolean= useAppSelector((state) => state.ingredients.hasError);
 
 	useEffect(() => {
 		if (items.length === 0) {

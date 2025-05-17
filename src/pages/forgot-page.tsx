@@ -1,24 +1,23 @@
-import React, { FC, ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {FC, ChangeEvent, useState, FormEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "../Auth.module.css";
 import { forgotPassword } from "../redux/auth-slice";
-import type { RootState, AppDispatch } from "../redux/store";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
 
 export const ForgotPage: FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const [form, setForm] = useState<{ email: string }>({ email: "" });
 
-	const isLoading = useSelector((state: RootState) => state.auth.isAuthLoading);
+	const isLoading = useAppSelector((state) => state.auth.isAuthLoading);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = async (e: FormEvent) => {
+	const handleSubmit = async ( e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const resultAction = await dispatch(forgotPassword(form.email));
 		if (forgotPassword.fulfilled.match(resultAction)) {

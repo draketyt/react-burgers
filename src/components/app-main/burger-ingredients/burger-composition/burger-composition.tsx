@@ -1,18 +1,17 @@
 import React, {Dispatch, FC, useMemo} from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import DraggableIngredientItem from './draggable-ingredient-item';
-import { useDispatch, useSelector } from "react-redux";
 import {SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT} from '../../../../redux/actions/ingredientActions';
 import { useDrop } from "react-dnd";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {UnknownAction} from "redux";
+import {useAppDispatch, useAppSelector} from "../../../../redux/hooks";
 
 
 export const BurgerComposition:FC<BurgerCompProps> = ({setIsModalOpen ,isAuthenticated,createOrder}) => {
-	const dispatch:Dispatch<UnknownAction> = useDispatch();
-	const selectedBun:any = useSelector((state:any):any => state.cart.selectedBun);
-	const selectedIngredients:any = useSelector((state:any):any => state.cart.selectedIngredients);
-	const ingredients:any = useSelector((state:any):any => state.ingredients.items);
+	const dispatch = useAppDispatch();
+	const selectedBun:any = useAppSelector((state):any => state.cart.selectedBun);
+	const selectedIngredients:any = useAppSelector((state):any => state.cart.selectedIngredients);
+	const ingredients:any = useAppSelector((state:any):any => state.ingredients.items);
 	const navigate:NavigateFunction = useNavigate();
 
 	const deleteIng:any = (index:any):void => {

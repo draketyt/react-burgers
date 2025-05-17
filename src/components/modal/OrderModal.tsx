@@ -1,13 +1,13 @@
 import React from 'react';
 import Modal from './modal';
 import { OrderDetails } from './order-details';
-import { useSelector } from 'react-redux';
+import {useAppSelector} from "../../redux/hooks";
 
 
 const OrderModal: React.FC<OrderModalProps> = ({ orderId, onClose }) => {
 	if (!orderId) return null;
 
-	const order: Order = useSelector((state: any) => ({
+	const order: Order = useAppSelector((state: any) => ({
 		orderId: state.order.orderId,
 		loading: state.order.loading,
 	}));

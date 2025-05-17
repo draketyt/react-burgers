@@ -16,10 +16,10 @@ import {ProtectedRoute} from "../components/protected-route";
 import Modal from "../components/modal/modal";
 import {IngredientDetails} from "../components/modal/ingredient-details";
 import {IngredientDetailsPage} from "@pages/ingredient-page";
-import {AppDispatch} from "../redux/store";
+import {useAppDispatch} from "../redux/hooks";
 
 export const App = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
 	const background:any = location.state?.background;

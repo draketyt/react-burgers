@@ -208,11 +208,11 @@ export const resetPassword = createAsyncThunk<
 
 export const registerUser = createAsyncThunk<
 	{ user: IUser; accessToken: string; refreshToken: string },
-	[string, string, string],
+	{ name: string; email: string; password: string },
 	{ rejectValue: string }
 >(
 	'auth/register',
-	async ([email, password, name], thunkAPI) => {
+	async ({ email, password, name }, thunkAPI) => {
 		try {
 			const response = await fetch(`${BASE_URL}/api/auth/register`, {
 				method: 'POST',
