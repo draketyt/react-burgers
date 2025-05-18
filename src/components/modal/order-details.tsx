@@ -1,16 +1,18 @@
 import styles from "./modal.module.css";
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, {FC} from "react";
 import {useSelector} from "react-redux";
+import {useAppSelector} from "../../redux/hooks";
 
-export const OrderDetails= ()=>{
-	const orderId = useSelector((state) => state.order.orderId);
-	const isLoading = useSelector((state) => state.order.loading);
+export const OrderDetails:FC<OrderDetailsProps> = () : any=>{
+	const orderId:number = useAppSelector((state) => state.order.orderId);
+	const isLoading:boolean = useAppSelector((state) => state.order.loading);
+
 	return(
 
 	<div>
 
-{isLoading ? (
+	{isLoading ? (
 		<p className="text text_type_main-medium " >
 			Оформляем заказ...
 			<div className={'loader'} ></div>

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchIngredients } from "../redux/ingredientsSlice";
 import { IngredientDetails } from "../components/modal/ingredient-details";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
 
-export const IngredientDetailsPage = () => {
-	const { id } = useParams();
-	const dispatch = useDispatch();
+export const IngredientDetailsPage: FC = () => {
+	const { id } = useParams<{ id: string }>();
+	const dispatch = useAppDispatch();
 
-	const items = useSelector(state => state.ingredients.items);
-	const loading = useSelector(state => state.ingredients.isLoading);
-	const error = useSelector(state => state.ingredients.hasError);
+	const items:any[] = useAppSelector((state) => state.ingredients.items);
+	const loading:boolean = useAppSelector((state) => state.ingredients.isLoading);
+	const error :boolean= useAppSelector((state) => state.ingredients.hasError);
 
 	useEffect(() => {
 		if (items.length === 0) {
@@ -18,7 +18,7 @@ export const IngredientDetailsPage = () => {
 		}
 	}, [dispatch, items.length]);
 
-	const ingredient = items.find(item => item._id === id);
+	const ingredient:any = items.find((item:{_id:string}) => item._id === id);
 
 	if (loading) return <p className="text_type_main-large">Загрузка...</p>;
 	if (error) return <p className="text_type_main-large">Ошибка загрузки ингредиентов</p>;

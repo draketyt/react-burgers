@@ -1,17 +1,21 @@
 import {getUser, logoutUser, updateUser} from "../redux/auth-slice";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import styles from '@utils/profile-style.module.css'
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useEffect, useState} from "react";
-import PropTypes from "prop-types";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../redux/hooks";
+interface ProfileFormState{
+	email:string ;
+	password:string ;
+	name:string ;
 
+}
 export const ProfilePage=()=>{
-	const dispatch = useDispatch();
+	const dispatch =useAppDispatch();
 	const navigate = useNavigate();
-	const { user } = useSelector(state => state.auth);
+	const { user } = useAppSelector((state) => state.auth);
 
-	const [form, setForm] = useState({
+	const [form, setForm] = useState<ProfileFormState>({
 		name: "",
 		email: "",
 		password: ""
@@ -26,24 +30,24 @@ export const ProfilePage=()=>{
 			setInitialForm({ name: user.name, email: user.email, password:  ""});
 		}
 	}, [user]);
-		const handleChange = e => {
-		setForm( prev=>({ ...prev, [e.target.name]: e.target.value }));
+		const handleChange = (e: ChangeEvent<HTMLInputElement>):void => {
+		setForm( (prev:any)=>({ ...prev, [e.target.name]: e.target.value }));
 	};
-	const handleCancel = () => {
+	const handleCancel = ():void => {
 		setForm(initialForm);
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = (e:FormEvent<HTMLFormElement>):void => {
 		e.preventDefault();
 		dispatch(updateUser(form));
 	};
-	const handleLogout = () => {
+	const handleLogout = ():void => {
 		dispatch(logoutUser())
 			.unwrap()
 			.then(() => navigate("/login"))
 			.catch(err => console.log("Ошибка выхода:", err));
 	};
-	const isFormChanged =
+	const isFormChanged:boolean =
 		form.name !== initialForm.name ||
 		form.email !== initialForm.email ||
 		form.password !== "";

@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change beforePath="$PROJECT_DIR$/src/app/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,13 +17,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint-2/step-1" />
+        <entry key="$PROJECT_DIR$" value="sprint-3/step-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +40,16 @@
     &quot;url&quot;: &quot;https://github.com/draketyt/react-burgers.git&quot;,
     &quot;accountId&quot;: &quot;24a0453f-a34c-43a5-bd38-3d62fb89f279&quot;
   },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;draketyt&quot;,
+    &quot;repository&quot;: &quot;react-burgers&quot;
+  },
   &quot;reviewCommentPreferred&quot;: false
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -45,7 +57,7 @@
     <setting file="file://$PROJECT_DIR$/node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/currency-icon.d.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -63,7 +75,7 @@
     &quot;Node.js.OrderModal.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#4 on sprint-3/step-1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on sprint-4/step-1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -148,7 +160,25 @@
       <workItem from="1745798062840" duration="14000" />
       <workItem from="1745841387926" duration="726000" />
       <workItem from="1746009071642" duration="9267000" />
-      <workItem from="1746098223644" duration="1291000" />
+      <workItem from="1746098223644" duration="1463000" />
+      <workItem from="1746109140659" duration="8000" />
+      <workItem from="1746124658882" duration="14000" />
+      <workItem from="1746372399405" duration="68000" />
+      <workItem from="1746382223303" duration="562000" />
+      <workItem from="1746388607245" duration="1024000" />
+      <workItem from="1746491368518" duration="73000" />
+      <workItem from="1746643875752" duration="616000" />
+      <workItem from="1746712347481" duration="4005000" />
+      <workItem from="1746912782206" duration="1594000" />
+      <workItem from="1746996499268" duration="2452000" />
+      <workItem from="1747069505626" duration="704000" />
+      <workItem from="1747072243849" duration="595000" />
+      <workItem from="1747081651513" duration="4806000" />
+      <workItem from="1747137528243" duration="5798000" />
+      <workItem from="1747226887125" duration="5546000" />
+      <workItem from="1747320121822" duration="6858000" />
+      <workItem from="1747488094388" duration="1977000" />
+      <workItem from="1747490482582" duration="335000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -422,7 +452,39 @@
       <option name="project" value="LOCAL" />
       <updated>1746099409031</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1746099589607</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1746099589607</updated>
+    </task>
+    <task id="LOCAL-00036" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1746099647427</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1746099647427</updated>
+    </task>
+    <task id="LOCAL-00037" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1747327155438</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1747327155438</updated>
+    </task>
+    <task id="LOCAL-00038" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1747490021983</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1747490021983</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

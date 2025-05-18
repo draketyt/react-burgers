@@ -1,10 +1,15 @@
+interface CartState {
+	selectedBun: any | null;
+	selectedIngredients: any[];
+}
 
-const initialState = {
+const initialState: CartState = {
 	selectedBun: null,
 	selectedIngredients: [],
 };
 
-const cartReducer = (state = initialState, action) => {
+
+const cartReducer = (state:CartState = initialState,action: {	type: string; payload?: any }) => {
 	switch (action.type) {
 		case "SET_BUN":
 			return { ...state, selectedBun: action.payload};
