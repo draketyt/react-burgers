@@ -1,10 +1,10 @@
 import React, {FC} from "react";
-import {Location, Navigate, useLocation} from "react-router-dom";
+import { Navigate, useLocation} from "react-router-dom";
 import {useAppSelector} from "../redux/hooks";
 
-export const ProtectedRoute:FC<ProtectedRouteProps> = ({ children, anonymous = false, redirectTo = '/', fromForgot = false }) => {
+export const ProtectedRoute:FC<ProtectedRouteProps> = ({ children, anonymous = false, redirectTo = '/order-list', fromForgot = false }) => {
 	const { isAuthenticated, isLoading } = useAppSelector((state):any => state.auth);
-	const location:Location<any> = useLocation();
+	const location = useLocation();
 
 	if (isLoading) return null;
 

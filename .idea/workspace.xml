@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
+      <change afterPath="$PROJECT_DIR$/src/components/order-card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/feed-details-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/feed-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/order-details-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/order-feed-current-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/order-history.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/actions/ws-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/order-detais.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/websockets/socketMiddleware.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/websockets/wsOrderSlice.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal/order-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/order-details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/protected-route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/protected-route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions/ingredientActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/ingredientActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/orderSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/orderSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -24,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint-3/step-1" />
+        <entry key="$PROJECT_DIR$" value="sprint-4/step-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +75,7 @@
     <setting file="file://$PROJECT_DIR$/node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/currency-icon.d.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -75,7 +93,7 @@
     &quot;Node.js.OrderModal.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#5 on sprint-4/step-1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sprint-5/step-1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -88,10 +106,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\react-burgers\src\components" />
+      <recent name="D:\react-burgers\src" />
       <recent name="D:\react-burgers\src\components\modal" />
       <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\burger-composition" />
       <recent name="D:\react-burgers\src\redux" />
-      <recent name="D:\react-burgers\src\redux\actions" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -178,7 +196,13 @@
       <workItem from="1747226887125" duration="5546000" />
       <workItem from="1747320121822" duration="6858000" />
       <workItem from="1747488094388" duration="1977000" />
-      <workItem from="1747490482582" duration="335000" />
+      <workItem from="1747490482582" duration="905000" />
+      <workItem from="1747557085439" duration="51000" />
+      <workItem from="1747756087962" duration="1150000" />
+      <workItem from="1747843315470" duration="24000" />
+      <workItem from="1748796737901" duration="853000" />
+      <workItem from="1748818324554" duration="1247000" />
+      <workItem from="1749295537897" duration="16500000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -484,7 +508,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747490021983</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1747490936548</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1747490936548</updated>
+    </task>
+    <task id="LOCAL-00040" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1747491132601</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1747491132601</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

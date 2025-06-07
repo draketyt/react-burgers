@@ -1,4 +1,5 @@
 //OrderModal
+
 interface OrderModalProps {
 	orderId: string | number | null | undefined;
 	order: {
@@ -111,4 +112,3 @@ interface IUser {
 	email: string;
 	name: string;
 }
-

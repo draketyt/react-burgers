@@ -31,7 +31,7 @@ export const ProfilePage=()=>{
 		}
 	}, [user]);
 		const handleChange = (e: ChangeEvent<HTMLInputElement>):void => {
-		setForm( (prev:any)=>({ ...prev, [e.target.name]: e.target.value }));
+		setForm( (prev:ProfileFormState)=>({ ...prev, [e.target.name]: e.target.value }));
 	};
 	const handleCancel = ():void => {
 		setForm(initialForm);

@@ -16,12 +16,14 @@ export const createOrder:AsyncThunk<any, any, any> = createAsyncThunk(
 	}
 );
 
+
 const orderSlice:Slice = createSlice({
 	name: 'order',
 	initialState: {
 		orderId: null,
 		loading: false,
 		error: null,
+		orderData: null,
 	},
 	reducers: {
 		clearOrder: (state:any):void => {
@@ -43,7 +45,8 @@ const orderSlice:Slice = createSlice({
 			.addCase(createOrder.rejected, (state:any, action:any):void => {
 				state.loading = false;
 				state.error = action.payload;
-			});
+			})
+
 	},
 });
 

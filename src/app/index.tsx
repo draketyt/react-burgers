@@ -4,6 +4,8 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {LoginPage} from "@pages/login-page";
 import {HomePage} from "@pages/home-page";
+import {OrderFeedCurrent} from "@pages/order-feed-current-page"
+import {OrderFeedPage} from "@pages/feed-page"
 import {RegisterPage} from "@pages/register-page";
 import {ForgotPage} from "@pages/forgot-page";
 import {ResetPage} from "@pages/reset-page";
@@ -16,12 +18,14 @@ import Modal from "../components/modal/modal";
 import {IngredientDetails} from "../components/modal/ingredient-details";
 import {IngredientDetailsPage} from "@pages/ingredient-page";
 import {useAppDispatch} from "../redux/hooks";
+import {OrderHistoryPage} from "@pages/order-history";
+import {OrderDetailsPage} from "@pages/order-details-page";
 
 export const App = () => {
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const background:any = location.state?.background;
+	const background = location.state?.background;
 	useEffect(() => {
 		dispatch(fetchUserData());
 	}, []);
@@ -70,6 +74,29 @@ export const App = () => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path="/order-list"
+					element={
+						<OrderFeedPage/>
+					}
+
+				/>
+				<Route
+					path='/order-list/:id'
+					   element={<OrderFeedCurrent/>}
+				/>
+				<Route path="/profile/orders" element={
+					<ProtectedRoute anonymous>
+					<OrderHistoryPage/>
+				</ProtectedRoute>}/>
+
+				<Route path="/profile/orders/:id"
+					   element={
+					<ProtectedRoute anonymous >
+						<OrderDetailsPage/>
+					</ProtectedRoute>}/>
+
+
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 
