@@ -1,10 +1,28 @@
+// websockets/socketMiddleware.ts
+
 import { Middleware } from 'redux';
 
-export const socketMiddleware = ({ wsUrl, wsActions }: any): Middleware => {
+interface WSActions {
+	wsInit: string;
+	onOpen?: string;
+	onClose?: string;
+	onError?: string;
+	onMessage?: string;
+	wsSend?: string;
+	wsClosed?: string;
+}
+
+interface SocketMiddlewareParams {
+	wsUrl: string;
+	wsActions: WSActions;
+}
+
+export const socketMiddleware = ({ wsUrl, wsActions }: SocketMiddlewareParams): Middleware => {
 	let socket: WebSocket | null = null;
-	let url = wsUrl
-	return store => next =>( action:any) => {
-		const { dispatch, getState } = store;
+	let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+	let manualClose = false;
+	return store => next => (action:any ) => {
+		const { dispatch } = store;
 		const {
 			wsInit,
 			onOpen,
@@ -14,81 +32,68 @@ export const socketMiddleware = ({ wsUrl, wsActions }: any): Middleware => {
 			wsSend,
 			wsClosed
 		} = wsActions;
-		const createSocket = () => {
-			socket = new WebSocket(url);
+
+		if ((action.type === wsInit)){
+			const tokenSuffix = typeof action.payload === 'string' ? action.payload : '';
+			const fullUrl = wsUrl + tokenSuffix;
+
+			socket = new WebSocket(fullUrl);
 
 			socket.onopen = () => {
-				console.log('WS OPEN');
-				onOpen && dispatch({ type: onOpen });
+				console.log('WS OPEN:', fullUrl);
+				if (onOpen) dispatch({ type: onOpen });
+				if (reconnectTimer) {
+					clearTimeout(reconnectTimer);
+					reconnectTimer = null;
+				}
 			};
 
 			socket.onerror = (event) => {
-				console.error('WS ERROR', event);
-				onError && dispatch({ type: onError, payload: event });
+				console.error('WS ERROR:', event);
+				if (onError) dispatch({ type: onError, payload: event });
 			};
 
 			socket.onmessage = (event) => {
 				try {
 					const data = JSON.parse(event.data);
-					onMessage && dispatch({ type: onMessage, payload: data });
+					if (data?.message === 'Invalid or missing token') {
+						console.warn('Токен недействителен');
+						if (onError) dispatch({ type: onError, payload: data.message });
+						socket?.close();
+						return;
+					}
+
+					if (onMessage) dispatch({ type: onMessage, payload: data });
 				} catch (err) {
-					console.error('WS MESSAGE PARSE ERROR', err);
+					console.error('WS MESSAGE PARSE ERROR:', err);
 				}
 			};
 
 			socket.onclose = (event) => {
-				console.warn('WS CLOSED', event);
-				onClose && dispatch({ type: onClose });
+				console.warn('WS CLOSED:', event);
+				console.log(`WebSocket закрыт: код=${event.code}, причина=${event.reason}, wasClean=${event.wasClean}`);
+
+				if (onClose) dispatch({ type: onClose });
+				if (!manualClose) {
+					if (!reconnectTimer) {
+						reconnectTimer = setTimeout(() => {
+							dispatch({ type: wsInit, payload: tokenSuffix });
+						}, 3000);
+					}
+				} else {
+					socket = null;
+				}
+				console.log(manualClose)
 			};
-		};
-		switch (action.type) {
-			case wsInit:
+		}
 
-				if (socket !== null) {
-					if (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
-						setTimeout(() => {
-							createSocket();
-						}, 150);
-						return;
-					}
-				}
-				socket = new WebSocket(url)
+		if (action.type === wsSend && socket?.readyState === WebSocket.OPEN) {
+			socket?.send(JSON.stringify({ ...action.payload }));
+		}
 
-				socket.onopen = () => {
-					console.log('WS OPEN');
-					onOpen && dispatch({ type: onOpen });
-				};
-
-				socket.onerror = (event) => {
-					console.error('WS ERROR', event);
-					onError && dispatch({ type: onError, payload: event });
-				};
-
-				socket.onmessage = (event) => {
-					try {
-						const data = JSON.parse(event.data);
-						onMessage && dispatch({ type: onMessage, payload: data });
-					} catch (err) {
-						console.error('WS MESSAGE PARSE ERROR', err);
-					}
-				};
-
-				socket.onclose = (event) => {
-					console.warn('WS CLOSED', event);
-					onClose && dispatch({ type: onClose });
-				};
-				break;
-
-			case wsSend:
-				if (socket?.readyState === WebSocket.OPEN) {
-					socket.send(JSON.stringify(action.payload));
-				}
-				break;
-
-			case wsClosed:
-				socket?.close();
-				socket = null;
-				break;
+		if (action.type === wsClosed && socket) {
+			socket.close();
+			socket = null;
 		}
 
 		return next(action);

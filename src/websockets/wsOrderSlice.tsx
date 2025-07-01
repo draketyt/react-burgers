@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { wsOpen, wsError, wsMessage, wsClosed } from '../redux/actions/ws-actions';
+import {wsOpen, wsError, wsMessage, wsClosed, wsSend} from '../redux/actions/ws-actions';
 
 interface Order {
+    image_mobile: string;
     slice(arg0: number, arg1: number): unknown;
 	_id: string;
 	status: string;
@@ -10,6 +11,7 @@ interface Order {
 	updatedAt: string;
 	name: string;
 	number: number;
+	ingredientsAll?:any;
 }
 
 interface WsOrdersState {
@@ -18,6 +20,7 @@ interface WsOrdersState {
 	total: number;
 	totalToday: number;
 	error: string | null;
+	userToken?:string;
 }
 
 const initialState: WsOrdersState = {
@@ -48,6 +51,10 @@ export const wsOrdersSlice = createSlice({
 				state.orders = orders;
 				state.total = total;
 				state.totalToday = totalToday;
+			})
+			.addCase(wsSend,(state,action)=>{
+				state.userToken = action.payload.token;
+
 			})
 			.addCase(wsClosed, (state) => {
 				state.connected = false;

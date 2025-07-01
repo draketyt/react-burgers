@@ -20,6 +20,7 @@ import {IngredientDetailsPage} from "@pages/ingredient-page";
 import {useAppDispatch} from "../redux/hooks";
 import {OrderHistoryPage} from "@pages/order-history";
 import {OrderDetailsPage} from "@pages/order-details-page";
+import {FormProfile} from "@utils/form-profile";
 
 export const App = () => {
 	const dispatch = useAppDispatch();
@@ -43,7 +44,10 @@ export const App = () => {
 							<ProfilePage />
 						</ProtectedRoute>
 					}
-				/>
+				>
+					<Route index element={<FormProfile />} />
+					<Route path="orders" element={<OrderDetailsPage />} />
+				</Route>
 				<Route
 					path="/login"
 					element={
@@ -81,21 +85,6 @@ export const App = () => {
 					}
 
 				/>
-				<Route
-					path='/order-list/:id'
-					   element={<OrderFeedCurrent/>}
-				/>
-				<Route path="/profile/orders" element={
-					<ProtectedRoute anonymous>
-					<OrderHistoryPage/>
-				</ProtectedRoute>}/>
-
-				<Route path="/profile/orders/:id"
-					   element={
-					<ProtectedRoute anonymous >
-						<OrderDetailsPage/>
-					</ProtectedRoute>}/>
-
 
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
@@ -107,6 +96,22 @@ export const App = () => {
 						element={
 							<Modal onClose={() => navigate(-1)}>
 								<IngredientDetails />
+							</Modal>
+						}
+					/>
+					<Route
+						path="/profile/orders/:id"
+						element={
+							<Modal onClose={() => navigate(-1)}>
+								<OrderHistoryPage />
+							</Modal>
+						}
+					/>
+					<Route
+						path="/order-list/:id"
+						element={
+							<Modal onClose={() => navigate(-1)}>
+								<OrderHistoryPage />
 							</Modal>
 						}
 					/>

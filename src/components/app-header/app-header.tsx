@@ -24,7 +24,7 @@ export const AppHeader = () => {
 						<li className='nav__list-item secondary pb-4 pt-4 pr-2 pl-5  '>
 							<ListIcon type='secondary' className='icon' />
 							<span>
-								<Link to={'profile/orders'} className={`link text text_type_main-medium text_color_inactive`} >История Заказов</Link></span>
+								<Link to={'/order-list'} className={`link text text_type_main-medium text_color_inactive`} >История Заказов</Link></span>
 						</li>
 						<Logo className='logo mr-25'/>
 

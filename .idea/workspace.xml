@@ -5,25 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change afterPath="$PROJECT_DIR$/src/components/order-card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/feed-details-page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/feed-page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/order-details-page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/order-feed-current-page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/order-history.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/actions/ws-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/order-detais.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/websockets/socketMiddleware.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/websockets/wsOrderSlice.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/form-profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/websockets/wsProfileSlice.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/order-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/order-details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/protected-route.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/protected-route.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-header/app-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-header/app-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/app-main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/app-main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/feed-details-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/feed-details-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/order-details-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/order-details-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/order-feed-current-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/order-feed-current-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/order-history.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/order-history.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/ingredientActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/ingredientActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions/ws-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/ws-actions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/orderSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/orderSlice.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/order-detais.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/order-detais.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/profile-style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/profile-style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/websockets/socketMiddleware.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/websockets/socketMiddleware.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/websockets/wsOrderSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/websockets/wsOrderSlice.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +97,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;sprint-5/step-1&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -202,7 +206,16 @@
       <workItem from="1747843315470" duration="24000" />
       <workItem from="1748796737901" duration="853000" />
       <workItem from="1748818324554" duration="1247000" />
-      <workItem from="1749295537897" duration="16500000" />
+      <workItem from="1749295537897" duration="16607000" />
+      <workItem from="1749395692542" duration="435000" />
+      <workItem from="1749396171994" duration="5399000" />
+      <workItem from="1749472649472" duration="14465000" />
+      <workItem from="1749664808328" duration="8671000" />
+      <workItem from="1749752795284" duration="4578000" />
+      <workItem from="1749811185437" duration="3000" />
+      <workItem from="1749822756461" duration="4438000" />
+      <workItem from="1750064404170" duration="4647000" />
+      <workItem from="1751323978679" duration="4020000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -524,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747491132601</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1749315876905</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1749315876905</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

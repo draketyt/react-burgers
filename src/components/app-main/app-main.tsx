@@ -15,7 +15,7 @@ export const AppMain:any = ():any => {
 	useEffect(():void => {
 		dispatch(fetchIngredients());
 	}, [dispatch]);
-	const handleOrderClick = (ingredientIds: string[]) => {
+	const handleOrderClick = (ingredientIds: any) => {
 		dispatch(createOrder(ingredientIds));
 	};
 	const onIngredientClick:any = (id:any):void => {
