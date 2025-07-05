@@ -1,5 +1,5 @@
 import {BASE_URL} from "../redux/auth-slice";
-export const authFetch = async (url, options = {}) => {
+export const authFetch = async (url:any, options:any = {}) => {
 
 	let token = localStorage.getItem("accessToken");
 

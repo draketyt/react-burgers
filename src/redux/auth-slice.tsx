@@ -11,6 +11,7 @@ interface AuthState {
 	isResetLoading: boolean;
 	user: IUser | null;
 	error?: string | null;
+	authChecked:boolean;
 }
 
 const userFromStorage = localStorage.getItem("user");
@@ -20,6 +21,7 @@ const initialState: AuthState = {
 	isResetLoading: false,
 	user: userFromStorage ? JSON.parse(userFromStorage) : null,
 	error: null,
+	authChecked: false,
 };
 
 
@@ -283,12 +285,13 @@ const authSlice = createSlice({
 				state.error = action.payload || null;
 			})
 
-			.addCase(fetchUserData.pending, (state) => { state.isAuthLoading = true; })
+			.addCase(fetchUserData.pending, (state) => { state.isAuthLoading = true;  state.authChecked = false;})
 			.addCase(fetchUserData.fulfilled, (state, action) => {
 				state.isAuthLoading = false;
 				state.isAuthenticated = true;
 				state.user = action.payload.user;
 				state.error = null;
+				state.authChecked = true;
 			})
 			.addCase(fetchUserData.rejected, (state, action) => {
 				state.isAuthLoading = false;
@@ -300,6 +303,7 @@ const authSlice = createSlice({
 					localStorage.removeItem('accessToken');
 					localStorage.removeItem('refreshToken');
 				}
+				state.authChecked = true;
 			})
 
 			.addCase(refreshToken.rejected, (state) => {

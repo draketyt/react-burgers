@@ -5,7 +5,7 @@ import styles from '@utils/order-detais.module.css';
 import { OrderCard } from '../components/order-card';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { WS_PROFILE_ORDERS_INIT, WS_PROFILE_ORDERS_CLOSE} from '../redux/actions/ws-actions';
-import { fetchIngredients } from '../redux/ingredientsSlice';
+import {fetchIngredients} from "../redux/ingredientsSlice";
 
 export const OrderDetailsPage: FC = () => {
 	const dispatch = useAppDispatch();
@@ -16,7 +16,6 @@ export const OrderDetailsPage: FC = () => {
 	const ingredientsAll= useAppSelector(state => state.ingredients.items);
 
 	useEffect(() => {
-		dispatch(fetchIngredients());
 
 		const token = localStorage.getItem('accessToken')?.replace('Bearer ', '');
 		if (token) {
@@ -27,7 +26,6 @@ export const OrderDetailsPage: FC = () => {
 			dispatch({ type: WS_PROFILE_ORDERS_CLOSE });
 		};
 	}, [dispatch]);
-
 
 	const processedOrders = useMemo(() => {
 		return orders.map((order: { ingredients: any[]; }) => {
@@ -44,7 +42,7 @@ export const OrderDetailsPage: FC = () => {
 			};
 		});
 	}, [orders, ingredientsAll]);
-	if (!connected) return <p className="text text_type_main-medium">Загрузка ...</p>;
+	if (!connected) return <div className="loader"></div>;
 	if (!processedOrders.length) return <p className="text text_type_main-medium">Нет заказов</p>;	console.log(processedOrders)
 
 	return (

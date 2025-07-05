@@ -2,7 +2,8 @@ import { getUser, logoutUser } from "../redux/auth-slice";
 import {NavLink, Outlet, useLocation, useNavigate} from "react-router-dom";
 import styles from "@utils/profile-style.module.css";
 import { useAppDispatch } from "../redux/hooks";
-import { FormProfile } from "@utils/form-profile";
+import {useEffect} from "react";
+import {WS_PROFILE_ORDERS_CLOSE, WS_PROFILE_ORDERS_INIT} from "../redux/actions/ws-actions";
 
 export const ProfilePage = () => {
 	const dispatch = useAppDispatch();
@@ -13,6 +14,8 @@ export const ProfilePage = () => {
 			.unwrap()
 			.then(() => navigate("/login"))
 			.catch((err) => console.log("Ошибка выхода:", err));
+
+
 	};
 
 	return (

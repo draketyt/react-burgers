@@ -1,57 +1,64 @@
-import {FC, useEffect} from "react";
+import {FC, useEffect, useMemo} from "react";
 import { OrderFeedCurrent } from "@pages/order-feed-current-page";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {fetchIngredients} from "../redux/ingredientsSlice";
-import {wsClose, wsClosed, wsInit} from "../redux/actions/ws-actions";
 import styles from "@utils/order-detais.module.css";
-import Modal from "../components/modal/modal";
-import {useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {WS_PROFILE_ORDERS_INIT, wsInit} from "../redux/actions/ws-actions";
+
 export const OrderHistoryPage: FC = () => {
-	const { orders, connected } = useAppSelector(state => state.wsOrders);
+	const location = useLocation();
+	const isFeed = location.pathname.startsWith('/feed');
+	const { orders,connected  } = useAppSelector(state =>
+		isFeed ? state.wsOrders : state.wsOrdersProfile
+	);
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
 	const { id: orderId } = useParams();
-	const order = orders.find(o => o._id === orderId);
+	const navigate = useNavigate();
+	const order = useMemo(() => {
+		if (!orderId || !orders.length) return undefined;
+		return orders.find((o:any) => o._id === orderId);
+	}, [orders, orderId]);
 	useEffect(() => {
-		dispatch(fetchIngredients());
-		dispatch(wsInit());
-		return () => {
-			dispatch(wsClose());
-			dispatch(wsClosed());
-		};
-	}, [dispatch]);
-	if (!connected || !orders.length) {
-		return <p>Загрузка заказов...</p>;
+		const token = localStorage.getItem("accessToken")?.replace("Bearer ", "");
+		if (!connected) {
+			if (isFeed) {
+				dispatch(wsInit());
+			} else if (token) {
+				dispatch({ type: WS_PROFILE_ORDERS_INIT, payload: `?token=${token}` });
+			}
+		}
+	}, [dispatch, connected, isFeed]);
+
+	if (!orders.length) {
+		return <div className={'loader'}></div>;
 	}
-	const handleClickVisible= (orderId:any)=>{
+
+	const handleClickVisible = (orderId: string) => {
 		navigate(`/profile/orders/${orderId}`, { state: { background: location } });
-	}
-	const handleClose = () => {
-		navigate(-1);
 	};
 
-	return (
-		<>
-			<Modal onClose={handleClose}>
-			<section className={styles.orderInfo} >
-				<ul>
-					{order ? (
-						<OrderFeedCurrent
-							key={order._id}
-							name={order.name}
-							number={order.number}
-							status={order.status}
-							created_at={order.createdAt}
-							ingredientsIds={order.ingredients}
-							handleClickVisible={() => handleClickVisible(order._id)}
-						/>
-					) : (
-						<p>Заказ не найден</p>
-					)}
-				</ul>
-			</section>
 
-			</Modal>
-		</>
+	console.log("order", order);
+
+	return (
+		<section className={styles.orderInfo}>
+
+				{order ? (
+
+					<OrderFeedCurrent
+						key={order._id}
+						name={order.name}
+						number={order.number}
+						status={order.status}
+						created_at={order.createdAt}
+						ingredientsIds={order.ingredients}
+						onClick={handleClickVisible}
+					/>
+
+				) : (
+					<p>Заказ не найден</p>
+				)}
+
+		</section>
 	);
 };

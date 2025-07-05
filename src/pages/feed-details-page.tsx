@@ -3,7 +3,6 @@ import {FC, useEffect, useMemo} from "react";
 import { OrderCard } from "../components/order-card";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { wsClose, wsClosed, wsInit} from "../redux/actions/ws-actions";
-import {fetchIngredients} from "../redux/ingredientsSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export const OrderFeedDetailsPage: FC = () => {
@@ -13,7 +12,7 @@ export const OrderFeedDetailsPage: FC = () => {
 	const { orders, connected } = useAppSelector(state => state.wsOrders);
 	const ingredientsAll = useAppSelector(state => state.ingredients.items);
 	useEffect(() => {
-		dispatch(fetchIngredients());
+
 		dispatch(wsInit());
 
 		return () => {
@@ -36,7 +35,7 @@ export const OrderFeedDetailsPage: FC = () => {
 			};
 		});
 	}, [orders, ingredientsAll]);
-	if (!connected) return <p>Загрузка...</p>;
+	if (!connected) return <div className={'loader'}></div>;
 	if (!processedOrders.length) return <p>Заказы не найдены</p>;
 
 
