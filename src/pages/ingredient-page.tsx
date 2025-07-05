@@ -20,7 +20,7 @@ export const IngredientDetailsPage: FC = () => {
 
 	const ingredient:any = items.find((item:{_id:string}) => item._id === id);
 
-	if (loading) return <p className="text_type_main-large">Загрузка...</p>;
+	if (loading) return <div className={'loader'}></div>;
 	if (error) return <p className="text_type_main-large">Ошибка загрузки ингредиентов</p>;
 	if (!ingredient) return <p className="text_type_main-large">Ингредиент не найден</p>;
 

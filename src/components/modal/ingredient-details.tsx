@@ -14,6 +14,7 @@ export const IngredientDetails:FC<IngredientDetails>= ({ ingredient: propIngredi
 
 	return (
 		<>
+			<p className="text text_type_main-large mb-4" >Детали Ингредиента </p>
 			<img className={styles.image} src={ingredient.image_large} alt={ingredient.name} />
 			<h2 className="text text_type_main-medium mb-4">{ingredient.name}</h2>
 			<div className={styles.nutrients}>

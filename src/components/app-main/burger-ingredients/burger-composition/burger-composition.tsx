@@ -1,34 +1,48 @@
-import React, { FC, useMemo} from "react";
+import React, { FC, useMemo } from "react";
 import { Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import DraggableIngredientItem from './draggable-ingredient-item';
-import {SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT} from '../../../../redux/actions/ingredientActions';
+import { SET_BUN, ADD_INGREDIENT, REMOVE_INGREDIENT } from '../../../../redux/actions/ingredientActions';
 import { useDrop } from "react-dnd";
-import {NavigateFunction, useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../../../redux/hooks";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { createOrder } from "../../../../redux/orderSlice";
 
 
-export const BurgerComposition:FC<BurgerCompProps> = ({setIsModalOpen ,isAuthenticated,createOrder}) => {
+export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthenticated }) => {
 	const dispatch = useAppDispatch();
-	const selectedBun:any = useAppSelector((state):any => state.cart.selectedBun);
-	const selectedIngredients:any = useAppSelector((state):any => state.cart.selectedIngredients);
-	const ingredients:any = useAppSelector((state:any):any => state.ingredients.items);
-	const navigate:NavigateFunction = useNavigate();
+	const navigate = useNavigate();
 
-	const deleteIng:any = (index:any):void => {
+	const selectedBun = useAppSelector(state => state.cart.selectedBun);
+	const selectedIngredients = useAppSelector(state => state.cart.selectedIngredients);
+	const ingredients:any = useAppSelector(state => state.ingredients.items);
+
+	const deleteIng = (index: number): void => {
 		dispatch(REMOVE_INGREDIENT(index));
 	};
 
-	const handleOrderClick:any = ():void => {
+	const handleOrderClick = async () => {
+		if (!selectedBun || selectedIngredients.length === 0) return;
+
 		if (isAuthenticated) {
 			setIsModalOpen(true);
 
 			const ingredientIds:any = [
 				selectedBun._id,
-				...selectedIngredients.map((item:any) => item._id),
+				...selectedIngredients.map(item => item._id),
 				selectedBun._id,
 			];
 
-			 createOrder(ingredientIds);
+			try {
+				const resultAction = await dispatch(createOrder(ingredientIds));
+
+				if (createOrder.fulfilled.match(resultAction)) {
+					console.log("Заказ успешно создан:", resultAction.payload);
+				} else {
+					console.error("Ошибка при создании заказа");
+				}
+			} catch (error) {
+				console.error("Ошибка создания заказа:", error);
+			}
 		} else {
 			navigate("/login");
 		}

@@ -1,4 +1,4 @@
-export const SET_BUN = (bun:any):{type:any; payload:string} => ({
+export const SET_BUN = (bun:string):{type:any; payload:string} => ({
 	type: "SET_BUN",
 	payload: bun,
 });
@@ -10,7 +10,7 @@ export const REMOVE_INGREDIENT = (index:any) => ({
 	type: "REMOVE_INGREDIENT",
 	payload: index,
 });
-export const MOVE_INGREDIENT = ({fromIndex, toIndex}:any) => ({
+export const MOVE_INGREDIENT= ({fromIndex, toIndex}:any) => ({
 	type: "MOVE_INGREDIENT",
 	payload: { fromIndex, toIndex }
 });

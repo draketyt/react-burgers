@@ -1,13 +1,18 @@
 import {createSlice, createAsyncThunk, AsyncThunk, GetThunkAPI, ActionReducerMapBuilder, Slice} from '@reduxjs/toolkit';
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 import {BASE_URL} from './auth-slice'
-export const createOrder:AsyncThunk<any, any, any> = createAsyncThunk(
+export const createOrder = createAsyncThunk(
 	'order/createOrder',
-	async (ingredientIds:any, thunkAPI:GetThunkAPI<any>):Promise<any> => {
+	async (ingredientIds, thunkAPI) => {
 		try {
-			const response:AxiosResponse<any,any> = await axios.post(
+			const response = await axios.post(
 				`${BASE_URL}/api/orders`,
 				{ ingredients: ingredientIds },
+				{
+					headers: {
+						Authorization: localStorage.getItem('accessToken'),
+					},
+				}
 			);
 			return response.data.order.number;
 		} catch (error:any) {
@@ -22,6 +27,7 @@ const orderSlice:Slice = createSlice({
 		orderId: null,
 		loading: false,
 		error: null,
+		orderData: null,
 	},
 	reducers: {
 		clearOrder: (state:any):void => {
@@ -43,7 +49,8 @@ const orderSlice:Slice = createSlice({
 			.addCase(createOrder.rejected, (state:any, action:any):void => {
 				state.loading = false;
 				state.error = action.payload;
-			});
+			})
+
 	},
 });
 

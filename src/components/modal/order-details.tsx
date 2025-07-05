@@ -1,7 +1,6 @@
 import styles from "./modal.module.css";
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {FC} from "react";
-import {useSelector} from "react-redux";
 import {useAppSelector} from "../../redux/hooks";
 
 export const OrderDetails:FC<OrderDetailsProps> = () : any=>{
