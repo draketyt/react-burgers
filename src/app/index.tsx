@@ -26,9 +26,12 @@ export const App = () => {
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const background = useRef (location.state?.background)
-	const routesLocation = background.current || location;
-
+	const background =location.state?.background
+	const routesLocation = background
+	// по поводу последних двух пунктов, у меня все работает
+	//Не могу попасть на страницу логина через нажатие на Личный кабинет в хэдере. Этот пункт меню должен отправлять на логин, если пользователь еще не авторизован, и в личный кабинет, если уже авторизован
+	// Не идет переход на ленту заказов при клике в хэдере на пункт меню
+	//про эти два пункта.
 	useEffect(() => {
 		dispatch(fetchIngredients());
 		dispatch(fetchUserData());
@@ -115,6 +118,7 @@ export const App = () => {
 				/>
 
 				<Route path="*" element={<NotFoundPage />} />
+				<Route path="/feed/:id" element={<OrderHistoryPage />} />
 
 			</Routes>
 
