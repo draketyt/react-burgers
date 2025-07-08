@@ -37,10 +37,15 @@ const Modal:FC<ModalProps> = ({ title, children, onClose }) => {
 
 
 	return ReactDOM.createPortal(
-		<div className={`${styles.overlay} ${isVisible ? styles.open : styles.hidden}`} onClick={handleClose}>
+		<div
+			data-cy="order-modal"
+
+				className={`${styles.overlay} ${isVisible ? styles.open : styles.hidden}`} onClick={handleClose}>
+
+
 			<ModalOverlay onClose={onClose} onClick={handleClose} />
 			<div className={`${styles.modal} ${isVisible ? styles.open : styles.hidden}`} onClick={(e:any):void => e.stopPropagation()}>
-				<button className={styles.modal__close} onClick={handleClose}>
+				<button data-cy="modal-close" className={styles.modal__close} onClick={handleClose}>
 					<CloseIcon type="primary" />
 				</button>
 				{title && <h2 className="text text_type_main-large mb-4">{title}</h2>}

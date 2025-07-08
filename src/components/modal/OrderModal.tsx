@@ -14,7 +14,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ orderId, onClose }) => {
 
 	return (
 		<Modal title="Детали заказа" onClose={onClose}>
-			<OrderDetails order={order} />
+			<OrderDetails order={order}  />
 		</Modal>
 	);
 };
