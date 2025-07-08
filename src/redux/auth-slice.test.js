@@ -5,6 +5,7 @@ import authReducer, {
 	verifyUser,
 	fetchUserData,
 	logoutUser,
+	initialState
 } from './auth-slice';
 
 describe('authSlice reducer', () => {
@@ -13,14 +14,7 @@ describe('authSlice reducer', () => {
 	beforeEach(() => localStorage.clear());
 
 	it('должен вернуть initialState', () => {
-		expect(authReducer(undefined, { type: '@@INIT' })).toEqual({
-			isAuthenticated: null,
-			isAuthLoading: false,
-			isResetLoading: false,
-			user: null,
-			error: null,
-			authChecked: false,
-		});
+		expect(authReducer(undefined, { type: '@@INIT' })).toEqual(initialState);
 	});
 
 	it('обрабатывает login()', () => {
@@ -88,10 +82,7 @@ describe('authSlice reducer', () => {
 
 	it('обрабатывает logoutUser.fulfilled', () => {
 		const loggedIn = authReducer(undefined, login(user));
-		const state = authReducer(
-			loggedIn,
-			{ type: logoutUser.fulfilled.type }
-		);
+		const state = authReducer(loggedIn, { type: logoutUser.fulfilled.type });
 		expect(state.isAuthenticated).toBe(false);
 		expect(state.user).toBeNull();
 	});

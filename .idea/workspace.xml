@@ -5,19 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fc9c6ac-7096-4a59-b8da-f54d67c14b6a" name="Changes" comment="refactored">
-      <change afterPath="$PROJECT_DIR$/src/components/app-main/cypress/e2e/constructor.test.cy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/auth-slice.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/cartSlice.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/ingredientsSlice.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/orderSlice.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/e2e/burger-app/constructor.test.cy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/fixtures/ingredients.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/support/commands.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/support/e2e.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cypress.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/1-getting-started/todo.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/actions.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/aliasing.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/assertions.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/connectors.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/cookies.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/cypress_api.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/files.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/location.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/misc.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/navigation.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/network_requests.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/querying.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/spies_stubs_clocks.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/storage.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/traversal.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/utilities.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/viewport.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/waiting.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/e2e/2-advanced-examples/window.cy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/profile.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/users.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/screenshots/2-advanced-examples/misc.cy.js/my-image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/support/commands.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/support/e2e.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/Ingredients-group/ingridients-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/burger-composition.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/draggable-ingredient-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-main/burger-ingredients/burger-composition/draggable-ingredient-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-main/cypress/e2e/constructor.test.cy.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/OrderModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/OrderModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/modal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/order-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/order-details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-slice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-slice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cartSlice.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/cartSlice.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cartSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/cartSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/ingredientsSlice.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/ingredientsSlice.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/ingredientsSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/ingredientsSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/orderSlice.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/orderSlice.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/orderSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/orderSlice.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,13 +119,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Cypress.all tests in burger-composition.test.cy.js.executor": "Run",
+    "Cypress.all tests in constructor.test.cy.js.executor": "Run",
     "Jest.authSlice reducer.должен вернуть initialState.executor": "Run",
     "Jest.authSlice reducer.обрабатывает login().executor": "Run",
     "Node.js.OrderModal.jsx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "sprint-6/step-1",
+    "git-widget-placeholder": "#7 on sprint-6/step-1",
     "js.last.introduce.type": "CONST",
+    "last_directory_selection": "D:/react-burgers/cypress/support",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -104,14 +140,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\react-burgers\cypress\support" />
+      <recent name="D:\react-burgers\src" />
       <recent name="D:\react-burgers\src\components\app-main\cypress\e2e" />
       <recent name="D:\react-burgers\src\components" />
-      <recent name="D:\react-burgers\src" />
       <recent name="D:\react-burgers\src\components\modal" />
-      <recent name="D:\react-burgers\src\components\app-main\burger-ingredients\burger-composition" />
     </key>
   </component>
-  <component name="RunManager" selected="Cypress.all tests in burger-composition.test.cy.js">
+  <component name="RunManager" selected="Cypress.all tests in constructor.test.cy.js">
     <configuration name="all tests in burger-composition.test.cy.js" type="JavaScriptTestRunnerCypress" temporary="true">
       <node-interpreter value="project" />
       <cypress-package value="$PROJECT_DIR$/node_modules/cypress" />
@@ -120,6 +156,20 @@
       <envs />
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/src/components/app-main/app-main-tests/burger-composition.test.cy.js" />
+      <test-names>
+        <test-name value="Конструктор бургера" />
+        <test-name value="перетаскивает ингредиенты и создает заказ" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="all tests in constructor.test.cy.js" type="JavaScriptTestRunnerCypress" temporary="true">
+      <node-interpreter value="project" />
+      <cypress-package value="$PROJECT_DIR$/node_modules/cypress" />
+      <working-dir value="$PROJECT_DIR$" />
+      <cypress-options value="-q" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/cypress/e2e/burger-app/constructor.test.cy.js" />
       <test-names>
         <test-name value="Конструктор бургера" />
         <test-name value="перетаскивает ингредиенты и создает заказ" />
@@ -154,6 +204,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cypress.all tests in constructor.test.cy.js" />
         <item itemvalue="Cypress.all tests in burger-composition.test.cy.js" />
         <item itemvalue="Jest.authSlice reducer.должен вернуть initialState" />
         <item itemvalue="Jest.authSlice reducer.обрабатывает login()" />
@@ -265,7 +316,8 @@
       <workItem from="1751751864548" duration="2780000" />
       <workItem from="1751802377477" duration="1259000" />
       <workItem from="1751861147567" duration="762000" />
-      <workItem from="1751952968315" duration="9117000" />
+      <workItem from="1751952968315" duration="9657000" />
+      <workItem from="1751974834648" duration="11594000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <option name="closed" value="true" />
@@ -619,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751803326150</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="refactored">
+      <option name="closed" value="true" />
+      <created>1751967474912</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1751967474912</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

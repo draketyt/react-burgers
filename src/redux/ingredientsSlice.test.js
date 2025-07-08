@@ -2,17 +2,14 @@ import ingredientsReducer, {
 	fetchIngredientsRequest,
 	fetchIngredientsSuccess,
 	fetchIngredientsFailed,
+	initialState
 } from './ingredientsSlice';
 
 describe('ingredientsSlice reducer', () => {
 	const items = [{ _id: '1', name: 'Мясо' }];
 
 	it('initialState', () => {
-		expect(ingredientsReducer(undefined, { type: '@@INIT' })).toEqual({
-			items: [],
-			isLoading: false,
-			hasError: false,
-		});
+		expect(ingredientsReducer(undefined, { type: '@@INIT' })).toEqual(initialState);
 	});
 
 	it('fetchIngredientsRequest', () => {

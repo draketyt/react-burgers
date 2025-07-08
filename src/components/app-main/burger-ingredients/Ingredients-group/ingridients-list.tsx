@@ -31,9 +31,11 @@ export const IngredientItem:FC<IngredientItemProps> = ({ image, price, name, ing
 
 	return (
 		<div
+			data-cy="ingredient-card"
 			ref={drag}
 			className={`ingredient-item ml-5 p-4 ${isDragging ? "dragging" : ""}`}
 			draggable
+			data-id={ingredient._id}
 			onClick={handleClick}
 		>
 			<div>
@@ -108,7 +110,7 @@ export const IngredientsList:FC<IngredientsListProps> = ({onIngredientClick }:In
 						<ul className="ingredient-items custom-scroll">
 							{buns.map((item:any):any => (
 								<li key={item._id}>
-								<IngredientItem data-cy="ingredient-card"
+								<IngredientItem
 									image={item.image_large} price={item.price} name={item.name}
 												ingredient={item} 		onIngredientClick={onIngredientClick}
 

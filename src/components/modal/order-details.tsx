@@ -19,7 +19,8 @@ export const OrderDetails:FC<OrderDetailsProps> = () : any=>{
 
 	):(
 		<>
-		<h1 data-cy="order-number"
+		<h1
+			data-cy="order-number"
 			className={`${styles.orderId} text_type_digits-large mt-20`}>{orderId}</h1>
 			<p className="text_type_main-large">идентификатор заказа</p>
 			<div className={styles['done-icon-wrapper']}>

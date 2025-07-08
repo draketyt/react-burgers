@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authFetch } from "@utils/authFetch";
+import { authFetch } from "../utils/authFetch";
 
 export const BASE_URL = 'https://norma.nomoreparties.space';
 
@@ -15,7 +15,7 @@ interface AuthState {
 }
 
 const userFromStorage = localStorage.getItem("user");
-const initialState: AuthState = {
+export const initialState: AuthState = {
 	isAuthenticated: null,
 	isAuthLoading: false,
 	isResetLoading: false,

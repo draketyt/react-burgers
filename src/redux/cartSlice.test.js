@@ -1,15 +1,12 @@
-import cartReducer from './cartSlice';
+import cartReducer, { initialState } from './cartSlice';
 
 describe('cartReducer', () => {
-	const bun   = { id: 'bun1',   name: 'Булка'  };
-	const ingA  = { id: 'ingA',   name: 'Салат'  };
-	const ingB  = { id: 'ingB',   name: 'Сыр'    };
+	const bun = { id: 'bun1', name: 'Булка' };
+	const ingA = { id: 'ingA', name: 'Салат' };
+	const ingB = { id: 'ingB', name: 'Сыр' };
 
 	it('initialState', () => {
-		expect(cartReducer(undefined, { type: '@@INIT' })).toEqual({
-			selectedBun: null,
-			selectedIngredients: [],
-		});
+		expect(cartReducer(undefined, { type: '@@INIT' })).toEqual(initialState);
 	});
 
 	it('SET_BUN', () => {

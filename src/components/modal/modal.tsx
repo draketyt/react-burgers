@@ -45,7 +45,7 @@ const Modal:FC<ModalProps> = ({ title, children, onClose }) => {
 
 			<ModalOverlay onClose={onClose} onClick={handleClose} />
 			<div className={`${styles.modal} ${isVisible ? styles.open : styles.hidden}`} onClick={(e:any):void => e.stopPropagation()}>
-				<button data-cy="modal-close" className={styles.modal__close} onClick={handleClose}>
+				<button className={styles.modal__close} onClick={handleClose} data-cy="modal-close">
 					<CloseIcon type="primary" />
 				</button>
 				{title && <h2 className="text text_type_main-large mb-4">{title}</h2>}

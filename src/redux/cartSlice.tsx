@@ -3,7 +3,7 @@ interface CartState {
 	selectedIngredients: any[];
 }
 
-const initialState: CartState = {
+export const initialState: CartState = {
 	selectedBun: null,
 	selectedIngredients: [],
 };

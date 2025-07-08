@@ -102,7 +102,7 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 	return (
 		<section className="right__panel mt-15 pt-15" data-cy="constructor-ingredient">
 
-			<div data-cy="drop-top" ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
+			<div data-cy="drop-top"  ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
 						type="top"
@@ -121,8 +121,8 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 
 			<div
 				ref={middleDropRef}
-
 				data-cy="drop-middle"
+
 				className={`ingredient-container ${isOverMiddle ? "hovered" : ""}`}
 			>
 				{selectedIngredients.length > 0 ? (

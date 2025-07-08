@@ -1,15 +1,10 @@
-import orderReducer, { clearOrder, createOrder } from './orderSlice';
+import orderReducer, { clearOrder, createOrder, initialState } from './orderSlice';
 
 describe('orderSlice reducer', () => {
 	beforeEach(() => localStorage.clear());
 
 	it('initialState', () => {
-		expect(orderReducer(undefined, { type: '@@INIT' })).toEqual({
-			orderId: null,
-			loading: false,
-			error: null,
-			orderData: null,
-		});
+		expect(orderReducer(undefined, { type: '@@INIT' })).toEqual(initialState);
 	});
 
 	it('createOrder.pending', () => {

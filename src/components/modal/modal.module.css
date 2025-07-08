@@ -35,7 +35,7 @@
 	background-color: #1C1C21;
 	border-radius: 36px;
 	color: white;
-	z-index: 99999999999999999999999;
+	z-index: 99999999999999999999999454;
 
 	opacity: 0;
 	transform: translateY(-30px) scale(0.95);
@@ -71,7 +71,7 @@
 	align-items: center;
 	justify-content: center;
 	transition: opacity 0.2s ease;
-	z-index: 10;
+	z-index: 1011111111111111111111111111111111111111111111111;
 	padding-left: 30px;
 }
 
