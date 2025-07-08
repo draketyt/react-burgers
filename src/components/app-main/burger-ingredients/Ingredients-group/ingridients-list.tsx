@@ -31,9 +31,11 @@ export const IngredientItem:FC<IngredientItemProps> = ({ image, price, name, ing
 
 	return (
 		<div
+			data-cy="ingredient-card"
 			ref={drag}
 			className={`ingredient-item ml-5 p-4 ${isDragging ? "dragging" : ""}`}
 			draggable
+			data-id={ingredient._id}
 			onClick={handleClick}
 		>
 			<div>
@@ -101,14 +103,15 @@ export const IngredientsList:FC<IngredientsListProps> = ({onIngredientClick }:In
 
 		<>
 			<IngredientsTabs activeTab={activeTab} setActiveTab={setActiveTab} onIngredientClick={undefined} />
-			<div className="ingredients custom-scroll" ref={containerRef} onScroll={onScroll}>
-				<div id="buns" ref={sectionRefs.one} className="ingredients pt-10">
+			<div className="ingredients custom-scroll"  ref={containerRef} onScroll={onScroll}>
+				<div id="buns" ref={sectionRefs.one}  className="ingredients pt-10">
 					<p className="text_type_main-large title">Булки</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">
 							{buns.map((item:any):any => (
 								<li key={item._id}>
-								<IngredientItem image={item.image_large} price={item.price} name={item.name}
+								<IngredientItem
+									image={item.image_large} price={item.price} name={item.name}
 												ingredient={item} 		onIngredientClick={onIngredientClick}
 
 								/>
@@ -118,7 +121,7 @@ export const IngredientsList:FC<IngredientsListProps> = ({onIngredientClick }:In
 					</div>
 				</div>
 
-				<div id="sauces" ref={sectionRefs.two} className="ingredients pt-10">
+				<div id="sauces" ref={sectionRefs.two} className="ingredients pt-10" >
 					<p className="text_type_main-large title">Соусы</p>
 					<div className="grid pt-6">
 						<ul className="ingredient-items custom-scroll">

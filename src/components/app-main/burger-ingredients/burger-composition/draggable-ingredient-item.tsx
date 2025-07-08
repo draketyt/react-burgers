@@ -42,6 +42,7 @@ const DraggableIngredientItem:FC<DraggableIngredientItemProps> = ({ ingredient, 
 
 	return (
 		<li
+
 			ref={ref}
 			className="order__item"
 			style={style}

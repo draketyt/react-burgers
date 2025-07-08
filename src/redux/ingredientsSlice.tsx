@@ -3,7 +3,7 @@ import axios from 'axios';
 import {BASE_URL} from './auth-slice'
 import {Dispatch} from "react";
 
-const initialState = {
+export const initialState = {
 	items: [],
 	isLoading: false,
 	hasError: false,
