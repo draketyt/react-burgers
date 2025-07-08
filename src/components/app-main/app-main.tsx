@@ -12,10 +12,8 @@ export const AppMain:any = ():any => {
 	const [selectedIngredientId, setSelectedIngredientId] = useState(null);
 	const orderId:any = useAppSelector((state):any => state.order.orderId);
 	const isAuthenticated:boolean = useAppSelector((state) :any=> state.auth.isAuthenticated);
-	useEffect(():void => {
-		dispatch(fetchIngredients());
-	}, [dispatch]);
-	const handleOrderClick = (ingredientIds: string[]) => {
+
+	const handleOrderClick = (ingredientIds: any) => {
 		dispatch(createOrder(ingredientIds));
 	};
 	const onIngredientClick:any = (id:any):void => {

@@ -9,7 +9,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 1000;
+	z-index:999999999999999999;
 
 	opacity: 0;
 	pointer-events: none;
@@ -35,7 +35,7 @@
 	background-color: #1C1C21;
 	border-radius: 36px;
 	color: white;
-	z-index: 151551;
+	z-index: 99999999999999999999999;
 
 	opacity: 0;
 	transform: translateY(-30px) scale(0.95);
