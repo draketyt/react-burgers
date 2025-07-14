@@ -100,9 +100,9 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 	};
 
 	return (
-		<section className="right__panel mt-15 pt-15">
+		<section className="right__panel mt-15 pt-15" data-cy="constructor-ingredient">
 
-			<div ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
+			<div data-cy="drop-top"  ref={topBunDropRef} className={`bunSticky-сontainer custom-scroll ${isOverTop ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
 						type="top"
@@ -121,6 +121,8 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 
 			<div
 				ref={middleDropRef}
+				data-cy="drop-middle"
+
 				className={`ingredient-container ${isOverMiddle ? "hovered" : ""}`}
 			>
 				{selectedIngredients.length > 0 ? (
@@ -143,7 +145,7 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 				)}
 			</div>
 
-			<div ref={bottomBunDropRef} className={`bottomBun-container ${isOverBottom ? 'hovered' : ''}`}>
+			<div ref={bottomBunDropRef} data-cy="drop-bottom" className={`bottomBun-container ${isOverBottom ? 'hovered' : ''}`}>
 				{selectedBun ? (
 					<ConstructorElement
 						type="bottom"
@@ -167,6 +169,7 @@ export const BurgerComposition: FC<BurgerCompProps> = ({ setIsModalOpen, isAuthe
 				<Button
 					htmlType="button"
 					onClick={handleOrderClick}
+					data-cy="place-order"
 					type="primary"
 					size="medium"
 					disabled={ totalPrice=== 0 || !selectedBun||ingredients.length === 0 }

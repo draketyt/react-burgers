@@ -1,6 +1,12 @@
 import {createSlice, createAsyncThunk, AsyncThunk, GetThunkAPI, ActionReducerMapBuilder, Slice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {BASE_URL} from './auth-slice'
+export const  initialState = {
+	orderId: null,
+	loading: false,
+	error: null,
+	orderData: null,
+}
 export const createOrder = createAsyncThunk(
 	'order/createOrder',
 	async (ingredientIds, thunkAPI) => {
@@ -23,12 +29,7 @@ export const createOrder = createAsyncThunk(
 
 const orderSlice:Slice = createSlice({
 	name: 'order',
-	initialState: {
-		orderId: null,
-		loading: false,
-		error: null,
-		orderData: null,
-	},
+	initialState,
 	reducers: {
 		clearOrder: (state:any):void => {
 			state.orderId = null;
